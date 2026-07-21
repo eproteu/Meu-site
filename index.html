@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEVBUENO | Portfólio · Desenvolvimento Web</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome 6 (ícones) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0f0d;
+    --surface:#0f221b;
+    --surface-2:#132a21;
+    --copper:#c9944b;
+    --silk:#e9e6d5;
+    --signal:#4fe0c8;
+    --alert:#e85c3f;
+    --trace-dim: rgba(79,224,200,.25);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(79,224,200,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,224,200,.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color:var(--silk);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+  }
+
+  h1,h2,h3,.display-font{
+    font-family:'Space Mono', monospace;
+    letter-spacing:.5px;
+  }
+
+  .mono, .data{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{color:var(--signal); text-decoration:none;}
+  a:hover{color:var(--copper);}
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar {width: 8px;}
+  ::-webkit-scrollbar-track {background: var(--bg);}
+  ::-webkit-scrollbar-thumb {background: var(--copper); border-radius: 4px;}
+  ::-webkit-scrollbar-thumb:hover {background: var(--signal);}
+
+  /* ===== LOGO SUPERIOR ===== */
+  .top-logo {
+    text-align: center;
+    padding: 20px 0 10px;
+    border-bottom: 1px solid var(--trace-dim);
+    background: rgba(10,15,13,.98);
+    position: relative;
+    z-index: 1050;
+  }
+  .top-logo .logo-text {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    color: var(--signal);
+    text-shadow: 0 0 30px rgba(79,224,200,.15);
+    display: inline-block;
+    position: relative;
+  }
+  .top-logo .logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--copper), transparent);
+  }
+  .top-logo .logo-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    color: var(--copper);
+    display: block;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .top-logo .logo-badge {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--alert);
+    margin-right: 10px;
+    box-shadow: 0 0 12px var(--alert);
+    animation: blink 1.6s infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.15;}}
+
+  /* ===== NAVBAR ===== */
+  .navbar{
+    background:rgba(10,15,13,.92);
+    border-bottom:2px solid var(--copper);
+    backdrop-filter: blur(6px);
+  }
+  .navbar-brand{
+    font-family:'Space Mono', monospace;
+    color:var(--signal) !important;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .navbar-brand .blip{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:var(--alert); margin-right:8px;
+    box-shadow:0 0 8px var(--alert);
+    animation:blink 1.6s infinite;
+  }
+  .nav-link{
+    color:var(--silk) !important;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.85rem;
+    transition: color 0.3s ease;
+    white-space:nowrap;
+  }
+  .nav-link:hover{
+    color:var(--signal) !important;
+  }
+
+  .nav-divider {
+    color: var(--copper);
+    opacity: 0.3;
+    padding: 0 6px;
+    font-size: 0.8rem;
+  }
+
+  /* ===== MENU DE PROJETOS ===== */
+  .extra-pages {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    margin-left: 10px;
+    padding-left: 12px;
+    border-left: 1px solid var(--trace-dim);
+  }
+  
+  .extra-pages .page-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--copper);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-transform: lowercase;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+  
+  .extra-pages .page-link:hover {
+    color: var(--signal);
+    border-color: var(--trace-dim);
+    background: rgba(79,224,200,0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(79,224,200,0.1);
+  }
+  
+  .extra-pages .page-link i {
+    margin-right: 6px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:80px 0 60px;
+    border-bottom:1px dashed var(--trace-dim);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    color:var(--copper); font-family:'IBM Plex Mono',monospace;
+    font-size:.8rem; letter-spacing:3px; text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem, 6vw, 4.5rem);
+    color:var(--silk);
+    margin-bottom:0;
+  }
+  .hero h1 span{color:var(--signal);}
+  .hero .lead{
+    color:#b9c4bf; max-width:640px; font-size:1.2rem;
+  }
+  .hero .lead strong{color:var(--signal);}
+
+  .spec-strip{
+    margin-top:40px; border-top:1px solid var(--trace-dim); border-bottom:1px solid var(--trace-dim);
+  }
+  .spec-strip .spec{
+    padding:14px 10px; text-align:center; border-right:1px solid var(--trace-dim);
+  }
+  .spec-strip .spec:last-child{border-right:none;}
+  .spec-strip .spec .k{font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--copper); text-transform:uppercase; letter-spacing:1px;}
+  .spec-strip .spec .v{font-family:'Space Mono',monospace; font-size:1.15rem; color:var(--signal);}
+
+  /* ===== SECTION ===== */
+  .section{padding:70px 0; border-bottom:1px dashed var(--trace-dim);}
+  .section-title{
+    font-size:2.2rem; color:var(--silk); margin-bottom:8px;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono',monospace; color:var(--copper); font-size:.75rem;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+  .section-sub{
+    color:#b9c4bf; max-width:640px;
+  }
+
+  /* ===== CARDS DE PROJETOS ===== */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--trace-dim);
+    border-radius:var(--radius);
+    padding:28px 26px 24px;
+    height:100%;
+    transition:border-color .3s, transform .3s, box-shadow .3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--copper), var(--signal), var(--copper));
+    opacity:0;
+    transition:opacity .3s;
+  }
+  .project-card:hover{
+    border-color:var(--signal);
+    transform:translateY(-6px);
+    box-shadow:0 12px 40px rgba(79,224,200,.1);
+  }
+  .project-card:hover::before{opacity:1;}
+  
+  .project-card .project-icon{
+    font-size:2.5rem;
+    margin-bottom:12px;
+    display:block;
+  }
+  .project-card h3{
+    font-size:1.3rem;
+    color:var(--signal);
+    margin-bottom:4px;
+    font-family:'Space Mono',monospace;
+  }
+  .project-card .project-tech{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.7rem;
+    color:var(--copper);
+    margin-bottom:12px;
+    letter-spacing:0.5px;
+  }
+  .project-card p{
+    color:#cdd6d1;
+    font-size:.92rem;
+    margin-bottom:14px;
+  }
+  .project-card .project-link{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.8rem;
+    color:var(--signal);
+    text-decoration:none;
+    border:1px solid var(--trace-dim);
+    padding:6px 18px;
+    border-radius:20px;
+    transition:all .3s;
+    display:inline-block;
+  }
+  .project-card .project-link:hover{
+    background:rgba(79,224,200,.1);
+    border-color:var(--signal);
+    transform:scale(1.05);
+  }
+
+  /* ===== SKILLS ===== */
+  .skill-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.75rem;
+    color:var(--silk);
+    background:var(--surface-2);
+    border:1px solid var(--trace-dim);
+    padding:6px 16px;
+    border-radius:20px;
+    margin:4px 6px 4px 0;
+    transition:all .3s;
+  }
+  .skill-tag:hover{
+    border-color:var(--signal);
+    color:var(--signal);
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(79,224,200,.1);
+  }
+
+  /* ===== SOBRE ===== */
+  .about-text{
+    font-size:1.05rem;
+    color:#cdd6d1;
+    line-height:1.9;
+  }
+  .about-text strong{color:var(--signal);}
+
+  /* ===== CONTADOR ===== */
+  .counter-panel{
+    background:var(--surface); 
+    border:1px solid var(--trace-dim); 
+    border-radius:var(--radius);
+    padding:22px; 
+    text-align:center;
+  }
+  .counter-digits{
+    font-family:'IBM Plex Mono', monospace; 
+    font-size:2.8rem; 
+    letter-spacing:4px;
+    color:var(--signal); 
+    text-shadow:0 0 12px rgba(79,224,200,.5);
+  }
+  .counter-label{
+    font-family:'IBM Plex Mono',monospace; 
+    font-size:.7rem; 
+    color:var(--copper); 
+    text-transform:uppercase; 
+    letter-spacing:2px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    padding:34px 0; 
+    font-family:'IBM Plex Mono',monospace; 
+    font-size:.78rem; 
+    color:#8fa39c; 
+    text-align:center;
+    border-top:1px solid var(--trace-dim);
+  }
+  footer .social-link{
+    color:var(--copper);
+    margin:0 10px;
+    font-size:1.2rem;
+    transition:color .3s;
+  }
+  footer .social-link:hover{color:var(--signal);}
+
+  /* ===== RESPONSIVO ===== */
+  @media (max-width: 992px) {
+    .extra-pages {
+      flex-wrap: wrap;
+      justify-content: center;
+      border-left: none;
+      margin-left: 0;
+      padding-left: 0;
+      padding-top: 8px;
+      border-top: 1px solid var(--trace-dim);
+    }
+    .extra-pages .page-link {
+      font-size: 0.85rem;
+      padding: 4px 12px;
+    }
+  }
+
+  @media (max-width:576px){
+    .hero{padding:60px 0 30px;}
+    .top-logo .logo-text{font-size:1.3rem;}
+    .top-logo .logo-sub{font-size:0.5rem; letter-spacing:3px;}
+    .extra-pages .page-link {
+      font-size: 0.8rem;
+      padding: 3px 10px;
+    }
+    .nav-divider {display: none;}
+    .section{padding:40px 0;}
+    .section-title{font-size:1.6rem;}
+    .counter-digits{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGO SUPERIOR ===== -->
+<div class="top-logo">
+  <div>
+    <span class="logo-text">
+      <span class="logo-badge"></span>DEVBUENO
+    </span>
+    <span class="logo-sub">WEB DEVELOPMENT · PORTFÓLIO · 2026</span>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#topo"><span class="blip"></span>//portfolio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color:var(--copper)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-3 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+        <li class="nav-item"><a class="nav-link" href="#git">Git</a></li>
+        <li class="nav-item"><a class="nav-link" href="#copa">Copa</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contador">Visitas</a></li>
+        
+        <!-- ===== LINKS PARA PROJETOS ===== -->
+        <li class="nav-item">
+          <span class="nav-divider">|</span>
+        </li>
+        <li class="nav-item extra-pages">
+          <a class="page-link" href="amor.html" title="Projeto Amor"><i class="fas fa-heart"></i>amor</a>
+          <a class="page-link" href="espanhol.html" title="Projeto Espanhol"><i class="fas fa-globe-americas"></i>espanhol</a>
+          <a class="page-link" href="frio.html" title="Projeto Frio"><i class="fas fa-snowflake"></i>frio</a>
+          <a class="page-link" href="jogo.html" title="Projeto Jogo"><i class="fas fa-gamepad"></i>jogo</a>
+          <a class="page-link" href="relogio.html" title="Projeto Relógio"><i class="fas fa-clock"></i>relogio</a>
+          <a class="page-link" href="unesp.html" title="Projeto UNESP"><i class="fas fa-university"></i>unesp</a>
+         <a class="page-link" href="git.html" title="Projeto Amor"><i class="fas fa-heart"></i>git</a>
+         <a class="page-link" href="copa.html" title="Projeto Amor"><i class="fas fa-heart"></i>copa</a>
+        </li>
+        <!-- ===== FIM LINKS ===== -->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="topo">
+  <div class="container">
+    <div class="eyebrow">Portfólio // devbueno</div>
+    <h1>Construindo <span>soluções web</span><br>com código e criatividade.</h1>
+    <p class="lead mt-3">
+      Olá! Sou <strong>DevBueno</strong>, desenvolvedor web apaixonado por 
+      <strong>tecnologia, design e inovação</strong>. Este portfólio reúne meus 
+      principais projetos e aprendizados na jornada do desenvolvimento web.
+    </p>
+
+    <div class="row spec-strip g-0">
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Experiência</div><div class="v">2+ anos</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Projetos</div><div class="v">12+ entregues</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Tecnologias</div><div class="v">HTML · CSS · JS</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Foco</div><div class="v">Front-end</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SOBRE ===== -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="section-tag">01 · Quem sou</div>
+    <h2 class="section-title">Sobre mim</h2>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-7">
+        <div class="about-text">
+          <p>
+            <strong>Sou desenvolvedor web</strong> com foco em criar experiências digitais 
+            que unem <strong>design, performance e usabilidade</strong>. Minha jornada 
+            começou com a curiosidade de entender como os sites funcionam por trás das 
+            telas, e hoje me dedico a transformar ideias em código funcional e bonito.
+          </p>
+          <p>
+            Tenho experiência com <strong>HTML5, CSS3, JavaScript, Bootstrap, 
+            Responsividade</strong> e estou sempre explorando novas tecnologias para 
+            aprimorar minhas habilidades. Acredito que a <strong>tecnologia deve ser 
+            acessível</strong> e que cada projeto é uma oportunidade de aprender algo novo.
+          </p>
+          <p>
+            <i class="fas fa-code" style="color:var(--signal);"></i> 
+            Atualmente foco em <strong>front-end</strong> e na construção de interfaces 
+            que proporcionam <strong>experiências incríveis</strong> para os usuários.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:var(--copper); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">
+            <i class="fas fa-terminal" style="color:var(--signal);"></i> Status
+          </div>
+          <div style="font-family:'Space Mono',monospace; color:var(--signal); font-size:1.1rem; margin-bottom:6px;">
+            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--alert); margin-right:10px; animation:blink 1.6s infinite;"></span>
+            Disponível para projetos
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:.8rem; color:#8fa39c; margin-top:10px; border-top:1px solid var(--trace-dim); padding-top:12px;">
+            <div><i class="fas fa-map-pin" style="color:var(--copper); width:20px;"></i> Brasil</div>
+            <div><i class="fas fa-graduation-cap" style="color:var(--copper); width:20px;"></i> Desenvolvimento Web</div>
+            <div><i class="fas fa-rocket" style="color:var(--copper); width:20px;"></i> Sempre aprendendo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJETOS ===== -->
+<section class="section" id="projetos">
+  <div class="container">
+    <div class="section-tag">02 · Meus trabalhos</div>
+    <h2 class="section-title">Projetos em destaque</h2>
+    <p class="section-sub">Alguns dos projetos que desenvolvi para praticar e demonstrar minhas habilidades.</p>
+
+    <div class="row g-4 mt-2">
+      <!-- Projeto 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">❤️</span>
+          <h3>História do Amor</h3>
+          <div class="project-tech">HTML · CSS · Bootstrap · JS</div>
+          <p>Site com texto flutuante, cores vivas, som ambiente e contador de visitas. Projeto completo e interativo.</p>
+          <a href="amor.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+
+      <!-- Projeto 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">🌎</span>
+          <h3>Espanhol</h3>
+          <div class="project-tech">HTML · CSS · Bootstrap</div>
+          <p>Página temática sobre a língua espanhola, com design responsivo e elementos visuais atrativos.</p>
+          <a href="espanhol.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+
+      <!-- Projeto 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">❄️</span>
+          <h3>Frio</h3>
+          <div class="project-tech">HTML · CSS · JavaScript</div>
+          <p>Tema inverno com animações, efeitos de neve e design aconchegante. Exploração de CSS avançado.</p>
+          <a href="frio.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+
+      <!-- Projeto 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">🎮</span>
+          <h3>Jogo</h3>
+          <div class="project-tech">HTML · CSS · JavaScript</div>
+          <p>Jogo interativo desenvolvido com JavaScript puro. Lógica de programação e interatividade.</p>
+          <a href="jogo.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+
+      <!-- Projeto 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">🕐</span>
+          <h3>Relógio</h3>
+          <div class="project-tech">HTML · CSS · JavaScript</div>
+          <p>Relógio digital e analógico com JavaScript. Manipulação de DOM, CSS e funções de tempo.</p>
+          <a href="relogio.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+
+      <!-- Projeto 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <span class="project-icon">🏛️</span>
+          <h3>UNESP</h3>
+          <div class="project-tech">HTML · CSS · Bootstrap</div>
+          <p>Página institucional inspirada na UNESP, com layout profissional e informações acadêmicas.</p>
+          <a href="unesp.html" class="project-link"><i class="fas fa-external-link-alt"></i> Ver projeto</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HABILIDADES ===== -->
+<section class="section" id="habilidades">
+  <div class="container">
+    <div class="section-tag">03 · Tecnologias</div>
+    <h2 class="section-title">Habilidades técnicas</h2>
+    <p class="section-sub">Tecnologias e ferramentas que utilizo no meu dia a dia como desenvolvedor.</p>
+
+    <div class="row g-4 mt-3">
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:15px;">
+            <i class="fas fa-code" style="color:var(--copper);"></i> Front-end
+          </h4>
+          <div>
+            <span class="skill-tag"><i class="fab fa-html5" style="color:#e34c26;"></i> HTML5</span>
+            <span class="skill-tag"><i class="fab fa-css3-alt" style="color:#264de4;"></i> CSS3</span>
+            <span class="skill-tag"><i class="fab fa-js" style="color:#f7df1e;"></i> JavaScript</span>
+            <span class="skill-tag"><i class="fab fa-bootstrap" style="color:#7952b3;"></i> Bootstrap 5</span>
+            <span class="skill-tag"><i class="fas fa-mobile-alt" style="color:var(--signal);"></i> Responsividade</span>
+            <span class="skill-tag"><i class="fas fa-paint-brush" style="color:var(--copper);"></i> UI Design</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:15px;">
+            <i class="fas fa-tools" style="color:var(--copper);"></i> Ferramentas &amp; Outros
+          </h4>
+          <div>
+            <span class="skill-tag"><i class="fab fa-git-alt" style="color:#f34f29;"></i> Git</span>
+            <span class="skill-tag"><i class="fab fa-github" style="color:#fff;"></i> GitHub</span>
+            <span class="skill-tag"><i class="fas fa-terminal" style="color:var(--signal);"></i> CLI</span>
+            <span class="skill-tag"><i class="fas fa-database" style="color:var(--copper);"></i> SQL</span>
+            <span class="skill-tag"><i class="fas fa-cloud" style="color:#4fe0c8;"></i> Hosting</span>
+            <span class="skill-tag"><i class="fas fa-robot" style="color:var(--alert);"></i> IA Tools</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
+            <i class="fas fa-graduation-cap" style="color:var(--copper);"></i> Aprendendo agora
+          </h4>
+          <div>
+            <span class="skill-tag" style="border-color:var(--alert);"><i class="fab fa-react" style="color:#61dafb;"></i> React</span>
+            <span class="skill-tag" style="border-color:var(--alert);"><i class="fab fa-node" style="color:#68a063;"></i> Node.js</span>
+            <span class="skill-tag" style="border-color:var(--alert);"><i class="fas fa-database" style="color:#4ea94f;"></i> MongoDB</span>
+            <span class="skill-tag" style="border-color:var(--alert);"><i class="fas fa-arrow-up" style="color:var(--signal);"></i> Sempre mais!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GIT ===== -->
+<section class="section" id="git">
+  <div class="container">
+    <div class="section-tag">04 · Versionamento</div>
+    <h2 class="section-title">Git & GitHub</h2>
+    <p class="section-sub">Controle de versão é essencial no desenvolvimento moderno. Aqui estão minhas práticas e aprendizados.</p>
+
+    <div class="row g-4 mt-3">
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
+            <i class="fab fa-git-alt" style="color:var(--copper);"></i> Comandos essenciais
+          </h4>
+          <ul style="list-style:none; padding-left:0; font-family:'IBM Plex Mono',monospace; font-size:.85rem; color:#cdd6d1;">
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git init</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git add .</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git commit -m "mensagem"</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git push origin main</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git pull</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git branch & git merge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
+            <i class="fab fa-github" style="color:var(--copper);"></i> Workflow com GitHub
+          </h4>
+          <p style="color:#cdd6d1; font-size:.95rem;">
+            Utilizo o GitHub para hospedar meus repositórios, colaborar em projetos open-source 
+            e manter um histórico claro das alterações. Meus principais repositórios estão 
+            organizados com <strong>README</strong>, <strong>.gitignore</strong> e 
+            <strong>branches</strong> bem definidas.
+          </p>
+          <p style="color:#cdd6d1; font-size:.95rem;">
+            <i class="fas fa-check-circle" style="color:var(--signal);"></i> 
+            Práticas: commits semânticos, pull requests e revisão de código.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COPA ===== -->
+<section class="section" id="copa">
+  <div class="container">
+    <div class="section-tag">05 · Projeto temático</div>
+    <h2 class="section-title">Copa do Mundo</h2>
+    <p class="section-sub">Um projeto interativo sobre futebol, estatísticas e paixão pelo esporte.</p>
+
+    <div class="row g-4 mt-3">
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
+            <i class="fas fa-futbol" style="color:var(--copper);"></i> Sobre o projeto
+          </h4>
+          <p style="color:#cdd6d1; font-size:.95rem;">
+            Desenvolvi uma página dedicada à <strong>Copa do Mundo</strong>, com informações 
+            sobre seleções, jogadores históricos, tabela de jogos e curiosidades. 
+            O design utiliza cores vibrantes e elementos que remetem ao universo do futebol.
+          </p>
+          <p style="color:#cdd6d1; font-size:.95rem;">
+            <i class="fas fa-code" style="color:var(--signal);"></i> 
+            Tecnologias: HTML5, CSS3, JavaScript e consumo de API para dados atualizados.
+          </p>
+          <a href="#" class="project-link" style="margin-top:10px; display:inline-block;">
+            <i class="fas fa-external-link-alt"></i> Ver projeto (em breve)
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
+          <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
+            <i class="fas fa-trophy" style="color:var(--copper);"></i> Funcionalidades
+          </h4>
+          <ul style="list-style:none; padding-left:0; font-size:.95rem; color:#cdd6d1;">
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Tabela de jogos com horários</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Perfil de seleções e destaques</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Galeria de momentos históricos</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Quiz interativo sobre copas</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Modo claro/escuro</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTADOR DE VISITAS ===== -->
+<section class="section" id="contador" style="border-bottom:none;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="counter-panel">
+          <div class="counter-label mb-2">
+            <i class="fas fa-users" style="color:var(--copper);"></i> Visitantes
+          </div>
+          <div class="counter-digits" id="visitCount">— — — —</div>
+          <div class="mono mt-2" style="font-size:.65rem;color:#8fa39c;">
+            <i class="fas fa-sync-alt" style="color:var(--copper);"></i> contador persistente
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div style="margin-bottom:12px;">
+      <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div style="margin-bottom:8px;">
+      <span style="color:var(--copper);">DEVBUENO</span> · Desenvolvimento Web · 2026
+    </div>
+    <div style="font-size:.7rem; opacity:0.6;">
+      <i class="fas fa-code" style="color:var(--signal);"></i> 
+      Feito com HTML · CSS · Bootstrap · JavaScript
+      <i class="fas fa-heart" style="color:var(--alert); margin-left:6px;"></i>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ===== CONTADOR DE VISITAS =====
+  const NAMESPACE = "devbueno-portfolio";
+  const KEY = "visitas";
+  const counterEl = document.getElementById('visitCount');
+
+  async function updateVisitCounter() {
+    try {
+      const res = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+      const data = await res.json();
+      counterEl.textContent = String(data.value).padStart(6, '0');
+    } catch (err) {
+      let local = parseInt(localStorage.getItem('visitCountFallback') || '0', 10) + 1;
+      localStorage.setItem('visitCountFallback', local);
+      counterEl.textContent = String(local).padStart(6, '0');
+    }
+  }
+  updateVisitCounter();
+</script>
+</body>
+</html>

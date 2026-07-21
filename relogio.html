@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💥 CAOS TOTAL - 30 Cronômetros</title>
+    
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Orbitron:wght@400;700;900&family=Press+Start+2P&family=Rubik+Glitch&family=Fredoka+One&family=Bangers&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        /* ===== FUNDO PSICODÉLICO ===== */
+        .bg-psicodelico {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, #1a0033, #0a001a, #000000);
+            animation: fundoLouco 15s ease-in-out infinite alternate;
+        }
+        .bg-psicodelico::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(255,0,150,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 30% 70%, rgba(0,200,255,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255,200,0,0.05) 0%, transparent 50%);
+            animation: fundoLouco2 20s linear infinite;
+        }
+        @keyframes fundoLouco {
+            0% { transform: scale(1) rotate(0deg); background-position: 0% 0%; }
+            50% { transform: scale(1.2) rotate(5deg); background-position: 50% 50%; }
+            100% { transform: scale(1) rotate(-5deg); background-position: 100% 100%; }
+        }
+        @keyframes fundoLouco2 {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            33% { transform: translate(-10%, -5%) rotate(120deg) scale(1.1); }
+            66% { transform: translate(5%, 10%) rotate(240deg) scale(0.9); }
+            100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+        }
+
+        /* ===== PARTÍCULAS ===== */
+        .particula {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: particulaFlutua 8s ease-in-out infinite alternate;
+        }
+        @keyframes particulaFlutua {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            100% { transform: translate(100px, -100px) scale(3); opacity: 0.8; }
+        }
+
+        /* ===== CABEÇALHO CAÓTICO ===== */
+        .header-site {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 20px 0;
+            border-radius: 40px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+            animation: cabecalhoPulse 3s ease-in-out infinite;
+        }
+        @keyframes cabecalhoPulse {
+            0%, 100% { box-shadow: 0 10px 60px rgba(255,0,255,0.1); }
+            50% { box-shadow: 0 10px 80px rgba(0,255,255,0.2); }
+        }
+
+        .header-site h1 {
+            font-weight: 900;
+            font-size: 3.5rem;
+            font-family: 'Rubik Glitch', cursive;
+            background: linear-gradient(135deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradienteMovimento 2s ease-in-out infinite;
+            text-shadow: none;
+            letter-spacing: 4px;
+        }
+        @keyframes gradienteMovimento {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header-site .subtitle {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            animation: piscarTexto 1.5s ease-in-out infinite;
+        }
+        @keyframes piscarTexto {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== BOTÕES CAÓTICOS ===== */
+        .btn-caos {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: white;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: 0.2s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-caos:hover {
+            transform: scale(1.1) rotate(-5deg);
+            background: rgba(255,255,255,0.1);
+        }
+        .btn-caos.verde:hover { background: rgba(46, 204, 113, 0.3); border-color: #2ecc71; }
+        .btn-caos.amarelo:hover { background: rgba(241, 196, 15, 0.3); border-color: #f1c40f; }
+        .btn-caos.vermelho:hover { background: rgba(231, 76, 60, 0.3); border-color: #e74c3c; }
+        .btn-caos.roxo:hover { background: rgba(155, 89, 182, 0.3); border-color: #9b59b6; }
+
+        /* ===== CONTADOR ===== */
+        .contador-visitas {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 6px 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .contador-visitas .numero { font-weight: 700; font-size: 1.1rem; min-width: 35px; }
+
+        /* ===== CRONÔMETROS ===== */
+        .cronometro-card {
+            border-radius: 20px;
+            padding: 12px 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(8px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cronometro-card:hover {
+            transform: scale(1.05) rotate(var(--rotacao, 2deg));
+            z-index: 10;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+        }
+
+        .cronometro-card .numero {
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 4px 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            transition: 0.1s;
+        }
+
+        .cronometro-card .label {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            font-weight: 700;
+        }
+
+        .cronometro-card .botoes {
+            display: flex;
+            gap: 3px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cronometro-card .botoes button {
+            border: none;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            transition: 0.2s;
+            cursor: pointer;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+        .cronometro-card .botoes button:hover {
+            opacity: 1;
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* ===== MISCELÂNEA DE TAMANHOS ===== */
+        .tam-colossal { font-size: 4rem; padding: 30px 15px; }
+        .tam-gigante { font-size: 3.2rem; padding: 25px 12px; }
+        .tam-grande { font-size: 2.6rem; padding: 20px 10px; }
+        .tam-medio { font-size: 2rem; padding: 16px 10px; }
+        .tam-pequeno { font-size: 1.5rem; padding: 14px 8px; }
+        .tam-mini { font-size: 1.1rem; padding: 12px 6px; }
+        .tam-micro { font-size: 0.8rem; padding: 10px 5px; }
+
+        /* ===== CORES CAÓTICAS ===== */
+        .cor-neon { background: rgba(0,255,136,0.08); color: #00ff88; border-color: rgba(0,255,136,0.2); }
+        .cor-fogo { background: rgba(255,107,53,0.08); color: #ff6b35; border-color: rgba(255,107,53,0.2); }
+        .cor-gelo { background: rgba(79,195,247,0.08); color: #4fc3f7; border-color: rgba(79,195,247,0.2); }
+        .cor-roxo { background: rgba(206,147,216,0.08); color: #ce93d8; border-color: rgba(206,147,216,0.2); }
+        .cor-dourado { background: rgba(255,213,79,0.08); color: #ffd54f; border-color: rgba(255,213,79,0.2); }
+        .cor-rosa { background: rgba(244,143,177,0.08); color: #f48fb1; border-color: rgba(244,143,177,0.2); }
+        .cor-verde { background: rgba(129,199,132,0.08); color: #81c784; border-color: rgba(129,199,132,0.2); }
+        .cor-azul { background: rgba(100,181,246,0.08); color: #64b5f6; border-color: rgba(100,181,246,0.2); }
+        .cor-laranja { background: rgba(255,183,77,0.08); color: #ffb74d; border-color: rgba(255,183,77,0.2); }
+        .cor-branco { background: rgba(255,255,255,0.05); color: #ffffff; border-color: rgba(255,255,255,0.1); }
+        .cor-ciano { background: rgba(77,208,225,0.08); color: #4dd0e1; border-color: rgba(77,208,225,0.2); }
+        .cor-magenta { background: rgba(240,98,146,0.08); color: #f06292; border-color: rgba(240,98,146,0.2); }
+        .cor-verde-limao { background: rgba(174,213,129,0.08); color: #aed581; border-color: rgba(174,213,129,0.2); }
+        .cor-azul-profundo { background: rgba(92,107,192,0.08); color: #5c6bc0; border-color: rgba(92,107,192,0.2); }
+        .cor-vermelho { background: rgba(239,83,80,0.08); color: #ef5350; border-color: rgba(239,83,80,0.2); }
+        .cor-preto { background: rgba(255,255,255,0.02); color: #aaaaaa; border-color: rgba(255,255,255,0.05); }
+        .cor-ouro { background: rgba(255,215,0,0.08); color: #ffd700; border-color: rgba(255,215,0,0.2); }
+        .cor-prata { background: rgba(192,192,192,0.06); color: #c0c0c0; border-color: rgba(192,192,192,0.1); }
+        .cor-bronze { background: rgba(205,127,50,0.08); color: #cd7f32; border-color: rgba(205,127,50,0.2); }
+
+        /* ===== FONTES ===== */
+        .fonte-padrao { font-family: 'Courier New', monospace; }
+        .fonte-orbitron { font-family: 'Orbitron', monospace; }
+        .fonte-retro { font-family: 'Press Start 2P', cursive; font-size: 0.7em; }
+        .fonte-glitch { font-family: 'Rubik Glitch', cursive; }
+        .fonte-fredoka { font-family: 'Fredoka One', cursive; }
+        .fonte-bangers { font-family: 'Bangers', cursive; letter-spacing: 2px; }
+
+        /* ===== EFEITOS CAÓTICOS ===== */
+        .piscando { animation: piscar 0.5s infinite alternate; }
+        @keyframes piscar { 0% { opacity: 1; } 100% { opacity: 0.2; } }
+
+        .brilho { animation: brilho 1.5s infinite alternate; }
+        @keyframes brilho { 0% { box-shadow: 0 0 10px rgba(255,255,255,0.05); } 100% { box-shadow: 0 0 40px rgba(255,255,255,0.2); } }
+
+        .pulsando { animation: pulsar 0.8s ease-in-out infinite alternate; }
+        @keyframes pulsar { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
+
+        .rotacionando { animation: rotacionar 8s linear infinite; }
+        @keyframes rotacionar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .flutuando { animation: flutuar 3s ease-in-out infinite alternate; }
+        @keyframes flutuar { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
+
+        .tremendo { animation: tremer 0.1s infinite alternate; }
+        @keyframes tremer { 0% { transform: translateX(-2px) rotate(-1deg); } 100% { transform: translateX(2px) rotate(1deg); } }
+
+        .explodindo { animation: explodir 2s ease-in-out infinite; }
+        @keyframes explodir { 0%, 100% { transform: scale(1); } 25% { transform: scale(1.1) rotate(5deg); } 75% { transform: scale(0.9) rotate(-5deg); } }
+
+        .glitch { animation: glitch 0.3s infinite alternate; }
+        @keyframes glitch { 0% { transform: skew(0deg); } 25% { transform: skew(2deg); } 75% { transform: skew(-2deg); } 100% { transform: skew(0deg); } }
+
+        .colorido { animation: colorido 2s linear infinite; }
+        @keyframes colorido { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .tam-colossal { font-size: 2.8rem; }
+            .tam-gigante { font-size: 2.4rem; }
+            .tam-grande { font-size: 2rem; }
+            .tam-medio { font-size: 1.6rem; }
+            .header-site h1 { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .tam-colossal { font-size: 2rem; }
+            .tam-gigante { font-size: 1.8rem; }
+            .tam-grande { font-size: 1.5rem; }
+            .tam-medio { font-size: 1.3rem; }
+            .header-site h1 { font-size: 1.6rem; }
+            .cronometro-card .botoes button { font-size: 0.45rem; padding: 2px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- FUNDO PSICODÉLICO -->
+<div class="bg-psicodelico"></div>
+
+<!-- PARTÍCULAS (geradas via JS) -->
+
+<div class="container" style="position:relative; z-index:1;">
+
+    <!-- CABEÇALHO CAÓTICO -->
+    <div class="header-site">
+        <div class="d-flex flex-wrap justify-content-between align-items-center px-3 px-md-4">
+            <div>
+                <h1>💥 CAOS TOTAL</h1>
+                <span class="subtitle">30 cronômetros · imprevisível · insano</span>
+            </div>
+            <div class="d-flex gap-2 align-items-center flex-wrap mt-2 mt-md-0">
+                <button class="btn-caos verde" onclick="iniciarTodos()"><i class="bi bi-play-fill"></i> Todos</button>
+                <button class="btn-caos amarelo" onclick="pausarTodos()"><i class="bi bi-pause-fill"></i> Pausar</button>
+                <button class="btn-caos vermelho" onclick="zerarTodos()"><i class="bi bi-arrow-counterclockwise"></i> Zerar</button>
+                <button class="btn-caos roxo" onclick="caosAleatorio()"><i class="bi bi-shuffle"></i> Caos</button>
+                <div class="contador-visitas">
+                    <i class="bi bi-eye"></i>
+                    <span class="numero" id="numeroVisitas">0</span>
+                    <span style="font-weight:300; font-size:0.7rem; opacity:0.5;">visitas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRADE DE CRONÔMETROS -->
+    <div class="row g-2 g-md-3" id="gradeCronometros"></div>
+
+    <!-- RODAPÉ -->
+    <footer class="text-center mt-4 pt-3 border-top" style="border-color: rgba(255,255,255,0.03) !important;">
+        <span style="color:rgba(255,255,255,0.15); font-weight:300; font-size:0.7rem; letter-spacing:3px;">
+            <i class="bi bi-lightning-fill"></i> CAOS CONTROLADO · 2026 <i class="bi bi-lightning-fill"></i>
+        </span>
+    </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ===== JAVASCRIPT COMPLETO ===== -->
+<script>
+// ============================================
+// CAOS TOTAL - 30 CRONÔMETROS
+// ============================================
+
+// ===== CONFIGURAÇÕES CAÓTICAS =====
+var nomes = [
+    '🔥 FOGO', '❄️ GELO', '⚡ RAIO', '🌊 MAR', '🌿 NATUREZA',
+    '🎵 MÚSICA', '💻 CÓDIGO', '🎨 ARTE', '📚 LIVROS', '🧠 MENTE',
+    '💪 FORÇA', '🌀 CAOS', '⭐ ESTRELA', '🌙 LUA', '☀️ SOL',
+    '🌈 ARCO-ÍRIS', '🎭 TEATRO', '🎪 CIRCO', '🚀 FOGUETE', '👾 RETRO',
+    '🌌 GALÁXIA', '🗡️ ESPADA', '🛡️ ESCUDO', '🎯 ALVO', '🏆 TROFÉU',
+    '💎 GEMA', '🔮 CRISTAL', '🎇 FAÍSCA', '🌪️ TORNADO', '⚓ ÂNCORA'
+];
+
+var cores = [
+    'cor-fogo', 'cor-gelo', 'cor-neon', 'cor-azul', 'cor-verde',
+    'cor-roxo', 'cor-dourado', 'cor-rosa', 'cor-laranja', 'cor-branco',
+    'cor-ciano', 'cor-magenta', 'cor-verde-limao', 'cor-azul-profundo', 'cor-vermelho',
+    'cor-preto', 'cor-ouro', 'cor-prata', 'cor-bronze', 'cor-neon',
+    'cor-gelo', 'cor-fogo', 'cor-roxo', 'cor-dourado', 'cor-verde',
+    'cor-azul', 'cor-rosa', 'cor-laranja', 'cor-ciano', 'cor-magenta'
+];
+
+var tamanhos = [
+    'tam-colossal', 'tam-gigante', 'tam-grande', 'tam-medio', 'tam-pequeno',
+    'tam-mini', 'tam-micro', 'tam-gigante', 'tam-medio', 'tam-pequeno',
+    'tam-colossal', 'tam-mini', 'tam-grande', 'tam-medio', 'tam-micro',
+    'tam-gigante', 'tam-pequeno', 'tam-colossal', 'tam-medio', 'tam-mini',
+    'tam-grande', 'tam-micro', 'tam-gigante', 'tam-pequeno', 'tam-colossal',
+    'tam-medio', 'tam-mini', 'tam-grande', 'tam-micro', 'tam-gigante'
+];
+
+var fontes = [
+    'fonte-padrao', 'fonte-orbitron', 'fonte-retro', 'fonte-glitch', 'fonte-fredoka',
+    'fonte-bangers', 'fonte-padrao', 'fonte-orbitron', 'fonte-retro', 'fonte-glitch',
+    'fonte-fredoka', 'fonte-bangers', 'fonte-padrao', 'fonte-orbitron', 'fonte-retro',
+    'fonte-glitch', 'fonte-fredoka', 'fonte-bangers', 'fonte-padrao', 'fonte-orbitron',
+    'fonte-retro', 'fonte-glitch', 'fonte-fredoka', 'fonte-bangers', 'fonte-padrao',
+    'fonte-orbitron', 'fonte-retro', 'fonte-glitch', 'fonte-fredoka', 'fonte-bangers'
+];
+
+var efeitos = [
+    'piscando', 'brilho', 'pulsando', 'rotacionando', 'flutuando',
+    'tremendo', 'explodindo', 'glitch', 'colorido', 'piscando',
+    'brilho', 'pulsando', 'rotacionando', 'flutuando', 'tremendo',
+    'explodindo', 'glitch', 'colorido', 'piscando', 'brilho',
+    'pulsando', 'rotacionando', 'flutuando', 'tremendo', 'explodindo',
+    'glitch', 'colorido', 'piscando', 'brilho', 'pulsando'
+];
+
+var colunas = [
+    2, 3, 2, 4, 3, 2, 4, 3, 2, 3,
+    4, 2, 3, 2, 4, 3, 2, 4, 3, 2,
+    4, 3, 2, 4, 2, 3, 4, 2, 3, 4
+];
+
+var rotacoes = [];
+for (var r = 0; r < 30; r++) {
+    rotacoes.push((Math.random() * 8 - 4).toFixed(1));
+}
+
+// ===== VARIÁVEIS =====
+var cronometros = [];
+var intervalos = [];
+var audioCtx = null;
+
+// ===== INICIALIZAR ÁUDIO =====
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+}
+
+// ===== TOCAR SOM =====
+function tocarSom(frequencia, duracao, volume, tipo) {
+    try {
+        initAudio();
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = tipo || 'sine';
+        osc.frequency.value = frequencia || 440;
+        gain.gain.value = (volume || 0.15);
+        osc.start();
+        osc.stop(audioCtx.currentTime + (duracao || 0.15));
+        
+        // Decaimento
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (duracao || 0.15));
+    } catch(e) {}
+}
+
+// ===== SONS PARA AÇÕES =====
+function somIniciar() {
+    tocarSom(523, 0.1, 0.12, 'sine');
+    setTimeout(function() { tocarSom(659, 0.1, 0.1, 'sine'); }, 80);
+}
+
+function somPausar() {
+    tocarSom(440, 0.15, 0.1, 'sawtooth');
+}
+
+function somZerar() {
+    tocarSom(200, 0.2, 0.15, 'square');
+    setTimeout(function() { tocarSom(150, 0.3, 0.1, 'square'); }, 150);
+}
+
+function somPar() {
+    tocarSom(880, 0.05, 0.08, 'sine');
+    setTimeout(function() { tocarSom(1100, 0.05, 0.06, 'sine'); }, 50);
+}
+
+function somCaos() {
+    for (var i = 0; i < 5; i++) {
+        setTimeout(function(idx) {
+            tocarSom(200 + Math.random() * 800, 0.05, 0.05, ['sine','square','sawtooth'][Math.floor(Math.random()*3)]);
+        }, i * 80, i);
+    }
+}
+
+// ===== INICIALIZAR =====
+function iniciarCronometros() {
+    for (var i = 0; i < 30; i++) {
+        cronometros[i] = {
+            nome: nomes[i],
+            cor: cores[i],
+            tamanho: tamanhos[i],
+            fonte: fontes[i],
+            coluna: colunas[i],
+            segundos: Math.floor(Math.random() * 300),
+            rodando: false,
+            id: i,
+            efeito: efeitos[i],
+            rotacao: rotacoes[i],
+            velocidade: 0.5 + Math.random() * 1.5
+        };
+        intervalos[i] = null;
+    }
+    renderizarCronometros();
+    criarParticulas();
+    
+    // Inicia alguns aleatoriamente
+    setTimeout(function() {
+        var automaticos = [];
+        while (automaticos.length < 12) {
+            var rand = Math.floor(Math.random() * 30);
+            if (automaticos.indexOf(rand) === -1) {
+                automaticos.push(rand);
+            }
+        }
+        for (var i = 0; i < automaticos.length; i++) {
+            setTimeout(function(idx) {
+                iniciar(idx);
+                somIniciar();
+            }, 200 + i * 150, automaticos[i]);
+        }
+    }, 500);
+}
+
+// ===== PARTÍCULAS =====
+function criarParticulas() {
+    for (var i = 0; i < 30; i++) {
+        var p = document.createElement('div');
+        p.className = 'particula';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.background = ['#ff0080', '#00ff88', '#40e0d0', '#ffd700', '#ff6b35', '#ce93d8', '#4fc3f7'][Math.floor(Math.random() * 7)];
+        p.style.animationDuration = (5 + Math.random() * 10) + 's';
+        p.style.animationDelay = (Math.random() * 5) + 's';
+        p.style.width = (2 + Math.random() * 6) + 'px';
+        p.style.height = p.style.width;
+        document.body.appendChild(p);
+    }
+}
+
+// ===== RENDERIZAR =====
+function renderizarCronometros() {
+    var grade = document.getElementById('gradeCronometros');
+    grade.innerHTML = '';
+
+    for (var i = 0; i < cronometros.length; i++) {
+        var cron = cronometros[i];
+        var tempo = formatarTempo(cron.segundos);
+
+        var colClass = 'col-' + cron.coluna;
+        if (cron.coluna <= 2) colClass = 'col-6 col-md-' + (cron.coluna * 2);
+        else if (cron.coluna === 3) colClass = 'col-6 col-md-4 col-lg-3';
+        else if (cron.coluna === 4) colClass = 'col-6 col-md-6 col-lg-4';
+
+        var col = document.createElement('div');
+        col.className = colClass;
+
+        var card = document.createElement('div');
+        card.className = 'cronometro-card ' + cron.cor + ' ' + cron.efeito;
+        card.id = 'card-' + i;
+        card.style.setProperty('--rotacao', cron.rotacao + 'deg');
+
+        card.innerHTML = `
+            <div class="label">${cron.nome}</div>
+            <div class="numero ${cron.tamanho} ${cron.fonte}" id="display-${i}">${tempo}</div>
+            <div class="botoes">
+                <button class="btn-iniciar" onclick="iniciar(${i})"><i class="bi bi-play-fill"></i></button>
+                <button class="btn-pausar" onclick="pausar(${i})"><i class="bi bi-pause-fill"></i></button>
+                <button class="btn-zerar" onclick="zerar(${i})"><i class="bi bi-arrow-counterclockwise"></i></button>
+            </div>
+        `;
+
+        col.appendChild(card);
+        grade.appendChild(col);
+    }
+}
+
+// ===== FORMATAR TEMPO =====
+function formatarTempo(seg) {
+    var h = String(Math.floor(seg / 3600)).padStart(2, '0');
+    var m = String(Math.floor((seg % 3600) / 60)).padStart(2, '0');
+    var s = String(seg % 60).padStart(2, '0');
+    return h + ':' + m + ':' + s;
+}
+
+// ===== ATUALIZAR DISPLAY =====
+function atualizarDisplay(id) {
+    var el = document.getElementById('display-' + id);
+    if (el) {
+        el.textContent = formatarTempo(cronometros[id].segundos);
+    }
+}
+
+// ===== FUNÇÕES DE CONTROLE =====
+function iniciar(id) {
+    if (cronometros[id].rodando) return;
+    cronometros[id].rodando = true;
+    somIniciar();
+    
+    var card = document.getElementById('card-' + id);
+    if (card) {
+        card.style.boxShadow = '0 0 40px rgba(46, 204, 113, 0.2)';
+        card.style.borderColor = 'rgba(46, 204, 113, 0.3)';
+    }
+    
+    // Velocidade aleatória (alguns mais rápidos)
+    var velocidade = cronometros[id].velocidade || 1;
+    var intervalo = 1000 / velocidade;
+    
+    intervalos[id] = setInterval(function() {
+        cronometros[id].segundos += 0.5 + Math.random() * 0.5; // incremento variável!
+        atualizarDisplay(id);
+        
+        // Efeito visual aleatório
+        if (Math.random() < 0.02) {
+            var card = document.getElementById('card-' + id);
+            if (card) {
+                card.style.transform = 'scale(' + (1 + Math.random() * 0.1) + ') rotate(' + (Math.random() * 6 - 3) + 'deg)';
+                setTimeout(function() {
+                    card.style.transform = '';
+                }, 200);
+            }
+        }
+    }, intervalo);
+}
+
+function pausar(id) {
+    if (!cronometros[id].rodando) return;
+    cronometros[id].rodando = false;
+    clearInterval(intervalos[id]);
+    intervalos[id] = null;
+    somPausar();
+    
+    var card = document.getElementById('card-' + id);
+    if (card) {
+        card.style.boxShadow = '';
+        card.style.borderColor = '';
+    }
+}
+
+function zerar(id) {
+    pausar(id);
+    cronometros[id].segundos = 0;
+    atualizarDisplay(id);
+    somZerar();
+    var card = document.getElementById('card-' + id);
+    if (card) {
+        card.style.boxShadow = '';
+        card.style.borderColor = '';
+        // Efeito de flash
+        card.style.transition = '0.1s';
+        card.style.filter = 'brightness(2)';
+        setTimeout(function() {
+            card.style.filter = '';
+        }, 200);
+    }
+}
+
+// ===== CONTROLES GERAIS =====
+function iniciarTodos() {
+    somCaos();
+    for (var i = 0; i < 30; i++) {
+        setTimeout(function(idx) {
+            iniciar(idx);
+            if (Math.random() < 0.1) somPar();
+        }, i * 50 + Math.random() * 100, i);
+    }
+}
+
+function pausarTodos() {
+    for (var i = 0; i < 30; i++) {
+        pausar(i);
+    }
+    tocarSom(300, 0.3, 0.1, 'sawtooth');
+}
+
+function zerarTodos() {
+    for (var i = 0; i < 30; i++) {
+        zerar(i);
+    }
+    tocarSom(150, 0.5, 0.15, 'square');
+}
+
+// ===== CAOS ALEATÓRIO =====
+function caosAleatorio() {
+    somCaos();
+    
+    // Reinicia tudo
+    for (var i = 0; i < 30; i++) {
+        pausar(i);
+        cronometros[i].segundos = Math.floor(Math.random() * 600);
+        atualizarDisplay(i);
+        var card = document.getElementById('card-' + i);
+        if (card) {
+            card.style.transition = '0.2s';
+            card.style.transform = 'scale(' + (0.8 + Math.random() * 0.4) + ') rotate(' + (Math.random() * 20 - 10) + 'deg)';
+            card.style.filter = 'hue-rotate(' + (Math.random() * 360) + 'deg)';
+            setTimeout(function(el) {
+                el.style.transform = '';
+                el.style.filter = '';
+            }, 500, card);
+        }
+    }
+    
+    // Inicia aleatórios novamente
+    setTimeout(function() {
+        var qtd = 5 + Math.floor(Math.random() * 15);
+        var selecionados = [];
+        while (selecionados.length < qtd) {
+            var rand = Math.floor(Math.random() * 30);
+            if (selecionados.indexOf(rand) === -1) {
+                selecionados.push(rand);
+            }
+        }
+        for (var i = 0; i < selecionados.length; i++) {
+            setTimeout(function(idx) {
+                iniciar(idx);
+                somPar();
+            }, 100 + i * 80, selecionados[i]);
+        }
+    }, 600);
+}
+
+// ============================================
+// CONTADOR DE VISITAS
+// ============================================
+(function() {
+    var STORAGE_KEY = 'caos_visitas';
+    
+    function getVisitas() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== null) {
+            var parsed = parseInt(stored, 10);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+        return 0;
+    }
+
+    function incrementarVisitas() {
+        var atual = getVisitas();
+        var sessionKey = 'visita_contada_caos';
+        if (!sessionStorage.getItem(sessionKey)) {
+            atual += 1;
+            localStorage.setItem(STORAGE_KEY, String(atual));
+            sessionStorage.setItem(sessionKey, 'true');
+        }
+        var numeroEl = document.getElementById('numeroVisitas');
+        if (numeroEl) {
+            numeroEl.textContent = atual;
+        }
+    }
+
+    window.addEventListener('load', function() {
+        incrementarVisitas();
+        iniciarCronometros();
+        initAudio();
+    });
+})();
+</script>
+
+</body>
+</html>

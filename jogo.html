@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória - Psicanálise</title>
+    
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET e BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            background: linear-gradient(145deg, #f9f6f0, #f0ebe5);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Painel de estatísticas */
+        .painel-estatistica {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(200, 180, 165, 0.3);
+            transition: 0.2s;
+            min-height: 90px;
+        }
+        .painel-estatistica:hover {
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+        }
+
+        /* Botão Novo Jogo */
+        .btn-novo-jogo {
+            background: #dcc9b8;
+            color: #3f2e22;
+            border: none;
+            transition: 0.2s;
+            min-height: 90px;
+        }
+        .btn-novo-jogo:hover {
+            background: #cdb7a4;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Mensagem de vitória */
+        .mensagem-vitoria {
+            background: linear-gradient(145deg, #d4e8d4, #c0ddc0);
+            border: 2px solid #8fb58f;
+            box-shadow: 0 8px 32px rgba(100, 180, 100, 0.15);
+        }
+        .btn-jogar-novamente {
+            background: #3d6b3d;
+            color: white;
+            font-weight: 600;
+            border: none;
+            transition: 0.2s;
+        }
+        .btn-jogar-novamente:hover {
+            background: #2f5a2f;
+            transform: scale(1.02);
+            color: white;
+        }
+
+        /* ===== ESTILOS DAS CARTAS ===== */
+        .carta {
+            aspect-ratio: 1/1;
+            width: 100%;
+            border-radius: 20px;
+            cursor: pointer;
+            perspective: 800px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            transition: transform 0.15s ease;
+        }
+        .carta:hover:not(.correspondente):not(.virada) {
+            transform: scale(1.05) translateY(-3px);
+        }
+        .carta-inner {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            text-align: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Verso (fechado) */
+        .carta-verso {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background: linear-gradient(145deg, #dcc9b8, #e8d7c8);
+            border: 2px solid #ccb8a8;
+            transform: rotateY(0deg);
+            color: #5e4b3c;
+            background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 60%);
+        }
+        .carta-verso i {
+            font-size: 3.8rem;
+            opacity: 0.5;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+        }
+        .carta-verso span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+            opacity: 0.6;
+        }
+
+        /* Frente (aberto) */
+        .carta-frente {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: linear-gradient(145deg, #ffffff, #f8f2ec);
+            border: 2px solid #e2d0c0;
+            transform: rotateY(180deg);
+        }
+        .carta-frente .emoji {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04));
+        }
+        .carta-frente .texto-carta {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #3f2e22;
+            text-align: center;
+            margin-top: 4px;
+            line-height: 1.3;
+            max-width: 95%;
+            word-break: break-word;
+        }
+
+        /* Estados das cartas */
+        .carta.virada .carta-inner {
+            transform: rotateY(180deg);
+        }
+        .carta.correspondente .carta-inner {
+            box-shadow: 0 0 0 3px #8fb58f, 0 8px 24px rgba(100, 180, 100, 0.15);
+            animation: pulse-verde 0.6s ease;
+        }
+        .carta.correspondente .carta-frente {
+            background: linear-gradient(145deg, #eaf4ea, #dcecdc);
+            border-color: #8fb58f;
+        }
+        .carta.desabilitada {
+            pointer-events: none;
+        }
+        .carta.erro .carta-inner {
+            animation: shake 0.3s ease;
+        }
+
+        /* Animações */
+        @keyframes pulse-verde {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        /* ===== CONTADOR DE VISITAS ===== */
+        .contador-visitas {
+            background: rgba(235, 215, 195, 0.3);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 10px 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid rgba(210, 180, 150, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            font-weight: 500;
+            color: #5e4b3c;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .contador-visitas i {
+            font-size: 1.4rem;
+            color: #a5836b;
+        }
+        .contador-visitas .numero {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #3f2e22;
+            min-width: 50px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* ===== PLAYER DE MÚSICA ===== */
+        .music-player {
+            background: rgba(235, 215, 195, 0.25);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 8px 20px 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(210, 180, 150, 0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: 0.2s;
+        }
+        .music-player:hover {
+            background: rgba(235, 215, 195, 0.4);
+        }
+        .music-player audio {
+            width: 120px;
+            height: 32px;
+            border-radius: 30px;
+            background: transparent;
+        }
+        .music-player audio::-webkit-media-controls-panel {
+            background: rgba(235, 215, 195, 0.2);
+        }
+        .music-player .player-icon {
+            color: #7a6556;
+            font-size: 1.2rem;
+        }
+        .music-player .player-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #7a6556;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .carta-frente .emoji {
+                font-size: 2.8rem;
+            }
+            .carta-frente .texto-carta {
+                font-size: 0.75rem;
+            }
+            .carta-verso i {
+                font-size: 2.8rem;
+            }
+            .painel-estatistica {
+                min-height: 70px;
+            }
+            .btn-novo-jogo {
+                min-height: 70px;
+            }
+            .display-6 {
+                font-size: 1.4rem !important;
+            }
+            .contador-visitas {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+            .contador-visitas .numero {
+                font-size: 1.1rem;
+                min-width: 40px;
+            }
+            .music-player audio {
+                width: 90px;
+            }
+            .music-player {
+                padding: 6px 14px 6px 12px;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carta-frente .emoji {
+                font-size: 2.2rem;
+            }
+            .carta-frente .texto-carta {
+                font-size: 0.65rem;
+            }
+            .carta-verso i {
+                font-size: 2.2rem;
+            }
+            .carta-verso span {
+                font-size: 0.6rem;
+            }
+            .display-6 {
+                font-size: 1.2rem !important;
+            }
+            .container {
+                padding: 10px !important;
+            }
+            .contador-visitas {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+                gap: 10px;
+            }
+            .contador-visitas .numero {
+                font-size: 1rem;
+                min-width: 30px;
+            }
+            .music-player audio {
+                width: 70px;
+                height: 28px;
+            }
+            .music-player {
+                padding: 4px 10px 4px 8px;
+                gap: 6px;
+            }
+            .music-player .player-label {
+                font-size: 0.65rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    
+    <!-- Cabeçalho do jogo -->
+    <div class="text-center mb-4">
+        <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+            <span style="font-size: 3rem;">🧠</span>
+            <h1 class="display-4 fw-bold" style="color: #3f2e22; letter-spacing: -0.5px;">
+                Jogo da Memória
+            </h1>
+            <span style="font-size: 3rem;">🛋️</span>
+        </div>
+        <p class="text-muted" style="font-size: 1.1rem; max-width: 500px; margin: 0 auto;">
+            Encontre os pares de conceitos psicanalíticos
+        </p>
+        <p class="text-muted small">Clique nas cartas para revelar os símbolos</p>
+    </div>
+
+    <!-- Painel de estatísticas -->
+    <div class="row g-3 justify-content-center mb-4">
+        <div class="col-6 col-md-3">
+            <div class="p-3 text-center rounded-4 painel-estatistica">
+                <i class="bi bi-arrow-repeat text-secondary" style="font-size: 1.6rem;"></i>
+                <div style="font-size: 0.8rem; color: #7a6556; font-weight: 500;">TENTATIVAS</div>
+                <div class="display-6 fw-bold" style="color: #3f2e22;" id="contadorJogadas">0</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="p-3 text-center rounded-4 painel-estatistica">
+                <i class="bi bi-check2-circle text-success" style="font-size: 1.6rem;"></i>
+                <div style="font-size: 0.8rem; color: #7a6556; font-weight: 500;">PARES</div>
+                <div class="display-6 fw-bold" style="color: #3f2e22;" id="contadorPares">0/<span id="totalParesText">12</span></div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="p-3 text-center rounded-4 painel-estatistica">
+                <i class="bi bi-clock text-warning" style="font-size: 1.6rem;"></i>
+                <div style="font-size: 0.8rem; color: #7a6556; font-weight: 500;">TEMPO</div>
+                <div class="display-6 fw-bold" style="color: #3f2e22;" id="cronometro">00:00</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <button onclick="reiniciarJogo()" class="btn w-100 h-100 rounded-4 py-2 btn-novo-jogo">
+                <i class="bi bi-arrow-counterclockwise" style="font-size: 1.6rem; display: block;"></i>
+                <span style="font-size: 0.8rem; font-weight: 600;">NOVO JOGO</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabuleiro -->
+    <div id="tabuleiro" class="row g-3 justify-content-center" style="max-width: 780px; margin: 0 auto;">
+        <!-- As cartas serão inseridas via JavaScript -->
+    </div>
+
+    <!-- Mensagem de vitória -->
+    <div id="mensagemVitoria" class="text-center mt-4" style="display: none;">
+        <div class="p-4 rounded-4 mensagem-vitoria">
+            <div style="font-size: 4rem;">🏆</div>
+            <h3 class="fw-bold" style="color: #2f5a2f;">Parabéns, analista!</h3>
+            <p style="color: #3d6b3d; font-size: 1.2rem;">
+                Você completou o jogo em <strong id="totalTentativas" style="font-weight: 700;">0</strong> tentativas<br>
+                <span style="font-size: 0.95rem; opacity: 0.8;">Tempo: <span id="tempoFinal">00:00</span></span>
+            </p>
+            <button onclick="reiniciarJogo()" class="btn px-5 py-2 rounded-pill btn-jogar-novamente">
+                <i class="bi bi-arrow-counterclockwise"></i> Jogar novamente
+            </button>
+        </div>
+    </div>
+
+    <!-- Rodapé com CONTADOR DE VISITAS e PLAYER DE MÚSICA -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center mt-5 pt-3 border-top" style="border-color: #e2cfbc !important;">
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+            <i class="bi bi-flower1" style="color: #a5836b; font-size: 1.6rem;"></i>
+            <span style="color:#7a6556; font-weight:300; font-size:0.9rem;">mente aberta · 2026</span>
+        </div>
+
+        <!-- PLAYER DE MÚSICA -->
+        <div class="music-player">
+            <i class="bi bi-music-note-beamed player-icon"></i>
+            <span class="player-label">🎵</span>
+            <audio controls loop autoplay volume="0.5">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Seu navegador não suporta áudio.
+            </audio>
+        </div>
+
+        <!-- CONTADOR DE VISITAS -->
+        <div class="contador-visitas" id="contadorVisitas">
+            <i class="bi bi-eye"></i>
+            <span class="numero" id="numeroVisitas">0</span>
+            <span style="font-weight:300; font-size:0.9rem; color:#7a6556;">visitas</span>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ===== JAVASCRIPT DO JOGO + CONTADOR ===== -->
+<script>
+// ============================================
+// JOGO DA MEMÓRIA - VERSÃO PSICANÁLISE
+// ============================================
+
+// ===== CONFIGURAÇÃO DOS PARES =====
+const pares = [
+    { id: 1, emoji: '🧠', texto: 'Mente' },
+    { id: 2, emoji: '💭', texto: 'Sonho' },
+    { id: 3, emoji: '🛋️', texto: 'Divã' },
+    { id: 4, emoji: '⚡', texto: 'Id' },
+    { id: 5, emoji: '🌙', texto: 'Inconsciente' },
+    { id: 6, emoji: '🗣️', texto: 'Associação' },
+    { id: 7, emoji: '🔍', texto: 'Interpretação' },
+    { id: 8, emoji: '📚', texto: 'Psicanálise' },
+    { id: 9, emoji: '❤️', texto: 'Transferência' },
+    { id: 10, emoji: '😰', texto: 'Ansiedade' },
+    { id: 11, emoji: '👶', texto: 'Infância' },
+    { id: 12, emoji: '🎭', texto: 'Persona' }
+];
+
+// ===== VARIÁVEIS DO JOGO =====
+let cartas = [];
+let cartasViradas = [];
+let bloqueado = false;
+let jogadas = 0;
+let paresEncontrados = 0;
+const totalPares = pares.length;
+let timerInterval = null;
+let segundos = 0;
+let jogoFinalizado = false;
+
+// ===== ELEMENTOS DOM =====
+const tabuleiro = document.getElementById('tabuleiro');
+const contadorEl = document.getElementById('contadorJogadas');
+const contadorParesEl = document.getElementById('contadorPares');
+const totalParesText = document.getElementById('totalParesText');
+const mensagemVitoria = document.getElementById('mensagemVitoria');
+const totalTentativasEl = document.getElementById('totalTentativas');
+const cronometroEl = document.getElementById('cronometro');
+const tempoFinalEl = document.getElementById('tempoFinal');
+
+totalParesText.textContent = totalPares;
+
+// ===== FUNÇÕES DO JOGO =====
+
+// Embaralhar array (Fisher-Yates)
+function embaralhar(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Formatar tempo (mm:ss)
+function formatarTempo(seg) {
+    const m = String(Math.floor(seg / 60)).padStart(2, '0');
+    const s = String(seg % 60).padStart(2, '0');
+    return `${m}:${s}`;
+}
+
+// Iniciar cronômetro
+function iniciarCronometro() {
+    if (timerInterval) return;
+    segundos = 0;
+    cronometroEl.textContent = '00:00';
+    timerInterval = setInterval(() => {
+        segundos++;
+        cronometroEl.textContent = formatarTempo(segundos);
+    }, 1000);
+}
+
+// Parar cronômetro
+function pararCronometro() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+}
+
+// Iniciar jogo
+function iniciarJogo() {
+    pararCronometro();
+    
+    // Duplicar pares e criar deck
+    const deck = [];
+    pares.forEach((par, index) => {
+        deck.push({ ...par, cartaId: index * 2, parId: index });
+        deck.push({ ...par, cartaId: index * 2 + 1, parId: index });
+    });
+    
+    cartas = embaralhar(deck);
+    cartasViradas = [];
+    bloqueado = false;
+    jogadas = 0;
+    paresEncontrados = 0;
+    jogoFinalizado = false;
+    
+    contadorEl.textContent = '0';
+    contadorParesEl.textContent = `0/${totalPares}`;
+    mensagemVitoria.style.display = 'none';
+    segundos = 0;
+    cronometroEl.textContent = '00:00';
+    
+    renderizarTabuleiro();
+}
+
+// Renderizar tabuleiro
+function renderizarTabuleiro() {
+    tabuleiro.innerHTML = '';
+    
+    // 4 colunas no mobile, 6 no desktop (matriz 6x4)
+    const colClass = 'col-3 col-md-2';
+    
+    cartas.forEach((carta, index) => {
+        const col = document.createElement('div');
+        col.className = colClass;
+        col.style.padding = '6px';
+
+        const btn = document.createElement('button');
+        btn.className = 'carta';
+        btn.dataset.index = index;
+        btn.setAttribute('aria-label', `Carta ${index + 1}`);
+
+        const inner = document.createElement('div');
+        inner.className = 'carta-inner';
+
+        // Verso (fechado)
+        const verso = document.createElement('div');
+        verso.className = 'carta-verso';
+        verso.innerHTML = `
+            <i class="bi bi-psychology"></i>
+            <span>Freud</span>
+        `;
+
+        // Frente (aberto)
+        const frente = document.createElement('div');
+        frente.className = 'carta-frente';
+        frente.innerHTML = `
+            <span class="emoji">${carta.emoji}</span>
+            <span class="texto-carta">${carta.texto}</span>
+        `;
+
+        inner.appendChild(verso);
+        inner.appendChild(frente);
+        btn.appendChild(inner);
+
+        btn.addEventListener('click', () => virarCarta(index));
+
+        col.appendChild(btn);
+        tabuleiro.appendChild(col);
+    });
+}
+
+// Virar carta
+function virarCarta(index) {
+    if (bloqueado || jogoFinalizado) return;
+    
+    const cartaEl = tabuleiro.children[index].querySelector('.carta');
+    if (cartaEl.classList.contains('virada') || cartaEl.classList.contains('correspondente')) return;
+
+    // Inicia cronômetro na primeira jogada
+    if (jogadas === 0 && paresEncontrados === 0) {
+        iniciarCronometro();
+    }
+
+    cartaEl.classList.add('virada');
+    cartasViradas.push(index);
+
+    if (cartasViradas.length === 2) {
+        jogadas++;
+        contadorEl.textContent = jogadas;
+        verificarPar();
+    }
+}
+
+// Verificar par
+function verificarPar() {
+    bloqueado = true;
+    
+    const idx1 = cartasViradas[0];
+    const idx2 = cartasViradas[1];
+    const carta1 = cartas[idx1];
+    const carta2 = cartas[idx2];
+    const el1 = tabuleiro.children[idx1].querySelector('.carta');
+    const el2 = tabuleiro.children[idx2].querySelector('.carta');
+
+    if (carta1.parId === carta2.parId && idx1 !== idx2) {
+        // Acertou!
+        el1.classList.add('correspondente');
+        el2.classList.add('correspondente');
+        paresEncontrados++;
+        contadorParesEl.textContent = `${paresEncontrados}/${totalPares}`;
+        cartasViradas = [];
+        bloqueado = false;
+
+        if (paresEncontrados === totalPares) {
+            jogoFinalizado = true;
+            pararCronometro();
+            setTimeout(() => {
+                totalTentativasEl.textContent = jogadas;
+                tempoFinalEl.textContent = formatarTempo(segundos);
+                mensagemVitoria.style.display = 'block';
+            }, 500);
+        }
+    } else {
+        // Errou!
+        el1.classList.add('erro');
+        el2.classList.add('erro');
+        setTimeout(() => {
+            el1.classList.remove('virada', 'erro');
+            el2.classList.remove('virada', 'erro');
+            cartasViradas = [];
+            bloqueado = false;
+        }, 800);
+    }
+}
+
+// Reiniciar jogo
+function reiniciarJogo() {
+    pararCronometro();
+    iniciarJogo();
+}
+
+// ============================================
+// CONTADOR DE VISITAS
+// ============================================
+(function() {
+    const STORAGE_KEY = 'jogo_memoria_visitas';
+    
+    function getVisitas() {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== null) {
+            const parsed = parseInt(stored, 10);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+        return 0;
+    }
+
+    function incrementarVisitas() {
+        let atual = getVisitas();
+        const sessionKey = 'visita_contada_sessao_jogo';
+        if (!sessionStorage.getItem(sessionKey)) {
+            atual += 1;
+            localStorage.setItem(STORAGE_KEY, String(atual));
+            sessionStorage.setItem(sessionKey, 'true');
+        }
+        const numeroEl = document.getElementById('numeroVisitas');
+        if (numeroEl) {
+            numeroEl.textContent = atual;
+        }
+    }
+
+    window.addEventListener('load', function() {
+        incrementarVisitas();
+        iniciarJogo(); // Inicia o jogo quando a página carrega
+    });
+})();
+</script>
+
+</body>
+</html>

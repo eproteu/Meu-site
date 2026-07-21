@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicologia & Freud</title>
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET e BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            background: #f9f6f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card-site {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 248, 240, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 60px 60px 40px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 8px 20px rgba(0,0,0,0.03);
+            padding: 30px 30px 40px;
+            border: 1px solid rgba(255, 235, 215, 0.5);
+        }
+
+        /* MENU EM SEMI CÍRCULO */
+        .menu-semi {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px 20px;
+            background: rgba(235, 215, 195, 0.3);
+            backdrop-filter: blur(6px);
+            padding: 18px 30px;
+            border-radius: 120px 120px 40px 40px;
+            box-shadow: 0 8px 18px rgba(140, 100, 70, 0.08);
+            border-bottom: 2px solid rgba(210, 180, 150, 0.2);
+            margin-bottom: 30px;
+            transition: all 0.2s ease;
+        }
+        .menu-semi .menu-item {
+            font-weight: 600;
+            color: #5e4b3c;
+            padding: 8px 18px;
+            border-radius: 60px;
+            background: transparent;
+            transition: 0.2s;
+            text-decoration: none;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            border: 1px solid transparent;
+        }
+        .menu-semi .menu-item:hover {
+            background: #dcc9b8;
+            color: #2f241c;
+            border-color: #b19783;
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+        .menu-semi .menu-item i {
+            margin-right: 6px;
+            color: #a5836b;
+        }
+
+        /* TÍTULO CENTRAL - com animação ao passar o mouse */
+        .hero-title {
+            text-align: center;
+            margin: 10px 0 30px;  /* aumentado o espaçamento inferior */
+            font-weight: 700;
+            font-size: 3.8rem;
+            letter-spacing: 2px;
+            color: #3f2e22;
+            text-shadow: 0 4px 12px rgba(180, 130, 90, 0.10);
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: default;
+            display: inline-block;
+            width: 100%;
+        }
+        .hero-title:hover {
+            transform: scale(1.04) translateY(-4px);
+            color: #5a3d2b;
+            text-shadow: 0 8px 20px rgba(140, 100, 70, 0.25);
+        }
+        .hero-title small {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #7a6556;
+            letter-spacing: 4px;
+            margin-top: 16px;  /* distanciamento maior entre título e subtítulo */
+            transition: 0.2s;
+        }
+        .hero-title:hover small {
+            color: #9a7a64;
+            letter-spacing: 6px;
+        }
+        .hero-title i {
+            color: #b58b72;
+            margin: 0 6px;
+        }
+
+        /* FIGURAS / IMAGENS TRANQUILAS (fotos sem direitos autorais - via unsplash) */
+        .figure-tranquila {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0 30px;  /* mais espaço ao redor */
+        }
+        .figure-tranquila img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 8px 24px rgba(120, 80, 50, 0.10);
+            transition: 0.3s ease;
+            border: 3px solid rgba(235, 215, 195, 0.5);
+            filter: saturate(0.92) brightness(1.02);
+        }
+        .figure-tranquila img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 32px rgba(100, 70, 40, 0.15);
+            border-color: #dcc2ae;
+            filter: saturate(1);
+        }
+        /* adaptação para mobile */
+        @media (max-width: 600px) {
+            .figure-tranquila img {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        /* TEXTO PSICOLOGIA + FREUD */
+        .texto-psicologia {
+            background: rgba(250, 242, 234, 0.6);
+            backdrop-filter: blur(2px);
+            padding: 28px 32px;
+            border-radius: 40px 40px 30px 30px;
+            box-shadow: inset 0 0 0 1px rgba(255, 235, 215, 0.5), 0 8px 18px rgba(0,0,0,0.02);
+            margin: 20px 0 10px;
+            line-height: 1.8;
+            color: #2f241c;
+            font-weight: 400;
+            columns: 1;
+            column-gap: 40px;
+            border: 1px solid rgba(230, 210, 190, 0.3);
+        }
+        .texto-psicologia p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+        .texto-psicologia p:last-child {
+            margin-bottom: 0;
+        }
+        .texto-psicologia .freud-destaque {
+            font-weight: 600;
+            color: #7a4d33;
+        }
+        .texto-psicologia .citacao {
+            font-style: italic;
+            border-left: 4px solid #dbbca8;
+            padding-left: 18px;
+            background: rgba(235, 215, 195, 0.2);
+            border-radius: 0 20px 20px 0;
+            margin: 12px 0;
+        }
+
+        /* CONTADOR DE VISITAS */
+        .contador-visitas {
+            background: rgba(235, 215, 195, 0.25);
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 10px 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid rgba(210, 180, 150, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            font-weight: 500;
+            color: #5e4b3c;
+            font-size: 1rem;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+        .contador-visitas i {
+            font-size: 1.4rem;
+            color: #a5836b;
+        }
+        .contador-visitas .numero {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #3f2e22;
+            min-width: 50px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .card-site {
+                padding: 20px 16px 30px;
+                border-radius: 40px 40px 30px 30px;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+                margin: 10px 0 25px;
+            }
+            .hero-title small {
+                font-size: 1rem;
+                margin-top: 14px;
+            }
+            .menu-semi {
+                border-radius: 80px 80px 30px 30px;
+                padding: 14px 18px;
+                gap: 8px 12px;
+            }
+            .menu-semi .menu-item {
+                font-size: 0.95rem;
+                padding: 6px 14px;
+            }
+            .texto-psicologia {
+                padding: 20px 18px;
+                columns: 1;
+            }
+            .figure-tranquila img {
+                width: 140px;
+                height: 140px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-title small {
+                font-size: 0.9rem;
+                margin-top: 12px;
+            }
+            .menu-semi .menu-item {
+                font-size: 0.85rem;
+                padding: 4px 10px;
+            }
+            .figure-tranquila img {
+                width: 110px;
+                height: 110px;
+            }
+            .contador-visitas {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* cores */
+        .bg-soft-peach { background: #f5e3d6; }
+        .text-warm { color: #7a5a47; }
+        .border-warm { border-color: #d6b9a6; }
+        .btn-outline-warm {
+            color: #6a4f3a;
+            border-color: #ccb09b;
+        }
+        .btn-outline-warm:hover {
+            background: #e6d0bf;
+            color: #2f241c;
+        }
+        .icone-flor { color: #a5836b; }
+        footer small { color: #9e887a; }
+    </style>
+</head>
+<body>
+<div class="card-site">
+
+    <!-- MENU EM SEMI CÍRCULO -->
+    <nav class="menu-semi" aria-label="Menu principal">
+        <a href="#" class="menu-item"><i class="bi bi-house-door"></i> Início</a>
+        <a href="#" class="menu-item"><i class="bi bi-book"></i> Teoria</a>
+        <a href="#" class="menu-item"><i class="bi bi-person"></i> Freud</a>
+        <a href="#" class="menu-item"><i class="bi bi-chat-dots"></i> Reflexões</a>
+        <a href="#" class="menu-item"><i class="bi bi-envelope"></i> Contato</a>
+    </nav>
+
+    <!-- TÍTULO "PSICOLOGIA" com movimento ao passar o mouse -->
+    <h1 class="hero-title">
+        <i class="bi bi-asterisk"></i> Psicologia <i class="bi bi-asterisk"></i>
+        <small>mente · comportamento · inconsciente</small>
+    </h1>
+
+    <!-- FIGURAS TRANQUILAS - FOTOS SEM DIREITOS AUTORAIS (Unsplash) -->
+    <div class="figure-tranquila">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=400&fit=crop&crop=center&auto=format" alt="Pessoa meditando em paz" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop&crop=center&auto=format" alt="Natureza tranquila e serena" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=400&h=400&fit=crop&crop=center&auto=format" alt="Pôr do sol calmo" loading="lazy">
+    </div>
+
+    <!-- TEXTO SOBRE PSICOLOGIA E FREUD (aprox. 40 linhas) -->
+    <div class="texto-psicologia">
+        <p><span class="freud-destaque">Sigmund Freud</span> (1856–1939), pai da psicanálise, revolucionou a compreensão da mente humana ao propor que grande parte de nossos pensamentos, emoções e comportamentos são moldados por processos inconscientes. Para Freud, o inconsciente é como um vasto teatro onde desejos recalcados, memórias esquecidas e conflitos infantis continuam a influenciar nossa vida adulta — muitas vezes sem que tenhamos consciência disso.</p>
+
+        <p>A estrutura da personalidade, segundo Freud, é composta por três instâncias em constante tensão: o <span class="freud-destaque">Id</span> (impulsos primitivos, regido pelo princípio do prazer), o <span class="freud-destaque">Ego</span> (mediador realista, que busca satisfazer os desejos de forma adaptativa) e o <span class="freud-destaque">Superego</span> (consciência moral, internalização das regras e ideais). O equilíbrio entre essas forças determina nossa saúde mental; o desequilíbrio, por sua vez, pode manifestar-se em sintomas, angústias ou comportamentos repetitivos.</p>
+
+        <div class="citacao">
+            <i class="bi bi-quote"></i> “O ego não é senhor em sua própria casa.” — Freud, em <em>Uma dificuldade no caminho da psicanálise</em>.
+        </div>
+
+        <p>Freud também desenvolveu conceitos como <span class="freud-destaque">recalque</span>, <span class="freud-destaque">transferência</span> e a <span class="freud-destaque">interpretação dos sonhos</span> — que ele chamou de “estrada real para o inconsciente”. Para ele, os sonhos são realizações disfarçadas de desejos recalcados, e sua análise permite acessar conteúdos que a consciência rejeita. A associação livre, técnica fundamental da psicanálise, convida o paciente a falar tudo o que vem à mente, sem censura, abrindo caminho para que o material inconsciente emerga.</p>
+
+        <p>Embora muitas de suas ideias tenham sido revisadas e criticadas, a contribuição de Freud permanece viva na psicologia contemporânea, na psicoterapia e na cultura. Sua ênfase na importância da infância, da sexualidade e da complexidade da vida psíquica abriu portas para que outras correntes, como a psicologia analítica (Jung), a psicologia individual (Adler) e a psicologia humanista, florescessem.</p>
+
+        <p>A psicanálise freudiana nos convida a olhar para além das aparências, a desconfiar das narrativas lineares e a acolher a ambiguidade da condição humana. Compreender o inconsciente é, em última instância, um exercício de humildade e coragem: reconhecer que nem sempre sabemos as razões de nossos atos, mas que podemos, aos poucos, ampliar nosso autoconhecimento e nossa liberdade.</p>
+
+        <p>Atualmente, a psicologia abrange diversas abordagens — cognitivo-comportamental, humanista, sistêmica, neurocientífica, entre outras — mas o legado de Freud permanece como um marco fundador. Sua obra nos ensina que a mente é um território fértil, cheio de símbolos, resistências e possibilidades de transformação. E que, no fundo, todos buscamos um pouco mais de sentido para nossas angústias e desejos.</p>
+
+        <p><span class="freud-destaque">“Onde estava o Isso, deve estar o Eu.”</span> Essa célebre frase resume o ideal terapêutico freudiano: ampliar o domínio da razão e da consciência sobre os impulsos cegos, sem, contudo, negar a força vital do inconsciente. Uma psicologia que integra a sombra e a luz, o racional e o irracional, o individual e o coletivo.</p>
+
+        <p>Navegar por essas águas profundas é o convite que a psicanálise e a psicologia, em seu vasto espectro, nos fazem — um convite à escuta, à curiosidade e ao cuidado com a própria alma.</p>
+    </div>
+
+    <!-- RODAPÉ com CONTADOR DE VISITAS (simulado, com incremento local) -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center mt-4 pt-3 border-top border-warm" style="border-color: #e2cfbc !important;">
+        <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-flower1 text-warm" style="font-size: 1.6rem;"></i>
+            <span style="color:#7a6556; font-weight:300; font-size:0.9rem;">mente aberta · 2026</span>
+        </div>
+
+        <!-- CONTADOR DE VISITAS com ícone e número -->
+        <div class="contador-visitas" id="contadorVisitas">
+            <i class="bi bi-eye"></i>
+            <span class="numero" id="numeroVisitas">0</span>
+            <span style="font-weight:300; font-size:0.9rem; color:#7a6556;">visitas</span>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap JS (opcional para alguns componentes) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script para contador de visitas (armazena no localStorage) -->
+<script>
+    (function() {
+        // Chave para armazenar no localStorage
+        const STORAGE_KEY = 'psicologia_visitas';
+        
+        // Função para obter o número atual
+        function getVisitas() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored !== null) {
+                const parsed = parseInt(stored, 10);
+                return isNaN(parsed) ? 0 : parsed;
+            }
+            return 0;
+        }
+
+        // Função para atualizar o contador na tela e no localStorage
+        function incrementarVisitas() {
+            let atual = getVisitas();
+            // Incrementa apenas uma vez por sessão (para não contar recarregamentos)
+            // Usamos sessionStorage para controlar se já foi contado nesta sessão
+            const sessionKey = 'visita_contada_sessao';
+            if (!sessionStorage.getItem(sessionKey)) {
+                atual += 1;
+                localStorage.setItem(STORAGE_KEY, String(atual));
+                sessionStorage.setItem(sessionKey, 'true');
+            }
+            // Atualiza o elemento na tela
+            const numeroEl = document.getElementById('numeroVisitas');
+            if (numeroEl) {
+                numeroEl.textContent = atual;
+            }
+        }
+
+        // Executa ao carregar a página
+        window.addEventListener('load', function() {
+            incrementarVisitas();
+        });
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNESP FCLAR · Natureza & História</title>
+  <!-- Bootstrap 5 + ícones -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #94c9f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f0f7fa;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, #0066a0 0%, #003366 100%);
+      z-index: -1;
+    }
+
+    .main-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* LOGO UNESP 50 ANOS - CANTO SUPERIOR DIREITO */
+   /* .logo-unesp {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      padding: 8px 12px 8px 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      border: 2px solid #f8f8f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .logo-unesp:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 30px rgba(255, 215, 0, 0.3);
+    }
+
+    .logo-unesp img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    .logo-unesp .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-unesp .logo-text .unesp {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #004B87;
+      letter-spacing: 1px;
+    }
+
+    .logo-unesp .logo-text .anos {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #ffd700;
+      background: #004B87;
+      padding: 0 8px;
+      border-radius: 10px;
+      display: inline-block;
+      text-align: center;
+    }*/
+
+    /* TÍTULO ANIMADO */
+    .hero-title {
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff 0%, #87CEEB 50%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slowGlow 6s ease-in-out infinite alternate;
+      text-shadow: 0 0 40px rgba(135, 206, 235, 0.3);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2rem;
+      width: 100%;
+      display: block;
+    }
+
+    @keyframes slowGlow {
+      0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 20px rgba(135, 206, 235, 0.2)); }
+      100% { transform: scale(1.02) translateY(-8px); filter: drop-shadow(0 0 40px rgba(135, 206, 235, 0.6)); }
+    }
+
+    /* SUBTÍTULO CENTRALIZADO */
+    .subhead {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: #b8dff5;
+      background: rgba(0, 50, 100, 0.3);
+      border-radius: 50px;
+      padding: 0.4rem 2.5rem;
+      display: block;
+      margin: 0 auto 2rem;
+      border: 1px solid rgba(135, 206, 235, 0.3);
+      backdrop-filter: blur(5px);
+      width: fit-content;
+      max-width: 90%;
+    }
+
+    /* CARDS DE FOTOS - SEM DESCRIÇÃO */
+    .photo-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      height: 100%;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border-color: rgba(135, 206, 235, 0.6);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* SEÇÃO DE HISTÓRIA */
+    .history-section {
+      background: rgba(0, 40, 80, 0.5);
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(135, 206, 235, 0.2);
+      margin: 2rem 0;
+    }
+
+    .history-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .history-item {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1.2rem 1.5rem;
+      border-radius: 15px;
+      border-left: 4px solid #87CEEB;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .history-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(5px);
+      border-left-color: #ffd700;
+    }
+
+    .history-item .year {
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.3rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .history-item .desc {
+      font-size: 0.95rem;
+      opacity: 0.95;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .history-item .desc i {
+      color: #87CEEB;
+      margin-right: 6px;
+    }
+
+    /* PAINEL INTERATIVO */
+    .interactive-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 40, 80, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 60px;
+      padding: 0.7rem 1.8rem;
+      border: 1px solid rgba(135, 206, 235, 0.25);
+      margin-top: 1.5rem;
+    }
+
+    .counter-box {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      font-size: 1.1rem;
+      background: rgba(0, 30, 60, 0.5);
+      padding: 0.3rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid rgba(135, 206, 235, 0.2);
+    }
+
+    .counter-box i {
+      font-size: 1.8rem;
+      color: #87CEEB;
+    }
+
+    #visitCounter {
+      font-weight: 700;
+      font-size: 2.2rem;
+      min-width: 3.5rem;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
+    }
+
+    /* Botão de som */
+    .sound-btn {
+      background: rgba(135, 206, 235, 0.15);
+      border: 2px solid rgba(135, 206, 235, 0.3);
+      color: #b8dff5;
+      border-radius: 50px;
+      padding: 0.6rem 2rem;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    .sound-btn:hover {
+      background: rgba(135, 206, 235, 0.3);
+      color: #fff;
+      transform: scale(1.05);
+      border-color: #87CEEB;
+      box-shadow: 0 0 30px rgba(135, 206, 235, 0.2);
+    }
+
+    .sound-btn i {
+      font-size: 1.5rem;
+    }
+
+    .sound-btn.muted {
+      background: rgba(255, 100, 100, 0.15);
+      border-color: rgba(255, 100, 100, 0.3);
+      color: #ff9999;
+    }
+
+    .sound-btn.muted:hover {
+      background: rgba(255, 100, 100, 0.25);
+      border-color: #ff6666;
+    }
+
+    .badge-interativo {
+      background: rgba(255, 215, 0, 0.15);
+      color: #ffd700;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .badge-interativo:hover {
+      background: rgba(255, 215, 0, 0.25);
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.5rem;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .main-wrapper { padding: 1rem; }
+      .interactive-panel { flex-direction: column; align-items: stretch; border-radius: 30px; padding: 1rem; }
+      .counter-box, .sound-btn { justify-content: center; }
+      .history-timeline { grid-template-columns: 1fr; }
+      .photo-card img { height: 200px; }
+      
+      .logo-unesp {
+        top: 10px;
+        right: 10px;
+        padding: 5px 8px;
+        gap: 6px;
+      }
+      
+      .logo-unesp img {
+        height: 35px;
+      }
+      
+      .logo-unesp .logo-text .unesp {
+        font-size: 0.85rem;
+      }
+      
+      .logo-unesp .logo-text .anos {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-unesp .logo-text .unesp {
+        display: none;
+      }
+      
+      .logo-unesp {
+        padding: 5px 8px;
+      }
+      
+      .logo-unesp img {
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <!-- TÍTULO E SUBTÍTULO CENTRALIZADOS -->
+  <h1 class="hero-title">🌿 UNESP FCLAR</h1>
+  <div class="subhead">Natureza · História · Conhecimento</div>
+
+  <!-- GALERIA DE FOTOS -->
+  <div class="row g-4 mb-4">
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto1.jpg" alt="Foto 1">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto2.jpg" alt="Foto 2">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto3.jpg" alt="Foto 3">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto4.jpg" alt="Foto 4">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto5.jpg" alt="Foto 5">
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="photo-card">
+        <img src="img/foto6.jpg" alt="Foto 6">
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO DE HISTÓRIA -->
+  <div class="history-section">
+    <h4 style="color:#87CEEB; font-weight:600; margin-bottom:1.5rem;">
+      <i class="bi bi-clock-history me-2"></i>História da FCLAR - Linha do Tempo
+    </h4>
+    <div class="history-timeline">
+      <div class="history-item">
+        <span class="year">1957</span>
+        <div class="desc">
+          <i class="bi bi-building"></i> <strong>Fundação</strong><br>
+          A Faculdade de Filosofia, Ciências e Letras de Araraquara é criada, marcando o início da educação superior na região. Com cursos iniciais em Filosofia, Letras e Ciências, a instituição nasce com o compromisso de formar professores e pesquisadores para o interior paulista.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">1960</span>
+        <div class="desc">
+          <i class="bi bi-book"></i> <strong>Primeiros Cursos</strong><br>
+          São implantados os cursos de História, Geografia e Pedagogia, ampliando o leque de formação e consolidando a vocação da faculdade para as ciências humanas. O corpo docente começa a se destacar com pesquisas inovadoras.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">1976</span>
+        <div class="desc">
+          <i class="bi bi-university"></i> <strong>Integração à UNESP</strong><br>
+          A faculdade é incorporada à Universidade Estadual Paulista (UNESP), passando a integrar um dos maiores sistemas de ensino superior do Brasil. Essa mudança traz novos recursos e amplia as possibilidades de pesquisa e extensão.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">1985</span>
+        <div class="desc">
+          <i class="bi bi-flask"></i> <strong>Expansão da Pesquisa</strong><br>
+          São criados os primeiros programas de pós-graduação, com destaque para as áreas de Letras e História. A FCLAR se torna referência em estudos linguísticos, literários e historiográficos no estado de São Paulo.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">1995</span>
+        <div class="desc">
+          <i class="bi bi-globe2"></i> <strong>Internacionalização</strong><br>
+          A faculdade firma convênios com universidades estrangeiras, permitindo intercâmbios e projetos de pesquisa conjuntos. A comunidade acadêmica passa a ter contato com diferentes abordagens teóricas e metodológicas.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">2005</span>
+        <div class="desc">
+          <i class="bi bi-pc"></i> <strong>Modernização</strong><br>
+          A FCLAR investe em laboratórios de informática e novas tecnologias, modernizando o ensino e a pesquisa. São criados núcleos de estudo em áreas como meio ambiente, patrimônio cultural e ensino de línguas.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">2015</span>
+        <div class="desc">
+          <i class="bi bi-people"></i> <strong>Comunidade Inclusiva</strong><br>
+          A faculdade implementa políticas de inclusão e diversidade, ampliando o acesso de estudantes de diferentes origens sociais e culturais. A FCLAR se consolida como um espaço de acolhimento e formação crítica.
+        </div>
+      </div>
+      <div class="history-item">
+        <span class="year">2024</span>
+        <div class="desc">
+          <i class="bi bi-tree"></i> <strong>Sustentabilidade</strong><br>
+          A FCLAR reafirma seu compromisso com a preservação ambiental e a sustentabilidade. O campus se torna referência em práticas ecológicas, integrando a natureza ao cotidiano acadêmico e inspirando novas gerações de pesquisadores.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAINEL INTERATIVO -->
+  <div class="interactive-panel">
+    <div class="counter-box">
+      <i class="bi bi-eye-fill"></i>
+      <span>visitas</span>
+      <span id="visitCounter">0</span>
+    </div>
+
+    <button id="soundToggle" class="sound-btn">
+      <i id="soundIcon" class="bi bi-volume-up-fill"></i>
+      <span id="soundLabel">Som ligado</span>
+    </button>
+
+    <span class="badge-interativo" onclick="document.querySelector('.history-section').scrollIntoView({behavior:'smooth'})">
+      <i class="bi bi-arrow-down me-1"></i>Ver História
+    </span>
+  </div>
+
+  <footer>
+    <i class="bi bi-tree-fill me-1"></i> UNESP FCLAR · Araraquara · SP · 1957 – 2026 
+    <i class="bi bi-dot"></i> natureza, conhecimento e tradição <i class="bi bi-flower1 ms-1"></i>
+  </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Contador de visitas e Controle de Som -->
+<script>
+  (function() {
+    // Contador de visitas
+    let count = localStorage.getItem('fclarVisitCount');
+    if (count === null) count = 0;
+    else count = parseInt(count, 10);
+    count += 1;
+    localStorage.setItem('fclarVisitCount', count);
+    document.getElementById('visitCounter').textContent = count;
+
+    // Controle de som - VOLUME 20%
+    const audioElement = document.getElementById('bgAudio');
+    const toggleBtn = document.getElementById('soundToggle');
+    const soundIcon = document.getElementById('soundIcon');
+    const soundLabel = document.getElementById('soundLabel');
+    
+    let audio = audioElement;
+    if (!audio) {
+      audio = document.createElement('audio');
+      audio.id = 'bgAudio';
+      audio.loop = true;
+      audio.volume = 0.2;  /* ← VOLUME 20% */
+      audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+      document.body.appendChild(audio);
+    } else {
+      audio.volume = 0.2;  /* ← VOLUME 20% */
+    }
+
+    let isMuted = false;
+
+    function updateUI() {
+      if (isMuted) {
+        audio.muted = true;
+        soundIcon.className = 'bi bi-volume-mute-fill';
+        soundLabel.textContent = 'Som desligado';
+        toggleBtn.classList.add('muted');
+      } else {
+        audio.muted = false;
+        soundIcon.className = 'bi bi-volume-up-fill';
+        soundLabel.textContent = 'Som ligado';
+        toggleBtn.classList.remove('muted');
+      }
+    }
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        console.log('Áudio aguardando interação do usuário.');
+      });
+    }
+
+    toggleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      if (audio.paused && !isMuted) {
+        audio.play().catch(() => {});
+      }
+
+      isMuted = !isMuted;
+      updateUI();
+
+      if (!isMuted && audio.paused) {
+        audio.play().catch(() => {});
+      }
+    });
+
+    updateUI();
+  })();
+</script>
+
+</body>
+</html>

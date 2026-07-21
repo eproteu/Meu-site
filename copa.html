@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Pós-Copa 2026 - O Mundo Depois do Hexa!</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --dourado: #f0c040;
+            --verde-brasil: #009c3b;
+            --azul-brasil: #002776;
+            --laranja-fogo: #ff6b35;
+            --roxo-vibra: #7b2ff7;
+            --bg-escuro: #0a0a14;
+            --bg-card: #141428;
+            --texto-claro: #e8e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-escuro);
+            color: var(--texto-claro);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ============ PARTÍCULAS DE FUNDO ANIMADAS ============ */
+        .particulas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particula {
+            position: absolute;
+            border-radius: 50%;
+            animation: flutuarParticula infinite ease-in-out;
+            opacity: 0.55;
+        }
+        @keyframes flutuarParticula {
+            0% {
+                transform: translateY(105vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.4;
+                transform: translateY(50vh) translateX(40px) scale(1.4);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-30px) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        /* ============ CONFETES ============ */
+        .confete {
+            position: fixed;
+            top: -60px;
+            z-index: 1;
+            pointer-events: none;
+            animation: cairConfete linear forwards;
+            border-radius: 3px;
+        }
+        @keyframes cairConfete {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(105vh) rotate(720deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar-custom {
+            background: rgba(10, 10, 25, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 2px solid var(--dourado);
+            z-index: 1000;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 30px rgba(240, 192, 64, 0.2);
+        }
+        .navbar-custom .navbar-brand {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--dourado), #fff8c0, var(--dourado));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: brilhoTexto 2s ease-in-out infinite;
+        }
+        @keyframes brilhoTexto {
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.6);
+            }
+        }
+        .navbar-custom .nav-link {
+            color: #ddd !important;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .navbar-custom .nav-link:hover {
+            color: var(--dourado) !important;
+            transform: translateY(-2px);
+        }
+        .navbar-custom .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--dourado);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        .navbar-custom .nav-link:hover::after {
+            width: 70%;
+        }
+
+        /* ============ TÍTULO QUE SE MOVIMENTA ============ */
+        .titulo-animado-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 20px 40px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .titulo-animado {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg,
+                    #ffd700, #ffec8b, #ffa500, #ff6347,
+                    #ffd700, #ffec8b, #ffa500, #ff6347,
+                    #ffd700);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: moverTitulo 3s ease-in-out infinite,
+                mudarGradiente 4s linear infinite;
+            display: inline-block;
+            text-shadow: none;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.7));
+            cursor: default;
+        }
+        @keyframes moverTitulo {
+            0%,
+            100% {
+                transform: translateX(0) translateY(0) scale(1);
+            }
+            15% {
+                transform: translateX(25px) translateY(-8px) scale(1.04);
+            }
+            30% {
+                transform: translateX(-18px) translateY(5px) scale(0.97);
+            }
+            45% {
+                transform: translateX(30px) translateY(-12px) scale(1.05);
+            }
+            60% {
+                transform: translateX(-25px) translateY(8px) scale(0.96);
+            }
+            75% {
+                transform: translateX(15px) translateY(-4px) scale(1.02);
+            }
+            90% {
+                transform: translateX(-10px) translateY(2px) scale(0.99);
+            }
+        }
+        @keyframes mudarGradiente {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 400% 50%;
+            }
+        }
+        .titulo-sub {
+            display: block;
+            font-size: 1.1rem;
+            color: #ccc;
+            letter-spacing: 8px;
+            animation: piscar 1.5s ease-in-out infinite;
+            margin-top: 5px;
+        }
+        @keyframes piscar {
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero-section {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px 60px;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(0, 156, 59, 0.25) 0%, transparent 70%),
+                radial-gradient(ellipse at 30% 50%, rgba(123, 47, 247, 0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(255, 107, 53, 0.2) 0%, transparent 60%);
+            border-bottom: 3px dashed rgba(240, 192, 64, 0.4);
+        }
+        .bola-flutuante {
+            display: inline-block;
+            font-size: 4rem;
+            animation: quicarBola 0.8s ease-in-out infinite alternate;
+        }
+        @keyframes quicarBola {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-35px) rotate(25deg);
+            }
+        }
+        .bola-flutuante:nth-child(2) {
+            animation-delay: 0.25s;
+            font-size: 3rem;
+            margin: 0 15px;
+        }
+        .bola-flutuante:nth-child(3) {
+            animation-delay: 0.5s;
+            font-size: 2.5rem;
+        }
+
+        /* ============ CONTADOR DE VISITAS ============ */
+        .contador-visitas {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #1a1a35, #252545);
+            border: 2px solid var(--dourado);
+            border-radius: 50px;
+            padding: 14px 30px;
+            margin: 20px auto;
+            box-shadow: 0 8px 35px rgba(240, 192, 64, 0.35);
+            animation: pulsarContador 2s ease-in-out infinite;
+            z-index: 5;
+            position: relative;
+        }
+        @keyframes pulsarContador {
+            0%,
+            100% {
+                box-shadow: 0 8px 35px rgba(240, 192, 64, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 60px rgba(240, 192, 64, 0.7), 0 0 90px rgba(255, 107, 53, 0.4);
+            }
+        }
+        .contador-icone {
+            font-size: 2.5rem;
+            animation: girarOlho 3s linear infinite;
+        }
+        @keyframes girarOlho {
+            0% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-15deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+        .contador-numero {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dourado);
+            font-variant-numeric: tabular-nums;
+            font-family: 'Courier New', monospace;
+            animation: saltarNumero 0.5s ease-out;
+        }
+        @keyframes saltarNumero {
+            0% {
+                transform: scale(1.8);
+                color: #fff;
+            }
+            100% {
+                transform: scale(1);
+                color: var(--dourado);
+            }
+        }
+        .contador-label {
+            color: #bbb;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ============ CARDS DE JOGOS ============ */
+        .card-jogo {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .card-jogo:hover {
+            transform: translateY(-12px) rotateY(3deg) rotateX(-3deg);
+            box-shadow: 0 25px 50px rgba(240, 192, 64, 0.3), 0 0 80px rgba(123, 47, 247, 0.25);
+            border-color: var(--dourado);
+        }
+        .card-jogo .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s;
+            filter: brightness(0.85);
+        }
+        .card-jogo:hover .card-img-top {
+            transform: scale(1.08);
+            filter: brightness(1.1);
+        }
+        .card-jogo .badge-placar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ffd700;
+            font-weight: 900;
+            font-size: 1.3rem;
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 2px solid #ffd700;
+            letter-spacing: 2px;
+        }
+        .card-jogo .card-body {
+            padding: 20px;
+        }
+        .card-jogo .card-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+        .card-jogo .card-text {
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ============ SEÇÃO COMENTÁRIOS 45 LINHAS ============ */
+        .comentarios-box {
+            background: linear-gradient(180deg, #0d0d1f 0%, #111128 50%, #0d0d1f 100%);
+            border: 2px solid rgba(240, 192, 64, 0.5);
+            border-radius: 24px;
+            padding: 35px 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: inset 0 0 60px rgba(0, 156, 59, 0.1), 0 15px 50px rgba(0, 0, 0, 0.6);
+            max-height: 700px;
+            overflow-y: auto;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.9;
+            color: #d0d0e0;
+            scroll-behavior: smooth;
+        }
+        .comentarios-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .comentarios-box::-webkit-scrollbar-track {
+            background: #1a1a30;
+            border-radius: 10px;
+        }
+        .comentarios-box::-webkit-scrollbar-thumb {
+            background: var(--dourado);
+            border-radius: 10px;
+        }
+        .comentarios-box h3 {
+            text-align: center;
+            color: var(--dourado);
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            position: sticky;
+            top: 0;
+            background: rgba(13, 13, 31, 0.9);
+            padding: 10px 0;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+        }
+        .linha-comentario {
+            padding: 6px 0;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.08);
+            transition: all 0.3s;
+            padding-left: 8px;
+            border-radius: 4px;
+        }
+        .linha-comentario:hover {
+            background: rgba(240, 192, 64, 0.08);
+            padding-left: 16px;
+            color: #fff;
+            border-left: 3px solid var(--dourado);
+        }
+        .linha-comentario.num-linha {
+            color: var(--dourado);
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 0.8rem;
+            min-width: 28px;
+            display: inline-block;
+            text-align: right;
+        }
+
+        /* ============ GALERIA DE FOTOS ============ */
+        .galeria-foto {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            aspect-ratio: 4/3;
+            background: #1a1a30;
+        }
+        .galeria-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+        .galeria-foto:hover img {
+            transform: scale(1.15) rotate(-2deg);
+        }
+        .galeria-foto .overlay-foto {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 20px 15px;
+            color: #fff;
+            font-weight: 700;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .galeria-foto:hover .overlay-foto {
+            transform: translateY(0);
+        }
+        .galeria-foto:hover {
+            box-shadow: 0 20px 45px rgba(240, 192, 64, 0.45);
+            transform: translateY(-8px);
+        }
+
+        /* ============ SEÇÃO ESTATÍSTICAS ============ */
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            z-index: 2;
+            position: relative;
+        }
+        .stat-card:hover {
+            border-color: var(--dourado);
+            box-shadow: 0 15px 40px rgba(240, 192, 64, 0.25);
+            transform: translateY(-5px);
+        }
+        .stat-numero {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: contarPulso 1s ease-out;
+        }
+        @keyframes contarPulso {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            60% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ============ FOOTER ============ */
+        .footer-custom {
+            background: rgba(10, 10, 25, 0.95);
+            border-top: 3px solid var(--dourado);
+            padding: 30px;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        /* ============ BOTÃO VOLTAR AO TOPO ============ */
+        .btn-voltar-topo {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--dourado);
+            color: #000;
+            font-size: 1.6rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(240, 192, 64, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: flutuarBotao 2s ease-in-out infinite;
+        }
+        @keyframes flutuarBotao {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+        .btn-voltar-topo:hover {
+            background: #fff;
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* ============ RESPONSIVIDADE ============ */
+        @media (max-width: 768px) {
+            .titulo-animado {
+                font-size: 1.6rem;
+                letter-spacing: 2px;
+            }
+            .contador-numero {
+                font-size: 2rem;
+            }
+            .card-jogo .card-img-top {
+                height: 160px;
+            }
+            .comentarios-box {
+                padding: 20px 15px;
+                max-height: 500px;
+                font-size: 0.85rem;
+            }
+            .bola-flutuante {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== PARTÍCULAS DE FUNDO ==================== -->
+    <div class="particulas-container" id="particulasContainer"></div>
+
+    <!-- ==================== CONFETES ==================== -->
+    <div id="confetesContainer"></div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                ⚽ PÓS-COPA 2026
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal"
+            style="border-color:var(--dourado);">
+            <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navPrincipal">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#hero"><i class="bi bi-house-heart"></i> Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#galeria"><i class="bi bi-images"></i> Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="#jogos"><i class="bi bi-trophy"></i> Jogos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#comentarios"><i class="bi bi-chat-quote"></i> Análises</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#stats"><i class="bi bi-bar-chart"></i> Estatísticas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section class="hero-section" id="hero">
+    <div style="position:relative;z-index:2;">
+        <!-- Bolas flutuantes -->
+        <span class="bola-flutuante">⚽</span>
+        <span class="bola-flutuante">🏆</span>
+        <span class="bola-flutuante">⚽</span>
+
+        <!-- Título que se movimenta -->
+        <div class="titulo-animado-wrapper">
+            <span class="titulo-animado">Pós-Copa 2026</span>
+            <span class="titulo-sub">★ O MUNDO DEPOIS DO HEXA ★</span>
+        </div>
+
+        <!-- Contador de visitas -->
+        <div style="text-align:center;">
+            <div class="contador-visitas" id="contadorVisitas">
+                <span class="contador-icone">👁️</span>
+                <div>
+                    <span class="contador-numero" id="numeroVisitas">0</span>
+                    <br>
+                    <span class="contador-label">visitantes</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="lead mt-3" style="max-width:700px;margin:0 auto;color:#ccc;font-size:1.1rem;">
+            A <strong style="color:#ffd700;">Copa do Mundo FIFA de 2026</strong> entrou para a história.
+            Com 48 seleções, sediada em <em>EUA, Canadá e México</em>, o torneio culminou
+            na consagração do <strong style="color:#009c3b;">Brasil como Hexacampeão Mundial</strong>!
+            Reviva os momentos épicos, as viradas inesquecíveis e a jornada gloriosa da Seleção Canarinho. 🏆🇧🇷
+        </p>
+    </div>
+</section>
+
+<!-- ==================== GALERIA DE FOTOS ==================== -->
+<section class="container my-5" id="galeria" style="position:relative;z-index:2;">
+    <h2 class="text-center mb-4" style="color:var(--dourado);font-weight:900;letter-spacing:3px;">
+        📸 MOMENTOS INESQUECÍVEIS DA COPA 2026
+    </h2>
+    <div class="row g-4">
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/1a5632/ffd700?text=EST%C3%81DIO+METLIFE+FINAL"
+                alt="Estádio MetLife - Final" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%231a5632%22 width=%22600%22 height=%22450%22/><text fill=%22%23ffd700%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>🏟️ METLIFE - FINAL</text></svg>'">
+                <div class="overlay-foto">🏟️ MetLife Stadium – Palco da Grande Final</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/002776/ffd700?text=BRASIL+HEXACAMPE%C3%83O"
+                alt="Brasil Hexacampeão" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%23002776%22 width=%22600%22 height=%22450%22/><text fill=%22%23ffd700%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>🇧🇷 BRASIL HEXA!</text></svg>'">
+                <div class="overlay-foto">🇧🇷 Brasil ergue a taça – Hexacampeão Mundial!</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/8b0000/ffffff?text=VIN%C3%8DCIUS+JR+GOL+DO+T%C3%8DTULO"
+                alt="Vinícius Júnior" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%238b0000%22 width=%22600%22 height=%22450%22/><text fill=%22white%22 font-size=%2226%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>⚽ VINI JR - GOL DO HEXA</text></svg>'">
+                <div class="overlay-foto">⚽ Vinícius Júnior marca o gol do título</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/ff8c00/1a1a1a?text=TORCIDA+BRASILEIRA+FESTA"
+                alt="Torcida Brasileira" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%23ff8c00%22 width=%22600%22 height=%22450%22/><text fill=%22%231a1a1a%22 font-size=%2228%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>🎉 FESTA DA TORCIDA</text></svg>'">
+                <div class="overlay-foto">🎉 Torcida brasileira em festa nas ruas</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/4b0082/ffd700?text=RODRYGO+SEMIFINAL+GOLA%C3%87O"
+                alt="Rodrygo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%234b0082%22 width=%22600%22 height=%22450%22/><text fill=%22%23ffd700%22 font-size=%2226%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>🌟 RODRYGO - SEMIFINAL</text></svg>'">
+                <div class="overlay-foto">🌟 Rodrygo brilha na semifinal</div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="galeria-foto">
+                <img src="https://placehold.co/600x450/006400/ffffff?text=EST%C3%81DIO+AZTECA+ABERTURA"
+                alt="Estádio Azteca" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22><rect fill=%22%23006400%22 width=%22600%22 height=%22450%22/><text fill=%22white%22 font-size=%2226%22 text-anchor=%22middle%22 x=%22300%22 y=%22230%22>🏟️ AZTECA - ABERTURA</text></svg>'">
+                <div class="overlay-foto">🏟️ Estádio Azteca – Jogo de Abertura</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CARDS DE JOGOS PRINCIPAIS ==================== -->
+<section class="container my-5" id="jogos" style="position:relative;z-index:2;">
+    <h2 class="text-center mb-4" style="color:var(--dourado);font-weight:900;letter-spacing:3px;">
+        ⚡ PRINCIPAIS JOGOS DA COPA 2026
+    </h2>
+    <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">3 × 2</span>
+                <img src="https://placehold.co/600x400/1a3a5c/ffffff?text=BRASIL+x+INGLATERRA"
+                class="card-img-top" alt="Final"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%231a3a5c%22 width=%22600%22 height=%22400%22/><text fill=%22white%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>🏆 FINAL</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">🏆 Final: Brasil 3 × 2 Inglaterra</h5>
+                    <p class="card-text">No MetLife Stadium, 19 de julho de 2026. Brasil vence com gols de
+                        Vinícius Júnior (2) e Rodrygo. Jude Bellingham descontou para os ingleses. O hexa veio
+                    com emoção!</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">2 × 1</span>
+                <img src="https://placehold.co/600x400/4a1a6b/ffffff?text=BRASIL+x+FRAN%C3%87A"
+                class="card-img-top" alt="Semifinal"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%234a1a6b%22 width=%22600%22 height=%22400%22/><text fill=%22white%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>⚔️ SEMIFINAL</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">⚔️ Semifinal: Brasil 2 × 1 França</h5>
+                    <p class="card-text">Em Los Angeles, Rodrygo fez o gol da vitória aos 87 minutos. Mbappé
+                        havia empatado, mas a defesa brasileira segurou a pressão final.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">4 × 1</span>
+                <img src="https://placehold.co/600x400/0d5e0d/ffffff?text=BRASIL+x+ARGENTINA"
+                class="card-img-top" alt="Quartas"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%230d5e0d%22 width=%22600%22 height=%22400%22/><text fill=%22white%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>💥 QUARTAS</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">💥 Quartas: Brasil 4 × 1 Argentina</h5>
+                    <p class="card-text">Em Dallas, atuação de gala. Endrick, Vini Jr., Rodrygo e
+                        Paquetá marcaram. Messi descontou de pênalti em sua última Copa.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">3 × 0</span>
+                <img src="https://placehold.co/600x400/8b4513/ffffff?text=BRASIL+x+MARROCOS"
+                class="card-img-top" alt="Oitavas"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%238b4513%22 width=%22600%22 height=%22400%22/><text fill=%22white%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>🔥 OITAVAS</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">🔥 Oitavas: Brasil 3 × 0 Marrocos</h5>
+                    <p class="card-text">Em Vancouver, Brasil dominou. Gols de Endrick, Vini Jr. e
+                        Martinelli. A defesa marroquina não resistiu ao ataque canarinho.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">2 × 2</span>
+                <img src="https://placehold.co/600x400/1e3a5f/ffffff?text=BRASIL+x+ALEMANHA"
+                class="card-img-top" alt="Grupos"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%231e3a5f%22 width=%22600%22 height=%22400%22/><text fill=%22white%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>🌍 GRUPOS</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">🌍 Fase de Grupos: Brasil 2 × 2 Alemanha</h5>
+                    <p class="card-text">Em Seattle, jogo eletrizante. Brasil saiu atrás, empatou com
+                        Endrick e Vini Jr. O empate garantiu a liderança do grupo.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card-jogo">
+                <span class="badge-placar">1 × 0</span>
+                <img src="https://placehold.co/600x400/2e2e2e/ffd700?text=TERCEIRO+LUGAR"
+                class="card-img-top" alt="3º Lugar"
+                onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect fill=%22%232e2e2e%22 width=%22600%22 height=%22400%22/><text fill=%22%23ffd700%22 font-size=%2230%22 text-anchor=%22middle%22 x=%22300%22 y=%22210%22>🥉 3º LUGAR</text></svg>'">
+                <div class="card-body">
+                    <h5 class="card-title">🥉 3º Lugar: França 1 × 0 Argentina</h5>
+                    <p class="card-text">Disputa do bronze em Miami. Mbappé marcou o gol solitário.
+                        Messi se despediu das Copas com aplausos emocionados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== COMENTÁRIOS - 45 LINHAS ==================== -->
+<section class="container my-5" id="comentarios" style="position:relative;z-index:2;">
+    <div class="comentarios-box">
+        <h3>📝 45 COMENTÁRIOS SOBRE OS PRINCIPAIS JOGOS DA COPA 2026</h3>
+
+        <!-- LINHA 1 --><div class="linha-comentario"><span class="num-linha">01</span> A Copa de 2026 foi a maior da história, com 48 seleções e 104 jogos em 16 cidades-sede.</div>
+        <!-- LINHA 2 --><div class="linha-comentario"><span class="num-linha">02</span> O jogo de abertura no Estádio Azteca teve México 2 × 1 Camarões, com gol nos acréscimos.</div>
+        <!-- LINHA 3 --><div class="linha-comentario"><span class="num-linha">03</span> Brasil estreou com vitória convincente: 4 × 0 sobre a Nova Zelândia, em Seattle.</div>
+        <!-- LINHA 4 --><div class="linha-comentario"><span class="num-linha">04</span> Endrick, aos 19 anos, marcou dois gols na estreia e se tornou a sensação do torneio.</div>
+        <!-- LINHA 5 --><div class="linha-comentario"><span class="num-linha">05</span> O segundo jogo: Brasil 2 × 2 Alemanha, partida eletrizante com viradas e emoção até o fim.</div>
+        <!-- LINHA 6 --><div class="linha-comentario"><span class="num-linha">06</span> A Alemanha abriu 2 × 0, mas Vini Jr. e Endrick empataram no segundo tempo.</div>
+        <!-- LINHA 7 --><div class="linha-comentario"><span class="num-linha">07</span> Brasil fechou o grupo com 3 × 1 sobre a Coreia do Sul, garantindo o primeiro lugar.</div>
+        <!-- LINHA 8 --><div class="linha-comentario"><span class="num-linha">08</span> Nas oitavas, o Brasil enfrentou Marrocos, semifinalista de 2022, em Vancouver.</div>
+        <!-- LINHA 9 --><div class="linha-comentario"><span class="num-linha">09</span> Vitória brasileira por 3 × 0, com atuação impecável de Rodrygo no meio-campo.</div>
+        <!-- LINHA 10 --><div class="linha-comentario"><span class="num-linha">10</span> O goleiro Alisson fez defesas milagrosas e manteve o placar zerado para Marrocos.</div>
+        <!-- LINHA 11 --><div class="linha-comentario"><span class="num-linha">11</span> Nas quartas de final, o clássico sul-americano: Brasil × Argentina em Dallas.</div>
+        <!-- LINHA 12 --><div class="linha-comentario"><span class="num-linha">12</span> Messi, aos 39 anos, disputava sua última Copa do Mundo pela Argentina.</div>
+        <!-- LINHA 13 --><div class="linha-comentario"><span class="num-linha">13</span> O Brasil fez 4 × 1, com show de Vinícius Júnior, autor de dois gols e uma assistência.</div>
+        <!-- LINHA 14 --><div class="linha-comentario"><span class="num-linha">14</span> Messi descontou de pênalti e foi aplaudido de pé por torcedores brasileiros.</div>
+        <!-- LINHA 15 --><div class="linha-comentario"><span class="num-linha">15</span> Na outra quartas, Inglaterra eliminou a Espanha nos pênaltis após 1 × 1 no tempo normal.</div>
+        <!-- LINHA 16 --><div class="linha-comentario"><span class="num-linha">16</span> A França passou por Portugal com gol de Mbappé, vencendo por 2 × 1.</div>
+        <!-- LINHA 17 --><div class="linha-comentario"><span class="num-linha">17</span> A semifinal entre Brasil e França, em Los Angeles, parou o mundo.</div>
+        <!-- LINHA 18 --><div class="linha-comentario"><span class="num-linha">18</span> Mbappé abriu o placar para a França logo aos 12 minutos do primeiro tempo.</div>
+        <!-- LINHA 19 --><div class="linha-comentario"><span class="num-linha">19</span> Brasil empatou com Vini Jr. em jogada individual aos 40 minutos da etapa inicial.</div>
+        <!-- LINHA 20 --><div class="linha-comentario"><span class="num-linha">20</span> O jogo seguiu tenso, com chances para os dois lados e grandes defesas.</div>
+        <!-- LINHA 21 --><div class="linha-comentario"><span class="num-linha">21</span> Aos 87 minutos, Rodrygo acertou um chute de fora da área: golaço!</div>
+        <!-- LINHA 22 --><div class="linha-comentario"><span class="num-linha">22</span> Brasil 2 × 1 França, classificação heroica para a grande final.</div>
+        <!-- LINHA 23 --><div class="linha-comentario"><span class="num-linha">23</span> Na outra semi, Inglaterra venceu a Argentina por 2 × 0, com Bellingham dominante.</div>
+        <!-- LINHA 24 --><div class="linha-comentario"><span class="num-linha">24</span> A final no MetLife Stadium: Brasil × Inglaterra, 19 de julho de 2026.</div>
+        <!-- LINHA 25 --><div class="linha-comentario"><span class="num-linha">25</span> Mais de 87 mil torcedores lotaram o estádio em Nova Jersey.</div>
+        <!-- LINHA 26 --><div class="linha-comentario"><span class="num-linha">26</span> A Inglaterra abriu o placar com Bellingham, de cabeça, aos 22 minutos.</div>
+        <!-- LINHA 27 --><div class="linha-comentario"><span class="num-linha">27</span> O Brasil não se abalou e empatou com Vinícius Júnior aos 35 minutos.</div>
+        <!-- LINHA 28 --><div class="linha-comentario"><span class="num-linha">28</span> No segundo tempo, Rodrygo virou o jogo aos 58 minutos: 2 × 1 Brasil.</div>
+        <!-- LINHA 29 --><div class="linha-comentario"><span class="num-linha">29</span> A Inglaterra empatou com Harry Kane aos 72 minutos, silenciando a torcida.</div>
+        <!-- LINHA 30 --><div class="linha-comentario"><span class="num-linha">30</span> Quando tudo caminhava para a prorrogação, Vini Jr. apareceu novamente.</div>
+        <!-- LINHA 31 --><div class="linha-comentario"><span class="num-linha">31</span> Aos 89 minutos, ele driblou dois defensores e chutou no ângulo: 3 × 2!</div>
+        <!-- LINHA 32 --><div class="linha-comentario"><span class="num-linha">32</span> O MetLife veio abaixo com o gol do título brasileiro.</div>
+        <!-- LINHA 33 --><div class="linha-comentario"><span class="num-linha">33</span> Nos acréscimos, Alisson fez uma defesa espetacular em chute de Foden.</div>
+        <!-- LINHA 34 --><div class="linha-comentario"><span class="num-linha">34</span> O árbitro apitou o fim do jogo: Brasil Hexacampeão Mundial!</div>
+        <!-- LINHA 35 --><div class="linha-comentario"><span class="num-linha">35</span> Vinícius Júnior foi eleito o melhor jogador da Copa com 8 gols e 5 assistências.</div>
+        <!-- LINHA 36 --><div class="linha-comentario"><span class="num-linha">36</span> Endrick levou o prêmio de revelação do torneio, com 5 gols marcados.</div>
+        <!-- LINHA 37 --><div class="linha-comentario"><span class="num-linha">37</span> Alisson recebeu a Luva de Ouro como melhor goleiro da competição.</div>
+        <!-- LINHA 38 --><div class="linha-comentario"><span class="num-linha">38</span> O técnico brasileiro foi aclamado por montar um time ofensivo e equilibrado.</div>
+        <!-- LINHA 39 --><div class="linha-comentario"><span class="num-linha">39</span> A Copa de 2026 teve média de 3,2 gols por jogo, a maior desde 1970.</div>
+        <!-- LINHA 40 --><div class="linha-comentario"><span class="num-linha">40</span> Mbappé terminou como artilheiro com 9 gols, seguido por Vini Jr. com 8.</div>
+        <!-- LINHA 41 --><div class="linha-comentario"><span class="num-linha">41</span> A FIFA registrou recorde de público: 5,8 milhões de torcedores nos estádios.</div>
+        <!-- LINHA 42 --><div class="linha-comentario"><span class="num-linha">42</span> O Brasil se tornou o primeiro hexacampeão mundial da história do futebol.</div>
+        <!-- LINHA 43 --><div class="linha-comentario"><span class="num-linha">43</span> As ruas do Brasil foram tomadas por festas que duraram mais de uma semana.</div>
+        <!-- LINHA 44 --><div class="linha-comentario"><span class="num-linha">44</span> A Copa de 2026 será lembrada como a Copa da consagração brasileira.</div>
+        <!-- LINHA 45 --><div class="linha-comentario"><span class="num-linha">45</span> O hexa veio com emoção, talento e a certeza de que o Brasil é o país do futebol.</div>
+    </div>
+</section>
+
+<!-- ==================== ESTATÍSTICAS ==================== -->
+<section class="container my-5" id="stats" style="position:relative;z-index:2;">
+    <h2 class="text-center mb-4" style="color:var(--dourado);font-weight:900;letter-spacing:3px;">
+        📊 NÚMEROS DA COPA 2026
+    </h2>
+    <div class="row g-4">
+        <div class="col-md-3 col-6">
+            <div class="stat-card">
+                <div class="stat-numero">104</div>
+                <p style="color:#bbb;">Jogos Disputados</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card">
+                <div class="stat-numero">48</div>
+                <p style="color:#bbb;">Seleções</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card">
+                <div class="stat-numero">333</div>
+                <p style="color:#bbb;">Gols Marcados</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="stat-card">
+                <div class="stat-numero">16</div>
+                <p style="color:#bbb;">Cidades-Sede</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer-custom">
+    <p style="margin:0;color:#aaa;">
+        🏆 <strong style="color:#ffd700;">Pós-Copa 2026</strong> — Uma homenagem ao
+        <span style="color:#009c3b;font-weight:700;">Hexacampeão Mundial</span> 🇧🇷
+    </p>
+    <p style="margin:5px 0 0;font-size:0.85rem;color:#777;">
+        Site criado com Bootstrap 5, CSS Animado e muita paixão pelo futebol.
+    </p>
+    <p style="font-size:0.75rem;color:#555;">
+        © 2026 — Todos os direitos reservados. FIFA World Cup 2026™
+    </p>
+</footer>
+
+<!-- ==================== BOTÃO VOLTAR AO TOPO ==================== -->
+<button class="btn-voltar-topo" id="btnVoltarTopo" title="Voltar ao topo">
+    ⬆
+</button>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script>
+    // ==================== PARTÍCULAS DE FUNDO ====================
+    (function criarParticulas() {
+        const container = document.getElementById('particulasContainer');
+        const cores = ['#ffd700', '#ff8c00', '#009c3b', '#7b2ff7', '#ff6b35', '#00bfff', '#ff4081',
+        '#ffffff'];
+        for (let i = 0; i < 50; i++) {
+            const particula = document.createElement('div');
+            particula.classList.add('particula');
+            const tamanho = Math.random() * 8 + 3;
+            particula.style.width = tamanho + 'px';
+            particula.style.height = tamanho + 'px';
+            particula.style.left = Math.random() * 100 + '%';
+            particula.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+            particula.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            particula.style.animationDelay = (Math.random() * 10) + 's';
+            particula.style.boxShadow = `0 0 ${tamanho * 3}px ${particula.style.backgroundColor}`;
+            container.appendChild(particula);
+        }
+    })();
+
+    // ==================== CONFETES ====================
+    (function criarConfetes() {
+        const container = document.getElementById('confetesContainer');
+        const coresConfete = ['#ffd700', '#ff6347', '#00ff88', '#ff8c00', '#7b2ff7', '#00bfff', '#ff4081',
+            '#ffffff'
+        ];
+        function soltarConfete() {
+            const confete = document.createElement('div');
+            confete.classList.add('confete');
+            confete.style.left = Math.random() * 100 + '%';
+            confete.style.width = (Math.random() * 10 + 5) + 'px';
+            confete.style.height = (Math.random() * 14 + 6) + 'px';
+            confete.style.backgroundColor = coresConfete[Math.floor(Math.random() * coresConfete.length)];
+            confete.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            confete.style.animationDelay = '0s';
+            confete.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+            container.appendChild(confete);
+            setTimeout(() => { confete.remove(); }, 7000);
+        }
+        setInterval(soltarConfete, 400);
+        for (let i = 0; i < 15; i++) {
+            setTimeout(soltarConfete, i * 250);
+        }
+    })();
+
+    // ==================== CONTADOR DE VISITAS (com countapi.xyz + fallback localStorage) ====================
+    (function contadorVisitas() {
+        const NAMESPACE = 'devbueno-copa';
+        const KEY = 'visitas';
+        const elemento = document.getElementById('numeroVisitas');
+
+        async function obterContagem() {
+            try {
+                const resposta = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+                if (!resposta.ok) throw new Error('Falha na API');
+                const dados = await resposta.json();
+                return dados.value;
+            } catch (erro) {
+                console.warn('API countapi indisponível, usando fallback localStorage', erro);
+                let valor = parseInt(localStorage.getItem('visitCountFallback_copa') || '0', 10) + 1;
+                localStorage.setItem('visitCountFallback_copa', valor);
+                return valor;
+            }
+        }
+
+        function animarContagem(valorFinal) {
+            const valorInicial = Math.max(0, valorFinal - 1);
+            const duracao = 1200;
+            const inicio = performance.now();
+
+            function passo(timestamp) {
+                const progresso = Math.min((timestamp - inicio) / duracao, 1);
+                const ease = 1 - Math.pow(1 - progresso, 3);
+                const atual = Math.floor(valorInicial + (valorFinal - valorInicial) * ease);
+                elemento.textContent = atual.toLocaleString('pt-BR');
+                if (progresso < 1) {
+                    requestAnimationFrame(passo);
+                } else {
+                    elemento.textContent = valorFinal.toLocaleString('pt-BR');
+                    // re-dispara a animação CSS
+                    elemento.style.animation = 'none';
+                    elemento.offsetHeight;
+                    elemento.style.animation = 'saltarNumero 0.5s ease-out';
+                }
+            }
+            requestAnimationFrame(passo);
+        }
+
+        obterContagem().then(valor => {
+            animarContagem(valor);
+        }).catch(() => {
+            // fallback final
+            let local = parseInt(localStorage.getItem('visitCountFallback_copa') || '0', 10) + 1;
+            localStorage.setItem('visitCountFallback_copa', local);
+            animarContagem(local);
+        });
+    })();
+
+    // ==================== BOTÃO VOLTAR AO TOPO ====================
+    const btnTopo = document.getElementById('btnVoltarTopo');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            btnTopo.style.opacity = '1';
+            btnTopo.style.pointerEvents = 'auto';
+        } else {
+            btnTopo.style.opacity = '0';
+            btnTopo.style.pointerEvents = 'none';
+        }
+    });
+    btnTopo.style.opacity = '0';
+    btnTopo.style.pointerEvents = 'none';
+    btnTopo.style.transition = 'opacity 0.4s';
+    btnTopo.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ==================== ANIMAÇÃO DAS STATS AO ROLAR ====================
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statCards = entry.target.querySelectorAll('.stat-numero');
+                statCards.forEach(card => {
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = 'contarPulso 1s ease-out';
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    const statsSection = document.getElementById('stats');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // ==================== EFEITO NOS CARDS DE JOGO ====================
+    document.querySelectorAll('.card-jogo').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transition = 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+    });
+
+    // ==================== LOG NO CONSOLE ====================
+    console.log('%c🏆 Pós-Copa 2026 %c— Site Carregado! %c🇧🇷 Hexa é realidade!',
+        'font-size:1.5rem;color:#ffd700;',
+        'font-size:1rem;color:#fff;',
+        'font-size:1.2rem;color:#009c3b;');
+</script>
+</body>
+</html>
