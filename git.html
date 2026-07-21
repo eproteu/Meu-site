@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guia GitHub – Passo a Passo</title>
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- CSS customizado -->
+    <style>
+        /* Animação do título */
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        .titulo-animado {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 4px solid #f0f6fc;
+            animation: typing 3s steps(30, end) forwards, blink 0.7s step-end infinite;
+            width: 0;
+            max-width: 100%;
+        }
+        .titulo-animado-wrapper {
+            display: inline-block;
+            width: 100%;
+        }
+        /* Card com sombra e transição */
+        .card-passo {
+            transition: transform 0.2s;
+            border-left: 6px solid #2dba4e;
+        }
+        .card-passo:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .card-passo .card-img-top {
+            height: 180px;
+            object-fit: contain;
+            background: #f8f9fa;
+            padding: 12px;
+        }
+        /* Fluxograma responsivo */
+        .fluxograma svg {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+        .bg-github-dark {
+            background-color: #24292e;
+            color: #f0f6fc;
+        }
+        .bg-github-light {
+            background-color: #f6f8fa;
+        }
+        .contador {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2dba4e;
+        }
+        .footer {
+            background-color: #24292e;
+            color: #ccc;
+        }
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* ícones grandes */
+        .icone-grande {
+            font-size: 3rem;
+            color: #2dba4e;
+        }
+        /* Ajuste para imagens placeholder */
+        .img-placeholder {
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+            color: #6c757d;
+            border-radius: 8px;
+        }
+        /* responsivo para o título animado */
+        @media (max-width: 576px) {
+            .titulo-animado {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Cabeçalho com título animado ===== -->
+    <header class="bg-github-dark py-4 text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold text-white titulo-animado-wrapper">
+                <span class="titulo-animado">🚀 Guia GitHub – Do Zero ao Pull Request</span>
+            </h1>
+            <p class="text-light mt-3 fs-5">
+                <i class="bi bi-book me-2"></i>Aprenda o passo a passo com exemplos visuais e didáticos
+            </p>
+            <!-- Contador de visitas (localStorage) -->
+            <div class="mt-3">
+                <span class="badge bg-success fs-6 p-2 px-4">
+                    <i class="bi bi-eye me-2"></i>Visitas: <span id="contadorVisitas" class="contador">0</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Conteúdo principal ===== -->
+    <main class="container py-5">
+
+        <!-- Introdução -->
+        <section class="row align-items-center mb-5">
+            <div class="col-md-6">
+                <h2 class="fw-bold"><i class="bi bi-question-circle-fill text-success me-2"></i>O que é o GitHub?</h2>
+                <p class="fs-5">
+                    O GitHub é uma plataforma de hospedagem de código-fonte com controle de versão usando
+                    <strong>Git</strong>. Ele permite que você colabore com outras pessoas em projetos,
+                    gerencie versões, e compartilhe seu trabalho com o mundo.
+                </p>
+                <p>
+                    Neste guia, você vai aprender desde a criação da conta até o envio de um <em>pull request</em>.
+                    Tudo ilustrado com fluxogramas, imagens e exemplos práticos.
+                </p>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="https://placehold.co/600x300/2dba4e/white?text=GitHub+Ilustrado" alt="Ilustração GitHub" class="img-fluid rounded shadow" />
+            </div>
+        </section>
+
+        <!-- ===== Passo a Passo (Cards) ===== -->
+        <h2 class="fw-bold mb-4 text-center">
+            <i class="bi bi-list-check text-success me-2"></i>Passo a Passo
+        </h2>
+        <div class="row g-4">
+
+            <!-- Passo 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/2dba4e/white?text=Criar+Conta" class="card-img-top" alt="Criar conta" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">1</span>Criar uma conta</h5>
+                        <p class="card-text">
+                            Acesse <a href="https://github.com" target="_blank">github.com</a> e clique em
+                            <strong>Sign up</strong>. Escolha um nome de usuário, e-mail e senha. Verifique seu e-mail
+                            e pronto! Você já tem um perfil no GitHub.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/0366d6/white?text=Criar+Repositório" class="card-img-top" alt="Criar repositório" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">2</span>Criar um repositório</h5>
+                        <p class="card-text">
+                            No canto superior direito, clique no <strong>+</strong> e escolha
+                            <strong>New repository</strong>. Dê um nome, uma descrição, escolha se será público ou
+                            privado e marque <em>Add a README file</em>. Clique em <strong>Create repository</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/ff7b24/white?text=Clonar+Repositório" class="card-img-top" alt="Clonar" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">3</span>Clonar o repositório</h5>
+                        <p class="card-text">
+                            No seu computador, abra o terminal e execute:
+                            <code>git clone https://github.com/seu-usuario/repositorio.git</code>
+                            Isso baixa uma cópia local do projeto para você trabalhar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/6f42c1/white?text=Adicionar+Arquivos" class="card-img-top" alt="Adicionar" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">4</span>Adicionar e commitar</h5>
+                        <p class="card-text">
+                            Adicione arquivos ao diretório clonado. Depois use:
+                            <code>git add .</code> e <code>git commit -m "mensagem"</code>.
+                            O commit salva as alterações localmente com uma descrição.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/2ea44f/white?text=Enviar+Push" class="card-img-top" alt="Push" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">5</span>Enviar para o GitHub (push)</h5>
+                        <p class="card-text">
+                            Para enviar seus commits para o repositório remoto, use:
+                            <code>git push origin main</code> (ou master).
+                            Agora seu código está online e visível para quem tiver permissão.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-passo h-100">
+                    <img src="https://placehold.co/600x200/1b8cff/white?text=Pull+Request" class="card-img-top" alt="Pull Request" />
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge bg-success me-2">6</span>Pull Request (colaboração)</h5>
+                        <p class="card-text">
+                            Se você está colaborando, faça um <strong>fork</strong> do repositório,
+                            crie uma branch, faça alterações e abra um <em>pull request</em>.
+                            O dono do repositório pode revisar e mesclar suas contribuições.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /row cards -->
+
+        <!-- ===== Fluxograma ===== -->
+        <section class="mt-5 pt-4 border-top">
+            <h2 class="fw-bold mb-4 text-center">
+                <i class="bi bi-diagram-3 text-success me-2"></i>Fluxograma do Fluxo de Trabalho
+            </h2>
+            <div class="fluxograma bg-github-light p-3 rounded shadow-sm">
+                <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fluxograma do Git/GitHub">
+                    <!-- setas -->
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="#2dba4e" />
+                        </marker>
+                    </defs>
+                    <!-- retângulos -->
+                    <rect x="20" y="20" width="120" height="50" rx="8" fill="#2dba4e" stroke="#1e7e34" stroke-width="2" />
+                    <text x="80" y="50" fill="white" font-size="14" text-anchor="middle" font-weight="bold">Clone</text>
+
+                    <rect x="180" y="20" width="120" height="50" rx="8" fill="#0366d6" stroke="#0250a4" stroke-width="2" />
+                    <text x="240" y="50" fill="white" font-size="14" text-anchor="middle" font-weight="bold">Branch</text>
+
+                    <rect x="340" y="20" width="140" height="50" rx="8" fill="#ff7b24" stroke="#cc5e1a" stroke-width="2" />
+                    <text x="410" y="50" fill="white" font-size="14" text-anchor="middle" font-weight="bold">Add + Commit</text>
+
+                    <rect x="520" y="20" width="120" height="50" rx="8" fill="#6f42c1" stroke="#502c8f" stroke-width="2" />
+                    <text x="580" y="50" fill="white" font-size="14" text-anchor="middle" font-weight="bold">Push</text>
+
+                    <rect x="680" y="20" width="100" height="50" rx="8" fill="#1b8cff" stroke="#1366c9" stroke-width="2" />
+                    <text x="730" y="50" fill="white" font-size="14" text-anchor="middle" font-weight="bold">PR</text>
+
+                    <!-- setas entre retângulos -->
+                    <line x1="140" y1="45" x2="175" y2="45" stroke="#2dba4e" stroke-width="3" marker-end="url(#arrow)" />
+                    <line x1="300" y1="45" x2="335" y2="45" stroke="#2dba4e" stroke-width="3" marker-end="url(#arrow)" />
+                    <line x1="480" y1="45" x2="515" y2="45" stroke="#2dba4e" stroke-width="3" marker-end="url(#arrow)" />
+                    <line x1="640" y1="45" x2="675" y2="45" stroke="#2dba4e" stroke-width="3" marker-end="url(#arrow)" />
+
+                    <!-- texto descritivo abaixo -->
+                    <text x="80" y="100" font-size="12" text-anchor="middle" fill="#333">Baixar cópia</text>
+                    <text x="240" y="100" font-size="12" text-anchor="middle" fill="#333">Criar ramo</text>
+                    <text x="410" y="100" font-size="12" text-anchor="middle" fill="#333">Salvar alterações</text>
+                    <text x="580" y="100" font-size="12" text-anchor="middle" fill="#333">Enviar ao remoto</text>
+                    <text x="730" y="100" font-size="12" text-anchor="middle" fill="#333">Pull Request</text>
+
+                    <!-- loop de colaboração (seta circular) -->
+                    <path d="M730 70 L730 140 L20 140 L20 70" fill="none" stroke="#2dba4e" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow)" />
+                    <text x="380" y="170" font-size="14" text-anchor="middle" fill="#2dba4e" font-weight="bold">↺ Colaboração contínua (fork + PR)</text>
+                </svg>
+            </div>
+            <p class="text-center text-muted mt-2">
+                <i class="bi bi-arrow-right-circle text-success me-1"></i> Fluxo básico: Clone → Branch → Commit → Push → Pull Request
+            </p>
+        </section>
+
+        <!-- ===== Imagens ilustrativas extras ===== -->
+        <section class="mt-5 pt-4 border-top">
+            <h2 class="fw-bold mb-4 text-center">
+                <i class="bi bi-images text-success me-2"></i>Galeria Visual
+            </h2>
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <img src="https://placehold.co/300x200/2dba4e/white?text=Git+Logo" class="img-fluid rounded shadow" alt="Git logo" />
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://placehold.co/300x200/0366d6/white?text=GitHub+Desktop" class="img-fluid rounded shadow" alt="GitHub Desktop" />
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://placehold.co/300x200/ff7b24/white?text=Terminal" class="img-fluid rounded shadow" alt="Terminal" />
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="https://placehold.co/300x200/6f42c1/white?text=Colaboração" class="img-fluid rounded shadow" alt="Colaboração" />
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Texto didático (cerca de 40 linhas) ===== -->
+        <section class="mt-5 pt-4 border-top bg-github-light p-4 rounded">
+            <h2 class="fw-bold mb-3"><i class="bi bi-pencil-square text-success me-2"></i>Dicas e Explicações</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        <strong>📌 O que é Git?</strong> Git é um sistema de controle de versão distribuído.
+                        Ele rastreia alterações em arquivos e permite que várias pessoas trabalhem no mesmo projeto
+                        sem conflitos.
+                    </p>
+                    <p>
+                        <strong>📌 Por que GitHub?</strong> O GitHub adiciona uma camada social e colaborativa ao Git.
+                        Você pode compartilhar projetos, contribuir com projetos open source e construir um portfólio.
+                    </p>
+                    <p>
+                        <strong>📌 Branch (ramo):</strong> Uma branch é uma linha de desenvolvimento independente.
+                        Use <code>git branch nome</code> para criar e <code>git checkout nome</code> para trocar.
+                        A branch principal geralmente é <code>main</code>.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        <strong>📌 Commit:</strong> Um commit é como um "checkpoint" no seu código.
+                        Sempre escreva mensagens claras, como <em>"Adiciona função de login"</em>.
+                    </p>
+                    <p>
+                        <strong>📌 Push e Pull:</strong> <code>push</code> envia seus commits para o repositório remoto;
+                        <code>pull</code> baixa as alterações de outras pessoas para sua máquina.
+                    </p>
+                    <p>
+                        <strong>📌 Pull Request (PR):</strong> É um pedido para que o dono do repositório
+                        aceite suas alterações. É a base da colaboração no GitHub. Revise, discuta e depois mescle!
+                    </p>
+                    <p>
+                        <strong>📌 Fork:</strong> Cria uma cópia de um repositório alheio para sua conta.
+                        Você pode modificar e depois abrir um PR para o repositório original.
+                    </p>
+                </div>
+            </div>
+            <p class="mt-2 fst-italic text-center">
+                <i class="bi bi-chat-quote text-success me-1"></i>
+                “O GitHub é mais do que uma ferramenta; é uma comunidade de desenvolvedores aprendendo e construindo juntos.”
+            </p>
+        </section>
+
+    </main>
+
+    <!-- ===== Rodapé ===== -->
+    <footer class="footer py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1">
+                <i class="bi bi-github me-2"></i>Guia GitHub – Passo a Passo Ilustrado
+            </p>
+            <p class="mb-0 small">
+                Feito com <i class="bi bi-heart-fill text-danger"></i> para aprendizes de todo o mundo.
+                <br />
+                <a href="#" class="text-light"><i class="bi bi-arrow-up-circle me-1"></i>Voltar ao topo</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== Scripts ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Contador de visitas com localStorage
+        (function() {
+            let contador = localStorage.getItem('visitasGitHubGuia');
+            if (contador === null) {
+                contador = 0;
+            } else {
+                contador = parseInt(contador, 10);
+            }
+            contador++;
+            localStorage.setItem('visitasGitHubGuia', contador);
+            document.getElementById('contadorVisitas').textContent = contador;
+        })();
+    </script>
+
+</body>
+</html>
