@@ -37,6 +37,14 @@
     color:var(--silk);
     font-family:'Inter', sans-serif;
     line-height:1.65;
+    padding-left: 0; /* padrão para mobile */
+  }
+
+  /* ===== RECUO APENAS EM TELAS GRANDES ===== */
+  @media (min-width: 768px) {
+    body {
+      padding-left: 1.5cm; /* recuo de 1,5 cm apenas em desktop */
+    }
   }
 
   h1,h2,h3,.display-font{
@@ -436,9 +444,10 @@
           <a class="page-link" href="jogo.html" title="Projeto Jogo"><i class="fas fa-gamepad"></i>jogo</a>
           <a class="page-link" href="relogio.html" title="Projeto Relógio"><i class="fas fa-clock"></i>relogio</a>
           <a class="page-link" href="unesp.html" title="Projeto UNESP"><i class="fas fa-university"></i>unesp</a>
-         <a class="page-link" href="git.html" title="Projeto Amor"><i class="fas fa-heart"></i>git</a>
-         <a class="page-link" href="copa.html" title="Projeto Amor"><i class="fas fa-heart"></i>copa</a>
-        </li>
+          <a class="page-link" href="git.html" title="git"><i class="fas fa-heart"></i>git</a>
+         <a class="page-link" href="copa.html" title="copa"><i class="fas fa-heart"></i>copa</a>
+        </li><br>
+
         <!-- ===== FIM LINKS ===== -->
       </ul>
     </div>
@@ -478,6 +487,16 @@
   <div class="container">
     <div class="section-tag">01 · Quem sou</div>
     <h2 class="section-title">Sobre mim</h2>
+
+    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (SOBRE) ===== -->
+    <!--
+      <ul style="list-style:none; padding-left:0; color:var(--silk);">
+        <li><strong>Formação:</strong> Exemplo: Análise e Desenvolvimento de Sistemas</li>
+        <li><strong>Experiência:</strong> Exemplo: Freelancer há 2 anos</li>
+        <li><strong>Objetivo:</strong> Exemplo: Tornar-se full-stack developer</li>
+      </ul>
+    -->
+
     <div class="row g-4 mt-2">
       <div class="col-lg-7">
         <div class="about-text">
@@ -526,6 +545,15 @@
     <div class="section-tag">02 · Meus trabalhos</div>
     <h2 class="section-title">Projetos em destaque</h2>
     <p class="section-sub">Alguns dos projetos que desenvolvi para praticar e demonstrar minhas habilidades.</p>
+
+    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (PROJETOS) ===== -->
+    <!--
+      <ul style="list-style:none; padding-left:0; color:var(--silk);">
+        <li><strong>Projeto X:</strong> Descrição resumida do projeto X</li>
+        <li><strong>Projeto Y:</strong> Descrição resumida do projeto Y</li>
+        <li><strong>Projeto Z:</strong> Descrição resumida do projeto Z</li>
+      </ul>
+    -->
 
     <div class="row g-4 mt-2">
       <!-- Projeto 1 -->
@@ -604,6 +632,15 @@
     <h2 class="section-title">Habilidades técnicas</h2>
     <p class="section-sub">Tecnologias e ferramentas que utilizo no meu dia a dia como desenvolvedor.</p>
 
+    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (HABILIDADES) ===== -->
+    <!--
+      <ul style="list-style:none; padding-left:0; color:var(--silk);">
+        <li><strong>Linguagens:</strong> JavaScript, TypeScript, Python</li>
+        <li><strong>Frameworks:</strong> React, Vue, Angular</li>
+        <li><strong>Ferramentas:</strong> Docker, AWS, Figma</li>
+      </ul>
+    -->
+
     <div class="row g-4 mt-3">
       <div class="col-md-6">
         <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
@@ -661,6 +698,15 @@
     <h2 class="section-title">Git & GitHub</h2>
     <p class="section-sub">Controle de versão é essencial no desenvolvimento moderno. Aqui estão minhas práticas e aprendizados.</p>
 
+    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (GIT) ===== -->
+    <!--
+      <ul style="list-style:none; padding-left:0; color:var(--silk);">
+        <li><strong>Repositórios:</strong> Exemplo: projeto-x, projeto-y</li>
+        <li><strong>Colaboração:</strong> Exemplo: contribuições em open-source</li>
+        <li><strong>Workflow:</strong> Exemplo: Git Flow, GitHub Actions</li>
+      </ul>
+    -->
+
     <div class="row g-4 mt-3">
       <div class="col-md-6">
         <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
@@ -704,6 +750,15 @@
     <div class="section-tag">05 · Projeto temático</div>
     <h2 class="section-title">Copa do Mundo</h2>
     <p class="section-sub">Um projeto interativo sobre futebol, estatísticas e paixão pelo esporte.</p>
+
+    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (COPA) ===== -->
+    <!--
+      <ul style="list-style:none; padding-left:0; color:var(--silk);">
+        <li><strong>Seleções:</strong> Exemplo: Brasil, Argentina, França</li>
+        <li><strong>Jogadores:</strong> Exemplo: Pelé, Messi, Mbappé</li>
+        <li><strong>Estatísticas:</strong> Exemplo: gols, assistências, títulos</li>
+      </ul>
+    -->
 
     <div class="row g-4 mt-3">
       <div class="col-md-6">
@@ -756,6 +811,15 @@
           <div class="mono mt-2" style="font-size:.65rem;color:#8fa39c;">
             <i class="fas fa-sync-alt" style="color:var(--copper);"></i> contador persistente
           </div>
+
+          <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (CONTADOR) ===== -->
+          <!--
+            <ul style="list-style:none; padding-left:0; color:var(--silk); margin-top:10px; font-size:.8rem;">
+              <li><strong>Total de visitas:</strong> 000000</li>
+              <li><strong>Última visita:</strong> dd/mm/aaaa</li>
+            </ul>
+          -->
+
         </div>
       </div>
     </div>
