@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Laroma Speciale — velas aromáticas feitas para transformar momentos em memórias.">
+
+  <title>Laroma Speciale | Luz, contida em vidro</title>
+
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="announcement">
+    Pedidos personalizados e presentes especiais • Atendimento pelo WhatsApp
+  </div>
+
+  <header class="header" id="top">
+
+    <a class="logo" href="#inicio" aria-label="Laroma Speciale início">
+      laroma <span>speciale</span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#colecoes">Coleções</a>
+      <a href="#especiais">Edições Especiais</a>
+      <a href="#personalizadas">Personalizadas</a>
+      <a href="#presentes">Presentes</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <button class="bag-button" id="openBag" aria-label="Abrir seleção de produtos">
+      Sacola <b id="bagCount">0</b>
+    </button>
+
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+
+        <div class="hero-location">
+          <span class="location-icon">⌖</span>
+          <span>Araraquara — SP</span>
+        </div>
+
+        <p class="eyebrow">
+          AROMAS QUE MORAM NA MEMÓRIA
+        </p>
+
+        <h1>
+          Luz, <em>contida</em><br>
+          em vidro
+        </h1>
+
+        <p class="hero-subtitle">
+          Velas aromáticas criadas para iluminar o cotidiano
+          com delicadeza, presença e beleza.
+        </p>
+
+        <a class="hero-cta" href="#catalogo">
+          Explorar a Laroma Speciale
+          <span>↗</span>
+        </a>
+
+      </div>
+
+      <!-- ROLAR CENTRALIZADO -->
+      <a class="scroll-cue" href="#sobre">
+
+        <span>ROLAR</span>
+
+        <i></i>
+
+      </a>
+
+    </section>
+
+
+    <!-- SOBRE -->
+    <section class="intro section" id="sobre">
+
+      <div class="section-label">
+        01 — A essência da marca
+      </div>
+
+      <div class="intro-grid">
+
+        <div>
+
+          <p class="eyebrow">
+            LAROMA SPECIALE
+          </p>
+
+          <h2>
+            Uma chama pequena.<br>
+            <i>Uma atmosfera inteira.</i>
+          </h2>
+
+        </div>
+
+        <div class="intro-copy">
+
+          <p>
+            De Araraquara, São Paulo, a Laroma Speciale acredita que
+            a casa também conta histórias. Cada vela nasce para criar
+            um instante: um fim de tarde tranquilo, uma mesa preparada
+            com carinho ou aquele presente que diz muito sem precisar
+            de palavras.
+          </p>
+
+          <a class="text-link" href="#catalogo">
+            Conheça nossos aromas
+            <span>→</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COLEÇÃO DA ESTAÇÃO -->
+    <section class="featured section" id="colecoes">
+
+      <div class="section-head">
+
+        <div>
+
+          <p class="eyebrow">
+            COLEÇÃO DA ESTAÇÃO
+          </p>
+
+          <h2>
+            Inverno <i>26</i>
+          </h2>
+
+        </div>
+
+        <p class="section-description">
+          Notas envolventes, madeiras e aconchego para os dias
+          em que a casa pede mais calor.
+        </p>
+
+      </div>
+
+      <div class="product-grid" id="winterGrid"></div>
+
+    </section>
+
+
+    <!-- DIA DOS PAIS -->
+    <section class="campaign" id="presentes">
+
+      <div class="campaign-image"></div>
+
+      <div class="campaign-content">
+
+        <p class="eyebrow">
+          PARA QUEM MERECE UM MOMENTO ESPECIAL
+        </p>
+
+        <h2>
+          Dia dos Pais
+        </h2>
+
+        <p>
+          Presentes com personalidade para celebrar quem transforma
+          presença em cuidado. Descubra nossa seleção especial e monte
+          uma composição única.
+        </p>
+
+        <a class="button button-dark" href="#especiais">
+          Ver seleção especial
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- CATÁLOGO -->
+    <section class="catalog section" id="catalogo">
+
+      <div class="section-head catalog-head">
+
+        <div>
+
+          <p class="eyebrow">
+            CATÁLOGO
+          </p>
+
+          <h2>
+            Escolha seu <i>aroma</i>
+          </h2>
+
+        </div>
+
+        <div class="filters" role="tablist">
+
+          <button class="filter active" data-filter="todos">
+            Todos
+          </button>
+
+          <button class="filter" data-filter="floral">
+            Florais
+          </button>
+
+          <button class="filter" data-filter="amadeirado">
+            Amadeirados
+          </button>
+
+          <button class="filter" data-filter="adocicado">
+            Adocicados
+          </button>
+
+          <button class="filter" data-filter="fresco">
+            Frescos
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="product-grid" id="catalogGrid"></div>
+
+    </section>
+
+
+    <!-- PERSONALIZADAS -->
+    <section class="personalized" id="personalizadas">
+
+      <div class="personalized-image"></div>
+
+      <div class="personalized-content">
+
+        <p class="eyebrow">
+          FEITA PARA SER SÓ SUA
+        </p>
+
+        <h2>
+          Velas<br>
+          <i>personalizadas.</i>
+        </h2>
+
+        <p class="personalized-description">
+          Algumas histórias merecem uma vela criada especialmente
+          para elas. Escolha os detalhes e transforme uma ideia
+          em uma peça única.
+        </p>
+
+        <div class="personalized-options">
+
+          <div>
+            <span>01</span>
+            <strong>Aroma</strong>
+            <p>Escolha a fragrância que combina com o momento.</p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <strong>Mensagem</strong>
+            <p>Uma frase, nome ou detalhe especial.</p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <strong>Ocasião</strong>
+            <p>Aniversários, presentes, eventos ou celebrações.</p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <strong>Acabamento</strong>
+            <p>Detalhes pensados para tornar sua vela única.</p>
+          </div>
+
+        </div>
+
+        <a
+          class="button personalized-button"
+          href="https://wa.me/5516991710604?text=Olá%2C%20Márcia!%20Vim%20pelo%20site%20da%20Laroma%20Speciale%20e%20gostaria%20de%20criar%20uma%20vela%20personalizada."
+          target="_blank"
+          rel="noopener"
+        >
+          Criar minha vela personalizada ↗
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- EDIÇÕES ESPECIAIS -->
+    <section class="specials section" id="especiais">
+
+      <div class="section-label">
+        02 — Coleções especiais
+      </div>
+
+      <div class="specials-intro">
+
+        <h2>
+          Pequenas coleções,<br>
+          <i>grandes ocasiões.</i>
+        </h2>
+
+        <p>
+          Edições pensadas para momentos que merecem sair do comum.
+          Quantidades limitadas e detalhes que tornam cada presente
+          ainda mais seu.
+        </p>
+
+      </div>
+
+      <div class="special-cards">
+
+        <article class="special-card">
+
+          <div class="special-img special-img-1"></div>
+
+          <div>
+            <span>Edição limitada</span>
+            <h3>Presença</h3>
+            <p>Madeira, âmbar e baunilha.</p>
+          </div>
+
+        </article>
+
+
+        <article class="special-card">
+
+          <div class="special-img special-img-2"></div>
+
+          <div>
+            <span>Para presentear</span>
+            <h3>Afeto</h3>
+            <p>Um ritual delicado em forma de aroma.</p>
+          </div>
+
+        </article>
+
+
+        <article class="special-card">
+
+          <div class="special-img special-img-3"></div>
+
+          <div>
+            <span>Personalizável</span>
+            <h3>Seu momento</h3>
+            <p>Escolha aroma, mensagem e acabamento.</p>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINDER -->
+    <section class="aroma-finder section">
+
+      <div class="finder-content">
+
+        <p class="eyebrow">
+          ENCONTRE O SEU
+        </p>
+
+        <h2>
+          Qual aroma combina<br>
+          com o seu <i>momento?</i>
+        </h2>
+
+        <p>
+          Escolha uma sensação e descubra uma sugestão
+          da Laroma Speciale.
+        </p>
+
+        <div class="mood-buttons">
+
+          <button data-mood="aconchego">
+            Quero aconchego
+          </button>
+
+          <button data-mood="leveza">
+            Quero leveza
+          </button>
+
+          <button data-mood="energia">
+            Quero energia
+          </button>
+
+          <button data-mood="elegancia">
+            Quero elegância
+          </button>
+
+        </div>
+
+        <div class="finder-result" id="finderResult">
+          Seu aroma aparecerá aqui.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RITUAL -->
+    <section class="about-photo section">
+
+      <div class="about-photo-image"></div>
+
+      <div class="about-photo-copy">
+
+        <p class="eyebrow">
+          O RITUAL LAROMA
+        </p>
+
+        <h2>
+          Acenda.<br>
+          <i>Respire.</i><br>
+          Permaneça.
+        </h2>
+
+        <p>
+          Mais do que perfumar um ambiente, uma vela pode marcar
+          o tempo. Acenda quando quiser desacelerar, receber alguém
+          ou simplesmente transformar uma noite comum em algo especial.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTATO -->
+    <section class="contact section" id="contato">
+
+      <p class="eyebrow">
+        ARARAQUARA • SP — FALE COM A MÁRCIA
+      </p>
+
+      <h2>
+        Seu próximo momento<br>
+        <i>começa aqui.</i>
+      </h2>
+
+      <p>
+        Escolha seus favoritos e envie sua seleção pelo WhatsApp.
+        A finalização do pedido é feita diretamente com a gente.
+      </p>
+
+      <a
+        class="button"
+        href="https://wa.me/5516991710604?text=Olá%2C%20Márcia!%20Vim%20pelo%20site%20da%20Laroma%20Speciale%20e%20gostaria%20de%20conhecer%20as%20velas."
+        target="_blank"
+        rel="noopener"
+      >
+        Conversar pelo WhatsApp ↗
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <div class="footer-brand">
+
+      <a class="logo" href="#top">
+        laroma <span>speciale</span>
+      </a>
+
+      <p>
+        Luz, contida em vidro.
+      </p>
+
+      <span class="location-line">
+        Araraquara — SP
+      </span>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#catalogo">
+        Catálogo
+      </a>
+
+      <a href="#especiais">
+        Edições especiais
+      </a>
+
+      <a href="#personalizadas">
+        Velas personalizadas
+      </a>
+
+      <a href="#sobre">
+        Sobre
+      </a>
+
+      <a href="#contato">
+        Contato
+      </a>
+
+    </div>
+
+
+    <div class="footer-social">
+
+      <a href="#" aria-label="Instagram">
+        Instagram ↗
+      </a>
+
+      <a
+        href="https://wa.me/5516991710604"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp ↗
+      </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 Laroma Speciale
+      </span>
+
+      <span>
+        Feito para momentos especiais.
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SACOLA -->
+  <aside
+    class="bag-panel"
+    id="bagPanel"
+    aria-hidden="true"
+  >
+
+    <div class="bag-header">
+
+      <h3>
+        Sua seleção
+      </h3>
+
+      <button
+        id="closeBag"
+        aria-label="Fechar"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="bag-items"
+      id="bagItems"
+    >
+
+      <p class="empty">
+        Sua seleção está vazia.<br>
+        Adicione produtos para enviar seu pedido.
+      </p>
+
+    </div>
+
+    <div class="bag-footer">
+
+      <button
+        class="button whatsapp-button"
+        id="whatsappOrder"
+      >
+        Enviar seleção pelo WhatsApp ↗
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <div
+    class="backdrop"
+    id="backdrop"
+  ></div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

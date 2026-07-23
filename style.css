@@ -1,0 +1,1295 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --cream:#f5f1e9;
+  --paper:#fbfaf7;
+  --ink:#1c1a17;
+  --muted:#746f66;
+  --gold:#d8c277;
+  --line:rgba(28,26,23,.18);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Montserrat",Arial,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font:inherit;
+  border:0;
+  background:none;
+  color:inherit;
+  cursor:pointer;
+}
+
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.announcement{
+  height:31px;
+  background:var(--ink);
+  color:#eee8db;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  height:78px;
+  padding:0 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(251,250,247,.95);
+  position:sticky;
+  top:0;
+  z-index:30;
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-family:var(--serif);
+  font-size:27px;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+
+.logo span{
+  font-style:italic;
+}
+
+.nav{
+  display:flex;
+  gap:27px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+
+.nav a,
+.footer-links a{
+  transition:opacity .25s;
+}
+
+.nav a:hover,
+.footer-links a:hover{
+  opacity:.55;
+}
+
+.bag-button{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+}
+
+.bag-button b{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--ink);
+  color:white;
+  border-radius:50%;
+  font-size:9px;
+  width:19px;
+  height:19px;
+  margin-left:7px;
+}
+
+.menu-toggle{
+  display:none;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:calc(100vh - 109px);
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:7vw 8vw;
+  background:url("img/fundo.jpeg") center/cover;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15,13,10,.70),
+      rgba(15,13,10,.18)
+    );
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  color:#fff;
+  max-width:820px;
+  margin-top:-2vh;
+}
+
+
+/* =========================
+   LOCALIZAÇÃO
+========================= */
+
+.hero-location{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:30px;
+  color:rgba(255,255,255,.82);
+  font-size:9px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+.location-icon{
+  color:var(--gold);
+  font-size:18px;
+  line-height:1;
+}
+
+
+/* =========================
+   TEXTOS DO HERO
+========================= */
+
+.eyebrow{
+  font-size:9px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:24px;
+}
+
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(62px,8vw,125px);
+  line-height:.84;
+  font-weight:400;
+  letter-spacing:-.045em;
+  max-width:900px;
+}
+
+.hero h1 em,
+.section h2 i,
+.campaign h2,
+.specials h2 i,
+.contact h2 i{
+  font-style:italic;
+  color:var(--gold);
+}
+
+.hero-subtitle{
+  font-family:var(--serif);
+  font-size:clamp(18px,1.6vw,23px);
+  line-height:1.45;
+  max-width:470px;
+  margin:32px 0 36px;
+}
+
+.hero-cta{
+  display:inline-flex;
+  gap:35px;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.6);
+  padding-bottom:12px;
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:.2em;
+}
+
+.hero-cta span{
+  font-size:16px;
+}
+
+
+/* =========================
+   ROLAR — CANTO INFERIOR DIREITO
+========================= */
+
+.scroll-cue{
+  position:absolute;
+  z-index:2;
+  right:5.5vw;
+  bottom:5vh;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:11px;
+  font-size:8px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+}
+
+.scroll-cue span{
+  display:block;
+  white-space:nowrap;
+}
+
+.scroll-cue i{
+  display:block;
+  width:1px;
+  height:65px;
+  background:rgba(255,255,255,.9);
+}
+
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section{
+  padding:120px 8vw;
+}
+
+.section-label{
+  font-size:9px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:65px;
+}
+
+.section h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(48px,5.5vw,82px);
+  line-height:.92;
+  letter-spacing:-.035em;
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+.intro-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:10vw;
+}
+
+.intro-copy{
+  padding-top:25px;
+  max-width:480px;
+}
+
+.intro-copy p,
+.campaign-content>p,
+.specials-intro>p,
+.finder-content>p,
+.about-photo-copy>p,
+.contact>p{
+  font-size:13px;
+  line-height:1.9;
+  color:var(--muted);
+}
+
+.text-link{
+  display:inline-block;
+  margin-top:35px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--ink);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+}
+
+.text-link span{
+  margin-left:25px;
+}
+
+
+/* =========================
+   COLEÇÃO
+========================= */
+
+.featured{
+  background:var(--cream);
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:55px;
+  gap:40px;
+}
+
+.section-head h2{
+  font-size:clamp(55px,6vw,78px);
+}
+
+.section-description{
+  max-width:310px;
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.3;
+}
+
+
+/* =========================
+   PRODUTOS
+========================= */
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.product-card{
+  position:relative;
+}
+
+.product-image{
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:#e9e3d8;
+  position:relative;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .7s;
+}
+
+.product-card:hover .product-image img{
+  transform:scale(1.045);
+}
+
+.product-tag{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:var(--paper);
+  padding:8px 12px;
+  font-size:8px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  z-index:2;
+}
+
+.product-info{
+  padding:18px 2px 30px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.product-info h3{
+  font-family:var(--serif);
+  font-size:25px;
+  font-weight:500;
+}
+
+.product-info p{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.product-price{
+  font-size:11px;
+  white-space:nowrap;
+}
+
+.add-button{
+  position:absolute;
+  bottom:30px;
+  right:2px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:4px;
+}
+
+
+/* =========================
+   DIA DOS PAIS
+========================= */
+
+.campaign{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:680px;
+}
+
+.campaign-image{
+  background:url("img/capa\ pais.jpeg") center/cover;
+}
+
+.campaign-content{
+  background:#ded6c6;
+  padding:10vw;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.campaign-content .eyebrow{
+  color:#6c665c;
+}
+
+.campaign h2{
+  font-family:var(--serif);
+  font-size:clamp(70px,8vw,120px);
+  font-weight:400;
+  line-height:.75;
+  margin-bottom:35px;
+}
+
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--ink);
+  color:#fff;
+  padding:17px 27px;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-top:35px;
+  transition:transform .25s,opacity .25s;
+}
+
+.button:hover{
+  transform:translateY(-2px);
+  opacity:.88;
+}
+
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+.catalog{
+  background:var(--paper);
+}
+
+.catalog-head{
+  align-items:center;
+}
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.filter{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  border:1px solid var(--line);
+  padding:10px 13px;
+}
+
+.filter.active,
+.filter:hover{
+  background:var(--ink);
+  color:white;
+  border-color:var(--ink);
+}
+
+
+/* =========================
+   VELAS PERSONALIZADAS
+========================= */
+
+.personalized{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#e5ddcf;
+}
+
+.personalized-image{
+  min-height:750px;
+  background:
+    linear-gradient(
+      rgba(20,17,13,.12),
+      rgba(20,17,13,.12)
+    ),
+    url("img/personalizados.jpeg")
+    center/cover;
+}
+
+.personalized-content{
+  padding:9vw 8vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.personalized-content .eyebrow{
+  color:#6d665c;
+}
+
+.personalized-content h2{
+  font-family:var(--serif);
+  font-size:clamp(60px,7vw,100px);
+  line-height:.82;
+  font-weight:400;
+  letter-spacing:-.04em;
+  margin-bottom:35px;
+}
+
+.personalized-content h2 i{
+  color:var(--ink);
+  font-style:italic;
+}
+
+.personalized-description{
+  max-width:440px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.personalized-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px 35px;
+  margin-top:45px;
+  max-width:500px;
+}
+
+.personalized-options div{
+  border-top:1px solid rgba(28,26,23,.25);
+  padding-top:14px;
+}
+
+.personalized-options span{
+  display:block;
+  color:#9a8b68;
+  font-size:9px;
+  letter-spacing:.15em;
+  margin-bottom:8px;
+}
+
+.personalized-options strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:25px;
+  font-weight:500;
+  margin-bottom:5px;
+}
+
+.personalized-options p{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.6;
+}
+
+.personalized-button{
+  align-self:flex-start;
+}
+
+
+/* =========================
+   ESPECIAIS
+========================= */
+
+.specials{
+  background:var(--ink);
+  color:#f7f3eb;
+}
+
+.specials .section-label{
+  color:#aaa397;
+}
+
+.specials-intro{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:50px;
+  margin-bottom:70px;
+}
+
+.specials-intro h2{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(52px,6.5vw,92px);
+  line-height:.88;
+}
+
+.specials-intro>p{
+  max-width:340px;
+  color:#aaa397;
+}
+
+.special-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.special-card{
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:20px;
+}
+
+.special-img{
+  aspect-ratio:1/1.15;
+  margin-bottom:25px;
+  background-position:center;
+  background-size:cover;
+  filter:saturate(.7);
+}
+
+.special-img-1{
+  background-image:url("img/edição\ limitada.jpeg");
+}
+
+.special-img-2{
+  background-image:url("img/presentear.jpeg");
+}
+
+.special-img-3{
+  background-image:url("img/personalizar.jpeg");
+}
+
+.special-card span{
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:#aaa397;
+}
+
+.special-card h3{
+  font-family:var(--serif);
+  font-size:35px;
+  font-weight:400;
+  margin:8px 0;
+}
+
+.special-card p{
+  font-size:11px;
+  color:#aaa397;
+}
+
+
+/* =========================
+   FINDER
+========================= */
+
+.aroma-finder{
+  background:var(--cream);
+  text-align:center;
+}
+
+.finder-content{
+  max-width:750px;
+  margin:auto;
+}
+
+.finder-content .eyebrow{
+  color:var(--muted);
+}
+
+.finder-content h2{
+  font-size:clamp(55px,7vw,95px);
+}
+
+.finder-content>p{
+  max-width:450px;
+  margin:25px auto;
+}
+
+.mood-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+.mood-buttons button{
+  padding:14px 20px;
+  border:1px solid var(--line);
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+}
+
+.mood-buttons button:hover{
+  background:var(--ink);
+  color:#fff;
+}
+
+.finder-result{
+  font-family:var(--serif);
+  font-size:26px;
+  margin-top:35px;
+  min-height:35px;
+}
+
+
+/* =========================
+   RITUAL
+========================= */
+
+.about-photo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:0;
+}
+
+.about-photo-image{
+  min-height:700px;
+  background:url("img/torre.jpeg") center/cover;
+}
+
+.about-photo-copy{
+  padding:10vw 8vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.about-photo-copy h2{
+  margin-bottom:40px;
+}
+
+.about-photo-copy>p{
+  max-width:410px;
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact{
+  text-align:center;
+  background:#d9d0bf;
+}
+
+.contact .eyebrow{
+  color:#625d54;
+}
+
+.contact h2{
+  font-size:clamp(60px,8vw,110px);
+}
+
+.contact>p{
+  max-width:480px;
+  margin:30px auto 0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  background:var(--ink);
+  color:#f5f0e7;
+  padding:70px 8vw 30px;
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:50px;
+}
+
+.footer-brand p{
+  font-family:var(--serif);
+  font-size:20px;
+  margin-top:10px;
+  color:#aaa397;
+}
+
+.location-line{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:16px;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#aaa397;
+}
+
+.location-line::before{
+  content:"⌖";
+  color:var(--gold);
+  font-size:15px;
+}
+
+.footer-links,
+.footer-social{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+}
+
+.footer-bottom{
+  grid-column:1/-1;
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:25px;
+  margin-top:30px;
+  display:flex;
+  justify-content:space-between;
+  color:#8e887e;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+
+/* =========================
+   SACOLA
+========================= */
+
+.bag-panel{
+  position:fixed;
+  z-index:50;
+  top:0;
+  right:0;
+  width:min(450px,100%);
+  height:100vh;
+  background:var(--paper);
+  transform:translateX(100%);
+  transition:transform .4s;
+  display:flex;
+  flex-direction:column;
+  box-shadow:-10px 0 40px rgba(0,0,0,.12);
+}
+
+.bag-panel.open{
+  transform:translateX(0);
+}
+
+.bag-header{
+  padding:28px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+}
+
+.bag-header h3{
+  font-family:var(--serif);
+  font-size:30px;
+  font-weight:400;
+}
+
+.bag-header button{
+  font-size:30px;
+  font-weight:200;
+}
+
+.bag-items{
+  padding:25px;
+  overflow:auto;
+  flex:1;
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  font-family:var(--serif);
+  font-size:21px;
+  line-height:1.3;
+  margin-top:80px;
+}
+
+.bag-item{
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  gap:15px;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.bag-item img{
+  width:70px;
+  height:80px;
+  object-fit:cover;
+}
+
+.bag-item h4{
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:500;
+}
+
+.bag-item p{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.remove-item{
+  font-size:9px;
+  text-decoration:underline;
+}
+
+.bag-footer{
+  padding:25px;
+  border-top:1px solid var(--line);
+}
+
+.whatsapp-button{
+  width:100%;
+  margin:0;
+}
+
+.backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  z-index:40;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s;
+}
+
+.backdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:900px){
+
+  .header{
+    height:68px;
+  }
+
+  .nav{
+    position:fixed;
+    top:99px;
+    left:0;
+    right:0;
+    background:var(--paper);
+    padding:30px 8vw;
+    display:none;
+    flex-direction:column;
+    gap:22px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav.open{
+    display:flex;
+  }
+
+  .menu-toggle{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    width:24px;
+    order:2;
+  }
+
+  .menu-toggle span{
+    height:1px;
+    background:var(--ink);
+    width:100%;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+  .bag-button{
+    order:3;
+  }
+
+  .hero{
+    min-height:calc(100vh - 99px);
+    padding:12vw 7vw;
+    background-position:58% center;
+  }
+
+  .hero h1{
+    font-size:clamp(60px,16vw,100px);
+  }
+
+  .hero-subtitle{
+    font-size:18px;
+  }
+
+  .intro-grid,
+  .about-photo,
+  .campaign,
+  .personalized{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:85px 7vw;
+  }
+
+  .intro-copy{
+    padding-top:0;
+  }
+
+  .section-head,
+  .specials-intro{
+    display:block;
+  }
+
+  .section-description{
+    margin-top:25px;
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .campaign-image{
+    min-height:500px;
+  }
+
+  .campaign-content{
+    padding:80px 9vw;
+  }
+
+  .personalized-image{
+    min-height:550px;
+  }
+
+  .personalized-content{
+    padding:90px 9vw;
+  }
+
+  .special-cards{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .special-card:last-child{
+    grid-column:1/-1;
+  }
+
+  .about-photo-image{
+    min-height:500px;
+  }
+
+  .footer{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-brand{
+    grid-column:1/-1;
+  }
+
+  .footer-bottom{
+    grid-column:1/-1;
+  }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:600px){
+
+  .announcement{
+    font-size:7px;
+    letter-spacing:.12em;
+    padding:0 10px;
+  }
+
+  .header{
+    padding:0 5vw;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .bag-button{
+    font-size:8px;
+  }
+
+  .hero{
+    min-height:calc(100vh - 99px);
+    align-items:flex-end;
+    padding:10vw 7vw 115px;
+    background-position:60% center;
+  }
+
+  .hero-content{
+    margin-top:0;
+  }
+
+  .hero-location{
+    margin-bottom:24px;
+    font-size:8px;
+  }
+
+  .hero h1{
+    font-size:clamp(54px,16vw,76px);
+    line-height:.88;
+  }
+
+  .hero-subtitle{
+    font-size:17px;
+    max-width:350px;
+    margin:24px 0 28px;
+  }
+
+  /* ROLAR NO CANTO INFERIOR DIREITO */
+
+  .scroll-cue{
+    right:6vw;
+    left:auto;
+    bottom:25px;
+    transform:none;
+    gap:8px;
+    align-items:center;
+  }
+
+  .scroll-cue i{
+    height:52px;
+  }
+
+  .section{
+    padding:70px 6vw;
+  }
+
+  .section h2,
+  .section-head h2{
+    font-size:58px;
+  }
+
+  .section-label{
+    margin-bottom:45px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+
+  .product-image{
+    aspect-ratio:1/1.15;
+  }
+
+  .filters{
+    justify-content:flex-start;
+    margin-top:30px;
+  }
+
+  .campaign-image{
+    min-height:390px;
+  }
+
+  .campaign h2{
+    font-size:78px;
+  }
+
+  .personalized-image{
+    min-height:400px;
+  }
+
+  .personalized-content{
+    padding:75px 6vw;
+  }
+
+  .personalized-content h2{
+    font-size:65px;
+  }
+
+  .personalized-options{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
+
+  .personalized-button{
+    width:100%;
+    text-align:center;
+  }
+
+  .special-cards{
+    grid-template-columns:1fr;
+  }
+
+  .special-card:last-child{
+    grid-column:auto;
+  }
+
+  .specials-intro h2{
+    font-size:60px;
+  }
+
+  .about-photo-image{
+    min-height:400px;
+  }
+
+  .footer{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .footer-brand,
+  .footer-bottom{
+    grid-column:auto;
+  }
+
+  .footer-bottom{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .footer-links,
+  .footer-social{
+    gap:12px;
+  }
+
+}
