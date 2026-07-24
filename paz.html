@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paz no Mundo · Pessoas de Bem</title>
+    <!-- Bootstrap 5 + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fafbfc;
+            color: #1e2a3a;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            padding: 0.8rem 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            color: #1e3c4f !important;
+        }
+        .navbar-brand i {
+            color: #3a9b7a;
+            margin-right: 8px;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #2c3e50 !important;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: #3a9b7a !important;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            min-height: 82vh;
+            background: linear-gradient(145deg, #e9f3ef 0%, #d4e6e0 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+        .hero::before {
+            content: "☮";
+            position: absolute;
+            right: -6%;
+            bottom: -10%;
+            font-size: 32rem;
+            opacity: 0.04;
+            transform: rotate(8deg);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #173a2b;
+            letter-spacing: -1px;
+        }
+        .hero h1 span {
+            color: #2b7a5c;
+            background: rgba(58, 155, 122, 0.12);
+            padding: 0 12px;
+            border-radius: 12px;
+        }
+        .hero .lead {
+            font-size: 1.3rem;
+            color: #2c4a3e;
+            max-width: 560px;
+            font-weight: 400;
+            border-left: 5px solid #3a9b7a;
+            padding-left: 1.5rem;
+        }
+        .btn-paz {
+            background: #1e4a3a;
+            color: #fff;
+            padding: 0.8rem 2.6rem;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: 0.25s;
+            border: none;
+            box-shadow: 0 8px 24px rgba(30, 74, 58, 0.25);
+        }
+        .btn-paz:hover {
+            background: #2b7a5c;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(30, 74, 58, 0.35);
+            color: #fff;
+        }
+        .hero-stats .stat-item {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 0.8rem 1.6rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .hero-stats .stat-item .number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1e4a3a;
+        }
+        .hero-stats .stat-item .label {
+            font-size: 0.85rem;
+            color: #3d5a4e;
+            font-weight: 500;
+        }
+
+        /* --- Seções --- */
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #173a2b;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background: #3a9b7a;
+            border-radius: 6px;
+        }
+        .section-sub {
+            color: #3d5a4e;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin-top: 1rem;
+        }
+
+        .card-paz {
+            border: none;
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            transition: 0.3s ease;
+            height: 100%;
+            padding: 1.8rem 1.5rem;
+            border-bottom: 4px solid transparent;
+        }
+        .card-paz:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+            border-bottom-color: #3a9b7a;
+        }
+        .card-paz .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #e4f2ed;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #1e4a3a;
+            margin-bottom: 1.2rem;
+        }
+        .card-paz h5 {
+            font-weight: 700;
+            color: #173a2b;
+        }
+        .card-paz p {
+            color: #3d5a4e;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* --- Citação --- */
+        .quote-block {
+            background: #173a2b;
+            color: #f0f7f4;
+            border-radius: 32px;
+            padding: 3.5rem 2.5rem;
+            position: relative;
+        }
+        .quote-block i.bi-quote {
+            font-size: 4rem;
+            opacity: 0.15;
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+        }
+        .quote-block .quote-text {
+            font-size: 1.6rem;
+            font-weight: 300;
+            line-height: 1.5;
+            font-style: italic;
+            padding-left: 2rem;
+        }
+        .quote-block .quote-author {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #b5d4c8;
+            margin-top: 1rem;
+            padding-left: 2rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #0f2a1f;
+            color: #b5d4c8;
+            padding: 2.8rem 0 1.8rem;
+        }
+        footer a {
+            color: #b5d4c8;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        footer .footer-brand {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        footer .footer-brand i {
+            color: #3a9b7a;
+        }
+
+        /* --- Responsivo --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero .lead {
+                font-size: 1.05rem;
+                padding-left: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .quote-block .quote-text {
+                font-size: 1.2rem;
+                padding-left: 0;
+            }
+            .quote-block i.bi-quote {
+                display: none;
+            }
+            .quote-block .quote-author {
+                padding-left: 0;
+            }
+            .hero-stats .stat-item .number {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 0.5rem !important;
+            }
+            .hero-stats .stat-item {
+                padding: 0.5rem 1rem;
+                flex: 1 0 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-tree"></i> Paz<span style="color:#3a9b7a;">&</span>Bem
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+            <ul class="navbar-nav ms-auto gap-2">
+                <li class="nav-item"><a class="nav-link" href="#essencia">Essência</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pobreza">Pobreza</a></li>
+                <li class="nav-item"><a class="nav-link" href="#paz">Paz</a></li>
+                <li class="nav-item"><a class="nav-link" href="#acolher">Acolher</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="inicio">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="d-flex gap-3 mb-3 flex-wrap">
+                    <span class="badge bg-white text-dark px-4 py-2 rounded-pill shadow-sm">
+                        <i class="bi bi-hand-thumbs-up-fill text-success me-1"></i> Pessoas de bem
+                    </span>
+                    <span class="badge bg-white text-dark px-4 py-2 rounded-pill shadow-sm">
+                        <i class="bi bi-heart-fill text-danger me-1"></i> Essência
+                    </span>
+                </div>
+                <h1>
+                    A paz começa<br />
+                    <span>com a gentileza</span> que<br />
+                    oferecemos ao próximo.
+                </h1>
+                <p class="lead mt-4">
+                    Quando olhamos para o outro com compaixão, a pobreza deixa de ser
+                    apenas falta de bens — e passa a ser uma oportunidade de sermos
+                    ponte, de sermos presença.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="#essencia" class="btn btn-paz">
+                        <i class="bi bi-arrow-down-circle me-2"></i> Conhecer
+                    </a>
+                    <a href="#pobreza" class="btn btn-outline-dark rounded-pill px-4 py-2 border-2">
+                        <i class="bi bi-people me-2"></i> Solidariedade
+                    </a>
+                </div>
+                <!-- mini stats -->
+                <div class="hero-stats d-flex gap-3 mt-5">
+                    <div class="stat-item">
+                        <div class="number">2,3B</div>
+                        <div class="label">pessoas em situação de pobreza</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">1,2B</div>
+                        <div class="label">sonhos que esperam acolhimento</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center text-lg-end">
+                <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=500&h=500&fit=crop&crop=center&auto=format"
+                alt="Mãos que acolhem" class="img-fluid rounded-4 shadow-lg"
+                style="max-height: 400px; object-fit: cover; width: 100%;" />
+                <p class="text-muted mt-2 small"><i class="bi bi-camera me-1"></i> Acolhimento transforma realidades</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== ESSÊNCIA ====== -->
+<section class="py-5" id="essencia">
+    <div class="container py-4">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="section-title">A essência das pessoas de bem</h2>
+                <p class="section-sub">
+                    Não se trata de discursos vazios, mas de atitudes diárias que
+                    resgatam a dignidade humana e semeiam esperança onde há desalento.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-emoji-sunglasses"></i></div>
+                    <h5>Olhar que enxerga</h5>
+                    <p>
+                        Ver o outro não como um número, mas como um ser com história,
+                        dores e sonhos. A essência está em reconhecer a humanidade
+                        que nos une, independente da condição social.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-handbag"></i></div>
+                    <h5>Mãos que servem</h5>
+                    <p>
+                        Servir não é gesto de superioridade, mas de humildade. É
+                        estender a mão sem esperar retorno, é cozinhar para quem tem
+                        fome, é ouvir quem precisa de voz.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-chat-dots"></i></div>
+                    <h5>Palavra que acalma</h5>
+                    <p>
+                        A palavra tem poder de construir ou destruir. Pessoas de bem
+                        escolhem falar com verdade, mas também com ternura — pois a
+                        paz se faz também no silêncio que escuta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== POBREZA ====== -->
+<section class="py-5 bg-white" id="pobreza">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2">
+                <h2 class="section-title">Pobreza: muito além da ausência de bens</h2>
+                <p class="section-sub" style="max-width: 100%;">
+                    A pobreza é também a falta de oportunidades, de afeto, de
+                    pertencimento. Quando uma pessoa de bem age, ela não doa apenas
+                    alimento — ela devolve esperança.
+                </p>
+                <ul class="list-unstyled mt-4">
+                    <li class="d-flex gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 mt-1"></i>
+                        <span><strong>46 milhões</strong> de brasileiros vivem com menos de R$ 500/mês.</span>
+                    </li>
+                    <li class="d-flex gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 mt-1"></i>
+                        <span><strong>1 em cada 4</strong> crianças no mundo não tem acesso à educação básica.</span>
+                    </li>
+                    <li class="d-flex gap-3 mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-4 mt-1"></i>
+                        <span>A <strong>solidariedade</strong> reduz a desigualdade e fortalece laços comunitários.</span>
+                    </li>
+                </ul>
+                <a href="#acolher" class="btn btn-paz mt-2">
+                    <i class="bi bi-heart me-2"></i> Quero acolher
+                </a>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=450&fit=crop&crop=center&auto=format"
+                alt="Solidariedade" class="img-fluid rounded-4 shadow-lg"
+                style="max-height: 380px; object-fit: cover; width: 100%;" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== PAZ ====== -->
+<section class="py-5" id="paz" style="background: #f4f9f7;">
+    <div class="container py-4">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="section-title">Paz no mundo: um pacto de humanidade</h2>
+                <p class="section-sub">
+                    A paz não é ausência de conflito, é a presença ativa da justiça,
+                    da equidade e do respeito. Cada gesto de bondade é um tijolo
+                    na construção de um mundo mais fraterno.
+                </p>
+            </div>
+        </div>
+        <!-- Citação -->
+        <div class="quote-block mb-5">
+            <i class="bi bi-quote"></i>
+            <div class="quote-text">
+                “A paz que desejamos para o mundo começa na paz que semeamos
+                no coração de quem está ao nosso lado — especialmente
+                daquele que mais precisa.”
+            </div>
+            <div class="quote-author">— Madre Teresa de Calcutá (inspiração)</div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-globe-americas"></i></div>
+                    <h5>Justiça social</h5>
+                    <p>
+                        A paz duradoura só existe quando todos têm acesso a
+                        direitos básicos: alimentação, moradia, saúde e educação.
+                        Lutar por isso é um ato de amor à humanidade.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-people"></i></div>
+                    <h5>Diálogo e escuta</h5>
+                    <p>
+                        A paz se constrói na mesa onde diferentes vozes são
+                        ouvidas. Pessoas de bem sabem que o outro tem razões
+                        que merecem ser compreendidas, não julgadas.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-paz">
+                    <div class="icon-circle"><i class="bi bi-flower1"></i></div>
+                    <h5>Educação para a paz</h5>
+                    <p>
+                        Ensinar crianças e jovens a resolver conflitos com
+                        diálogo, a respeitar as diferenças e a cuidar do
+                        próximo é plantar a paz para as próximas gerações.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== ACOLHER ====== -->
+<section class="py-5 bg-white" id="acolher">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h2 class="section-title">Acolher é o primeiro passo</h2>
+                <p class="section-sub" style="max-width: 100%;">
+                    Acolher não é um projeto, é uma postura. É abrir a porta,
+                    oferecer um prato de comida, ouvir uma história, enxergar
+                    uma pessoa onde muitos só veem um problema.
+                </p>
+                <div class="mt-4 p-4 rounded-4" style="background: #eef6f2;">
+                    <div class="d-flex gap-3 align-items-center">
+                        <i class="bi bi-star-fill text-warning fs-3"></i>
+                        <div>
+                            <strong>“Acolhi e fui acolhido”</strong>
+                            <p class="mb-0 text-muted small">
+                                — depoimento de voluntário em projeto social
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex flex-wrap gap-3">
+                    <span class="badge bg-success bg-opacity-10 text-success px-4 py-2 rounded-pill">
+                        <i class="bi bi-house me-1"></i> Abrigo
+                    </span>
+                    <span class="badge bg-success bg-opacity-10 text-success px-4 py-2 rounded-pill">
+                        <i class="bi bi-basket me-1"></i> Alimentação
+                    </span>
+                    <span class="badge bg-success bg-opacity-10 text-success px-4 py-2 rounded-pill">
+                        <i class="bi bi-book me-1"></i> Educação
+                    </span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-dark rounded-4 p-4 text-white" style="background: #1e3c2f !important;">
+                    <h5 class="mb-3"><i class="bi bi-envelope-paper me-2"></i> Receba ideias de acolhimento</h5>
+                    <p class="text-light-emphasis small">
+                        Inscreva-se para receber conteúdos sobre solidariedade,
+                        projetos sociais e como você pode fazer a diferença.
+                    </p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control form-control-lg rounded-start-pill"
+                        placeholder="seu@email.com" id="emailInput" />
+                        <button class="btn btn-paz rounded-end-pill px-4" id="btnInscrever">
+                            <i class="bi bi-send me-1"></i> Inscrever
+                        </button>
+                    </div>
+                    <div id="msgFeedback" class="small mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="footer-brand"><i class="bi bi-tree"></i> Paz<span style="color:#3a9b7a;">&</span>Bem</div>
+                <p class="mt-2" style="max-width: 340px;">
+                    Acreditamos que um mundo mais justo e pacífico é construído
+                    por pessoas de bem que escolhem a essência do cuidado.
+                </p>
+                <div class="d-flex gap-3 fs-5">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h6 class="text-white fw-bold">Navegue</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#essencia">Essência</a></li>
+                    <li><a href="#pobreza">Pobreza</a></li>
+                    <li><a href="#paz">Paz</a></li>
+                    <li><a href="#acolher">Acolher</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h6 class="text-white fw-bold">Frases</h6>
+                <ul class="list-unstyled small">
+                    <li><i class="bi bi-dot text-success"></i> “A paz é fruto da justiça”</li>
+                    <li><i class="bi bi-dot text-success"></i> “O amor vence a pobreza”</li>
+                    <li><i class="bi bi-dot text-success"></i> “Somos todos um”</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-secondary border-opacity-25 my-3" />
+        <div class="text-center small text-secondary">
+            &copy; 2026 Paz&Bem · Feito com <i class="bi bi-heart-fill text-danger"></i> por pessoas de bem
+        </div>
+    </div>
+</footer>
+
+<!-- ====== BOOTSTRAP JS ====== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- ====== JAVASCRIPT ====== -->
+<script>
+    (function() {
+        'use strict';
+
+        // --- Feedback do formulário ---
+        const btn = document.getElementById('btnInscrever');
+        const input = document.getElementById('emailInput');
+        const feedback = document.getElementById('msgFeedback');
+
+        function validarEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        if (btn && input && feedback) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = input.value.trim();
+                if (!email) {
+                    feedback.innerHTML =
+                        '<span class="text-warning"><i class="bi bi-exclamation-triangle"></i> Digite seu e-mail.</span>';
+                    return;
+                }
+                if (!validarEmail(email)) {
+                    feedback.innerHTML =
+                        '<span class="text-warning"><i class="bi bi-exclamation-triangle"></i> E-mail inválido. Tente novamente.</span>';
+                    return;
+                }
+                feedback.innerHTML =
+                    '<span class="text-success"><i class="bi bi-check-circle"></i> Inscrição realizada! Você receberá conteúdos sobre paz e acolhimento.</span>';
+                input.value = '';
+                // limpa a mensagem após 6 segundos
+                setTimeout(() => { feedback.innerHTML = ''; }, 6000);
+            });
+        }
+
+        // --- Scroll suave para links internos (sem Bootstrap) ---
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // --- Contador animado (exemplo simples) ---
+        const statNumbers = document.querySelectorAll('.stat-item .number');
+        if (statNumbers.length) {
+            // apenas efeito visual: troca o texto suavemente ao passar o mouse
+            statNumbers.forEach(el => {
+                const original = el.textContent;
+                el.addEventListener('mouseenter', function() {
+                    if (original === '2,3B') this.textContent = '🌍 2,3 bilhões';
+                    else if (original === '1,2B') this.textContent = '💫 1,2 bilhão';
+                });
+                el.addEventListener('mouseleave', function() {
+                    this.textContent = original;
+                });
+            });
+        }
+
+        // --- Log no console ---
+        console.log('✌️ Paz no mundo — site desenvolvido com essência e foco na pobreza.');
+        console.log('🌱 Pequenos gestos transformam realidades.');
+
+    })();
+</script>
+
+</body>
+</html>
