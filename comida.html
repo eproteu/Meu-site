@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabores do Brasil · Gastronomia Ancestral</title>
+    <!-- Bootstrap 5 + Ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts (tipografia sofisticada) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== DESIGN ARROJADO - FUNDO MAIS FORTE ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e7d4c0;  /* tom terracota suave, mais forte que o anterior */
+            background-image: radial-gradient(circle at 20% 30%, rgba(180, 110, 70, 0.20) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(130, 70, 40, 0.15) 0%, transparent 50%);
+            color: #2d1f14;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .display-4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            background: linear-gradient(135deg, #8b3f1f, #b85a2c, #d48c4b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 8px 32px rgba(139, 63, 31, 0.3);
+            display: inline-block;
+        }
+        .hero-title::after {
+            content: "✦";
+            font-size: 2.2rem;
+            color: #b85a2c;
+            -webkit-text-fill-color: initial;
+            margin-left: 15px;
+            opacity: 0.8;
+        }
+
+        .lead-sub {
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #4f3522;
+            border-left: 4px solid #d48c4b;
+            padding-left: 1.5rem;
+            display: inline-block;
+        }
+
+        .navbar-custom {
+            background: rgba(45, 31, 20, 0.92) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.25);
+        }
+        .navbar-custom .nav-link {
+            color: #f0dcc8 !important;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .navbar-custom .nav-link:hover {
+            color: #f7b87a !important;
+            border-bottom-color: #d48c4b;
+        }
+
+        .card-food {
+            border: none;
+            border-radius: 28px;
+            overflow: hidden;
+            background: rgba(255, 248, 240, 0.8);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 12px 40px rgba(90, 50, 30, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+        }
+        .card-food:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 24px 60px rgba(139, 63, 31, 0.25);
+        }
+        .card-food img {
+            height: 220px;
+            object-fit: cover;
+            transition: 0.6s;
+            background: #d9c6b0; /* fallback enquanto carrega */
+        }
+        .card-food:hover img {
+            transform: scale(1.03);
+        }
+        .card-food .card-body {
+            padding: 1.8rem 1.5rem;
+            background: #fcf4ea;
+        }
+        .card-food .card-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #3b2518;
+        }
+
+        .section-divider {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #d48c4b, #b85a2c);
+            margin: 1.5rem auto;
+            border-radius: 8px;
+        }
+
+        .bg-flavor {
+            background: linear-gradient(145deg, #f0e0d0, #e6d2bc);
+            border-radius: 60px 60px 30px 30px;
+            padding: 3rem 2rem;
+            box-shadow: inset 0 2px 20px rgba(180, 110, 70, 0.2);
+        }
+
+        .visit-counter {
+            background: #2d1f14;
+            color: #f0dcc8;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: 1px solid #5a3f2b;
+        }
+        .visit-counter i {
+            font-size: 1.6rem;
+            color: #d48c4b;
+        }
+        .visit-counter .count {
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #f7b87a;
+            font-family: 'Playfair Display', serif;
+        }
+
+        footer {
+            background: #1f140e;
+            color: #bda28c;
+            border-top: 2px solid #3b2518;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .hero-title::after {
+                font-size: 1.4rem;
+            }
+            .bg-flavor {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVEGAÇÃO ===== -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-light fw-light" href="#">
+                <i class="bi bi-pin-map-fill text-warning me-2"></i>
+                <span style="font-family: 'Playfair Display', serif; font-weight: 700; color: #f0dcc8;">Brasil</span>
+                <span style="color: #d48c4b;">·</span> Gastronômico
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon" style="filter: invert(0.8);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#historias">Histórias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pratos">Pratos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sabores">Sabores</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO CENTRALIZADO ===== -->
+    <section id="inicio" class="container-fluid px-0" style="padding-top: 100px;">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-warning bg-opacity-25 text-dark px-4 py-2 rounded-pill mb-4" style="font-weight: 400;">
+                        <i class="bi bi-star-fill text-warning me-1"></i> Patrimônio Imaterial
+                    </span>
+                    <h1 class="hero-title display-1 fw-bold mb-3">
+                        Sabores do Brasil
+                    </h1>
+                    <p class="lead-sub fs-4 mb-4 mx-auto" style="max-width: 600px;">
+                        Uma jornada ancestral pela cozinha que é música, tempero e afeto.
+                    </p>
+                    <p class="fs-5 text-muted mx-auto" style="max-width: 640px; color: #3b2518 !important;">
+                        Da feijoada ao acarajé, do chimarrão ao brigadeiro — cada prato conta a história de um povo miscigenado, generoso e apaixonado pela vida.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+                        <a href="#pratos" class="btn btn-outline-dark btn-lg rounded-pill px-5 py-3" style="border-width: 2px; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px);">
+                            Explorar <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="#historias" class="btn btn-dark btn-lg rounded-pill px-5 py-3" style="background: #2d1f14;">
+                            <i class="bi bi-book me-2"></i> Histórias
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Imagem principal centralizada -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-8 col-md-10">
+                    <img src="https://picsum.photos/seed/brasilcomida/800/450" alt="Culinária Brasileira" 
+                         class="img-fluid rounded-5 shadow-lg" style="border: 6px solid rgba(255,215,150,0.4); width: 100%; object-fit: cover; max-height: 450px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TEXTO PRINCIPAL (40 linhas) ===== -->
+    <section id="historias" class="container py-5">
+        <div class="bg-flavor">
+            <h2 class="display-4 text-center mb-2" style="font-family: 'Playfair Display', serif; color: #3b2518;">
+                <i class="bi bi-quote"></i> Histórias que se comem
+            </h2>
+            <div class="section-divider"></div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div style="font-size: 1.1rem; line-height: 1.9; color: #2d1f14; columns: 2 300px; column-gap: 2.5rem;">
+                        <p>A culinária brasileira nasce da confluência de três matrizes: a indígena, com a mandioca, o milho e os peixes; a portuguesa, que trouxe o azeite, o bacalhau e os doces conventuais; e a africana, que presenteou o país com o dendê, o leite de coco e o quiabo. Essa tríade se misturou nos engenhos, nos quilombos e nas cozinhas coloniais, gerando uma das gastronomias mais criativas do mundo.</p>
+                        <p>No Norte, o tacacá e o pato no tucupi revelam a floresta; no Nordeste, o acarajé e a moqueca baiana celebram o mar e o axé; no Centro-Oeste, o arroz com pequi e a carne de sol trazem o cerrado para a mesa; no Sudeste, a feijoada carioca e o pão de queijo mineiro são símbolos de acolhimento; no Sul, o churrasco gaúcho e o barreado paranaense honram a tradição campeira.</p>
+                        <p>Cada prato carrega uma memória: a farofa acompanha o feijão desde os tempos coloniais; o vatapá é herança dos rituais iorubás; a caipirinha nasceu como remédio popular; o brigadeiro foi criado para homenagear um candidato a presidência. Comer no Brasil é fazer uma viagem no tempo e no espaço, onde o simples se torna extraordinário pelo afeto e pela criatividade.</p>
+                        <p>Os ingredientes nativos, como a pupunha, o jambu, a castanha-do-pará e o guaraná, ganham cada vez mais destaque nas cozinhas contemporâneas, enquanto chefs resgatam técnicas ancestrais e as reinterpretam com olhar moderno. A biodiversidade brasileira é um baú de tesouros ainda pouco explorado, e a cada dia novos sabores são descobertos e valorizados.</p>
+                        <p>A mesa brasileira é democrática: acolhe o luxo e a simplicidade, o doce e o salgado, o quente e o frio. É na comida que o brasileiro encontra sua identidade mais genuína, onde a mistura de raças se traduz em cores, aromas e texturas. Mais do que nutrição, a culinária é resistência, memória e celebração da vida.</p>
+                        <p>De norte a sul, o Brasil se revela em cada garfada. Seja no almoço de domingo em família, na roda de samba com petiscos, ou no jantar à luz de velas, a gastronomia brasileira é um convite à alegria, à partilha e ao encantamento. Experimente, prove, sinta — e deixe-se levar por essa sinfonia de sabores que só o Brasil pode oferecer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERIA DE 15 PRATOS (com imagens funcionais) ===== -->
+    <section id="pratos" class="container py-5">
+        <h2 class="display-4 text-center mb-2" style="font-family: 'Playfair Display', serif; color: #3b2518;">
+            <i class="bi bi-grid-3x3-gap-fill me-2" style="color: #b85a2c;"></i> 15 Delícias Regionais
+        </h2>
+        <div class="section-divider"></div>
+        <div class="row g-4">
+            <!-- Cada imagem usa seed fixo para consistência + fallback com cor -->
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/feijoada/400/300" class="card-img-top" alt="Feijoada"><div class="card-body"><h5 class="card-title">Feijoada</h5><p class="card-text small">RJ · Preto, carnes, farofa e laranja.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/acaraje/400/300" class="card-img-top" alt="Acarajé"><div class="card-body"><h5 class="card-title">Acarajé</h5><p class="card-text small">BA · Feijão fradinho, vatapá, camarão.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/moqueca/400/300" class="card-img-top" alt="Moqueca"><div class="card-body"><h5 class="card-title">Moqueca</h5><p class="card-text small">ES/BA · Peixe, coco, dendê, coentro.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/paodequeijo/400/300" class="card-img-top" alt="Pão de Queijo"><div class="card-body"><h5 class="card-title">Pão de Queijo</h5><p class="card-text small">MG · Polvilho, queijo, crocante por fora.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/brigadeiro/400/300" class="card-img-top" alt="Brigadeiro"><div class="card-body"><h5 class="card-title">Brigadeiro</h5><p class="card-text small">Nacional · Leite condensado, chocolate, granulado.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/tacaca/400/300" class="card-img-top" alt="Tacacá"><div class="card-body"><h5 class="card-title">Tacacá</h5><p class="card-text small">PA · Tapioca, jambu, camarão, tucupi.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/vatapa/400/300" class="card-img-top" alt="Vatapá"><div class="card-body"><h5 class="card-title">Vatapá</h5><p class="card-text small">BA · Pão, camarão, amendoim, leite de coco.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/churrasco/400/300" class="card-img-top" alt="Churrasco"><div class="card-body"><h5 class="card-title">Churrasco</h5><p class="card-text small">RS · Picanha, costela, chimarrão.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/caipirinha/400/300" class="card-img-top" alt="Caipirinha"><div class="card-body"><h5 class="card-title">Caipirinha</h5><p class="card-text small">Nacional · Cachaça, limão, açúcar, gelo.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/carnedesol/400/300" class="card-img-top" alt="Carne de Sol"><div class="card-body"><h5 class="card-title">Carne de Sol</h5><p class="card-text small">NE · Carne salgada, macaxeira, manteiga.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/pequi/400/300" class="card-img-top" alt="Arroz com Pequi"><div class="card-body"><h5 class="card-title">Arroz com Pequi</h5><p class="card-text small">GO · Fruto do cerrado, arroz, frango.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/barreado/400/300" class="card-img-top" alt="Barreado"><div class="card-body"><h5 class="card-title">Barreado</h5><p class="card-text small">PR · Carne cozida, farinha, banana.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/cocada/400/300" class="card-img-top" alt="Cocada"><div class="card-body"><h5 class="card-title">Cocada</h5><p class="card-text small">NE · Coco, açúcar, leite condensado.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/tapioca/400/300" class="card-img-top" alt="Tapioca"><div class="card-body"><h5 class="card-title">Tapioca</h5><p class="card-text small">N/NE · Goma, recheio doce ou salgado.</p></div></div></div>
+            <div class="col-md-4 col-lg-3"><div class="card-food"><img src="https://picsum.photos/seed/quinua/400/300" class="card-img-top" alt="Quinua"><div class="card-body"><h5 class="card-title">Quinua</h5><p class="card-text small">Sul · Grão nutritivo, saladas e sopas.</p></div></div></div>
+        </div>
+    </section>
+
+    <!-- ===== SABORES (extra) ===== -->
+    <section id="sabores" class="container py-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+                <h2 class="display-5" style="font-family: 'Playfair Display', serif; color: #3b2518;">
+                    <i class="bi bi-droplet-half me-2" style="color: #b85a2c;"></i> Sabores que encantam
+                </h2>
+                <p class="fs-5 text-muted" style="color: #3b2518 !important;">Cada região tem seu toque especial, mas o que une a culinária brasileira é a paixão pelo bem temperar. O azeite de dendê, o leite de coco, a pimenta-malagueta, o coentro e a cebolinha são apenas alguns dos protagonistas que dão vida aos pratos.</p>
+                <p>Além disso, a criatividade popular transforma ingredientes simples em iguarias sofisticadas, como o famoso "bolo de rolo" pernambucano ou o "cuscuz paulista" — que, apesar do nome, é uma reinterpretação nordestina. A comida brasileira nunca para de surpreender.</p>
+                <a href="#" class="btn btn-outline-dark rounded-pill px-5 py-2 mt-2"><i class="bi bi-arrow-right"></i> Descubra mais</a>
+            </div>
+            <div class="col-md-6">
+                <img src="https://picsum.photos/seed/temperosbr/700/400" class="img-fluid rounded-4 shadow-lg" alt="Temperos brasileiros" style="width: 100%; object-fit: cover; max-height: 350px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTADOR DE VISITAS (rodapé) ===== -->
+    <footer class="mt-5 pt-5 pb-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0" style="font-size: 0.9rem;">
+                        <i class="bi bi-c-circle me-1"></i> 2026 · Sabores do Brasil — uma homenagem à cozinha que nos une.
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="visit-counter">
+                        <i class="bi bi-eye-fill"></i>
+                        <span>Visitas:</span>
+                        <span class="count" id="visitorCount">0</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-3">
+            <div class="text-center small opacity-75">
+                <i class="bi bi-heart-fill text-danger me-1"></i> Feito com dendê, afeto e Bootstrap.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (function() {
+            // Contador de visitas com localStorage
+            const counterKey = 'brasilGastronomico_visits';
+            let visits = localStorage.getItem(counterKey);
+            if (visits === null) {
+                visits = 1;
+            } else {
+                visits = parseInt(visits, 10) + 1;
+            }
+            localStorage.setItem(counterKey, visits);
+
+            const countEl = document.getElementById('visitorCount');
+            if (countEl) {
+                countEl.textContent = visits;
+                // pequena animação
+                countEl.style.transition = '0.3s';
+                countEl.style.transform = 'scale(1.2)';
+                setTimeout(() => { countEl.style.transform = 'scale(1)'; }, 300);
+            }
+        })();
+    </script>
+
+</body>
+</html>
