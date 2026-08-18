@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Aurora da Filosofia</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f0f12;
+      --card-bg: #1a1a22;
+      --accent: #e5b849;
+      --accent-glow: rgba(229, 184, 73, 0.4);
+      --text-light: #e1e1e6;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.8;
+    }
+
+    h1, h2, h3, .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* --- Hero Section & Título Animado --- */
+    .hero-section {
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #232332 0%, #0f0f12 100%);
+      border-bottom: 2px solid var(--accent);
+      padding: 3rem 1rem;
+      position: relative;
+    }
+
+    /* Título Animado com Gradiente e Borda Pulsante */
+    .animated-title-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+
+    .animated-title {
+      background: linear-gradient(90deg, #fff, var(--accent), #fff);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--accent);
+      width: 0;
+      animation: typing 3.5s steps(30, end) forwards, blink 0.75s step-end infinite, shine 4s linear infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent); }
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    /* Estilo do Contador de Visitas */
+    .visitor-badge {
+      background-color: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    /* Imagens e GIFs */
+    .hero-gif {
+      max-width: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+      filter: sepia(30%) contrast(110%);
+      transition: filter 0.3s ease;
+    }
+
+    .custom-card:hover .card-img-top {
+      filter: sepia(0%) contrast(100%);
+    }
+
+    /* Styles do Texto de Filosofia */
+    .philosophy-text p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+      font-size: 1.05rem;
+      color: #c4c4cc;
+    }
+
+    .philosophy-text p::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: var(--accent);
+      float: left;
+      line-height: 1;
+      padding-right: 8px;
+    }
+
+    .custom-card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(229, 184, 73, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .custom-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .accent-text {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero / Cabeçalho -->
+  <header class="hero-section text-center">
+    <div class="container">
+      
+      <!-- GIF Ilustrativo (Pensador / Cosmos) -->
+      <img src="https://media.giphy.com/media/26n6Wywq4804Us3EQ/giphy.gif" alt="GIF Filosofia" class="hero-gif mb-3">
+
+      <!-- Título Animado -->
+      <div class="animated-title-wrapper d-block my-2">
+        <h1 class="animated-title display-4">A AURORA DA FILOSOFIA</h1>
+      </div>
+      
+      <p class="lead text-muted mt-2">Do Mito ao Logos: A Busca Humana pelo Conhecimento</p>
+
+      <!-- Contador de Visitas em Tempo Real -->
+      <div class="d-inline-flex align-items-center visitor-badge mt-3">
+        <span class="me-2">👁️ Visitas na página:</span>
+        <strong id="visit-count" class="accent-text">Carregando...</strong>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        
+        <!-- Texto sobre Filosofia (~40 linhas) -->
+        <article class="philosophy-text bg-dark p-4 p-md-5 rounded-3 shadow-lg border border-secondary">
+          <h2 class="text-center accent-text mb-4">O Nascimento do Pensamento Racional</h2>
+          
+          <p>A filosofia nasceu no século VI a.C. nas colônias gregas da Ásia Menor, marcada por uma profunda transformação na forma como a humanidade compreendia a realidade. Antes de seu surgimento, os seres humanos recorriam aos mitos para explicar a origem do universo, os fenômenos da natureza e os dilemas da existência. As tempestades, as estações do ano e o destino humano eram atribuídos à vontade caprichosa dos deuses do Olimpo.</p>
+          
+          <p>No entanto, com a expansão do comércio, a invenção da escrita, a circulação de moedas e o desenvolvimento da vida urbana nas <i>polis</i> gregas, surgiu a necessidade de respostas mais rigorosas. A transição do <i>Mito</i> ao <i>Logos</i> representou o abandono gradual das explicações sobrenaturais em favor de uma investigação fundamentada na observação, no debate público e na razão lógica. A palavra "filosofia", atribuída a Pitágoras, significa literalmente "amor à sabedoria".</p>
+          
+          <p>Os primeiros pensadores são conhecidos como **pré-socráticos** ou filósofos da natureza (*Physis*). O grande objetivo desse grupo inicial era encontrar a <i>Arché</i>: o princípio fundamental, único e indivisível que teria dado origem a todas as coisas do cosmos. Eles não buscavam deuses nas nuvens, mas sim elementos visíveis e leis naturais capazes de organizar a matéria e explicar a constante transformação do mundo ao nosso redor.</p>
+          
+          <p>**Tales de Mileto** é amplamente considerado o primeiro filósofo da história ocidental. Ao observar a importância da umidade para a vida, Tales postulou que a água era a substância primordial de tudo o que existe. Seguiram-no outros pensadores notáveis da mesma região, como **Anaximandro**, que propôs o <i>Apeiron</i> (o indeterminado e infinito), e **Anaxímenes**, que enxergava no ar o elemento vital gerador de todas as estruturas.</p>
+          
+          <p>A investigação natural atingiu debates profundos sobre a permanência e a mudança. **Heráclito de Éfeso** defendia que o universo está em constante fluxo, afirmando que "ninguém pode banhar-se duas vezes no mesmo rio", pois tanto o homem quanto as águas já mudaram. Em contraste direto, **Parmênides de Eleia** sustentava que a mudança era uma ilusão dos sentidos; para ele, o Ser é único, imutável e eterno, lançando as bases da ontologia.</p>
+          
+          <p>Mais tarde, o foco da filosofia deslocou-se da natureza para o próprio ser humano e a vida em sociedade. Com **Sócrates**, a filosofia desceu dos céus para as praças de Atenas. Utilizando o método da dialética e a ironia, Sócrates questionava as certezas dos cidadãos para guiá-los ao autoconhecimento, imortalizando a máxima "Só sei que nada sei". Seu legado pavimentou o caminho para seu discípulo **Platão** e, posteriormente, **Aristóteles**, consolidando os pilares de todo o pensamento ocidental.</p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Cards com Figuras dos Personagens Iniciais -->
+    <section class="mt-5">
+      <h2 class="text-center accent-text mb-4">Os Personagens Iniciais</h2>
+      <div class="row g-4">
+        
+        <!-- Card 1: Tales -->
+        <div class="col-md-4">
+          <div class="card custom-card h-100 text-light">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Escultura Grega - Tales">
+            <div class="card-body">
+              <h3 class="card-title accent-text h4">Tales de Mileto</h3>
+              <h6 class="card-subtitle mb-3 text-muted">c. 624 a.C. – 548 a.C.</h6>
+              <p class="card-text">O pai da filosofia ocidental. Foi o primeiro a buscar uma explicação racional para o universo, apontando a <strong>água</strong> como a matéria-prima (*Arché*) de todas as coisas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Heráclito -->
+        <div class="col-md-4">
+          <div class="card custom-card h-100 text-light">
+            <img src="https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Arte Clássica - Heráclito">
+            <div class="card-body">
+              <h3 class="card-title accent-text h4">Heráclito de Éfeso</h3>
+              <h6 class="card-subtitle mb-3 text-muted">c. 535 a.C. – 475 a.C.</h6>
+              <p class="card-text">Conhecido como o "Obscuro". Defendia que a realidade é dinâmica e caracterizada pelo constante movimento e conflito dos opostos. Seu símbolo era o <strong>fogo</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Parmênides -->
+        <div class="col-md-4">
+          <div class="card custom-card h-100 text-light">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Estátua de Mármore - Parmênides">
+            <div class="card-body">
+              <h3 class="card-title accent-text h4">Parmênides de Eleia</h3>
+              <h6 class="card-subtitle mb-3 text-muted">c. 515 a.C. – 450 a.C.</h6>
+              <p class="card-text">O fundador da ontologia. Ao contrário de Heráclito, argumentou que a transformação é apenas uma ilusão dos sentidos e que a essência do **Ser é imutável**.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="text-center py-4 border-top border-secondary mt-5 text-muted">
+    <p class="mb-0">&copy; Aurora Filosofia - Desenvolvido com HTML5, CSS3, Bootstrap & JavaScript</p>
+  </footer>
+
+  <!-- Script para o Contador de Visitas (API Gratuita + Fallback Local) -->
+  <script>
+    async function updateVisitorCount() {
+      const counterElement = document.getElementById('visit-count');
+      try {
+        // Faz chamada para a API pública do CounterAPI (namespace e chave customizados)
+        const response = await fetch('https://api.counterapi.dev/v1/aurora-filosofia-site/visitas/up');
+        const data = await response.json();
+        
+        if (data && data.count) {
+          counterElement.innerText = data.count.toLocaleString('pt-BR');
+        } else {
+          throw new Error('API sem resposta válida');
+        }
+      } catch (error) {
+        // Fallback usando localStorage caso a API esteja off ou em ambiente sem internet
+        let localVisits = localStorage.getItem('site_visits') || 100;
+        localVisits = parseInt(localVisits) + 1;
+        localStorage.setItem('site_visits', localVisits);
+        counterElement.innerText = localVisits + " (local)";
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateVisitorCount);
+  </script>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
