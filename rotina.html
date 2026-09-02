@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotinas que Transformam</title>
+    <!-- Bootstrap 5 (CSS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background: linear-gradient(145deg, #f8f4f0 0%, #e8e0d8 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            padding-bottom: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .card-header {
+            background: transparent;
+            border-bottom: 2px dashed #d9cdc1;
+            padding: 1.8rem 2rem 1rem 2rem;
+        }
+
+        .card-body {
+            padding: 2rem 2.5rem;
+        }
+
+        h1.display-4 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #1e2b37;
+        }
+
+        .badge-contador {
+            background: #2c3e50;
+            color: #f5efe9;
+            font-weight: 500;
+            padding: 0.6rem 1.4rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .badge-contador i {
+            margin-right: 10px;
+            color: #e6c9a8;
+        }
+
+        .texto-rotina {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+            column-gap: 2rem;
+        }
+
+        .texto-rotina p {
+            margin-bottom: 1.2rem;
+        }
+
+        .img-fluid {
+            border-radius: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            margin: 1.2rem 0;
+            width: 100%;
+            height: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .img-fluid:hover {
+            transform: scale(1.01);
+        }
+
+        .figura-destaque {
+            background: #f1ece6;
+            border-radius: 28px;
+            padding: 0.6rem 0.6rem 0 0.6rem;
+            margin: 1.8rem 0;
+        }
+
+        .assinatura {
+            font-size: 0.95rem;
+            color: #6b5f55;
+            border-top: 1px solid #d9cdc1;
+            padding-top: 1.8rem;
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 1.5rem;
+            }
+            .texto-rotina {
+                font-size: 1rem;
+            }
+            h1.display-4 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4 py-md-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="card">
+                    <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
+                        <!-- Título dinâmico (via JS) -->
+                        <h1 class="display-4 mb-0" id="tituloDinamico">🌿 Rotinas que Transformam</h1>
+                        <!-- Contador de visitas -->
+                        <span class="badge-contador mt-2 mt-sm-0">
+                            <i class="fas fa-eye"></i> 
+                            <span id="contadorVisitas">0</span> visitas
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <!-- Texto com 35 linhas + figuras no meio -->
+                        <div class="texto-rotina">
+                            <p>1. Toda manhã, o despertador ecoa como um lembrete de que um novo ciclo começa.</p>
+                            <p>2. As rotinas são os fios invisíveis que tecem nossos dias, dando forma ao caos.</p>
+                            <p>3. Ao abrir a janela, a luz invade o quarto — e com ela, a promessa do inédito.</p>
+                            <!-- FIGURA 1 -->
+                            <div class="figura-destaque">
+                                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=400&fit=crop&crop=center&auto=format" 
+                                     alt="Rotina matinal" 
+                                     class="img-fluid" 
+                                     loading="lazy">
+                            </div>
+                            <p>4. O café fumegante, o silêncio da casa, os primeiros raios de sol: rituais sagrados.</p>
+                            <p>5. A rotina não é monotonia; é o palco onde a vida encena suas pequenas revoluções.</p>
+                            <p>6. Cada hábito é uma escolha repetida até que se torne parte de quem somos.</p>
+                            <p>7. Levantar, alongar, respirar fundo — gestos que alinham corpo e mente.</p>
+                            <p>8. O trajeto para o trabalho, os rostos conhecidos, os sons familiares da cidade.</p>
+                            <p>9. Entre reuniões e pausas, encontramos brechas para criar e recriar.</p>
+                            <p>10. O almoço é um intervalo: sabores, conversas, o prazer de desacelerar.</p>
+                            <!-- FIGURA 2 -->
+                            <div class="figura-destaque">
+                                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=400&fit=crop&crop=center&auto=format" 
+                                     alt="Alimentação e pausa" 
+                                     class="img-fluid" 
+                                     loading="lazy">
+                            </div>
+                            <p>11. À tarde, o foco se renova; as tarefas se sucedem como ondas no mar.</p>
+                            <p>12. A rotina nos ensina a valorizar os pequenos intervalos: um café, uma janela aberta.</p>
+                            <p>13. Cada dia é uma página em branco, mas a rotina é a caneta que escreve a história.</p>
+                            <p>14. No fim da tarde, o cansaço chega com a doçura de quem cumpriu seu dever.</p>
+                            <p>15. O retorno para casa é uma volta ao centro, ao que é nosso e acolhedor.</p>
+                            <p>16. Preparar o jantar, ouvir música, sentir o cheiro do tempero no ar.</p>
+                            <p>17. A rotina noturna: banho, livro, silêncio — um ritual de entrega ao descanso.</p>
+                            <p>18. São os hábitos que nos sustentam quando a vida parece um vendaval.</p>
+                            <!-- FIGURA 3 -->
+                            <div class="figura-destaque">
+                                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800&h=400&fit=crop&crop=center&auto=format" 
+                                     alt="Rotina noturna" 
+                                     class="img-fluid" 
+                                     loading="lazy">
+                            </div>
+                            <p>19. A repetição não apaga a novidade; ela a prepara, a cultiva em solo fértil.</p>
+                            <p>20. Cada manhã é igual, mas nunca idêntica — como as ondas do mar.</p>
+                            <p>21. Na rotina, descobrimos a arte de estar presente no que é ordinário.</p>
+                            <p>22. Pequenas variações quebram a mesmice: um caminho diferente, uma música nova.</p>
+                            <p>23. A rotina é a espinha dorsal da disciplina, mas também do cuidado.</p>
+                            <p>24. Cuidar de si, dos outros, do espaço — atos que se repetem com amor.</p>
+                            <p>25. A noite chega, e com ela a gratidão pelo dia que se completou.</p>
+                            <p>26. No escuro, os pensamentos se aquietam; a rotina se despede em silêncio.</p>
+                            <!-- FIGURA 4 -->
+                            <div class="figura-destaque">
+                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8d1c1dc1?w=800&h=400&fit=crop&crop=center&auto=format" 
+                                     alt="Tempo e reflexão" 
+                                     class="img-fluid" 
+                                     loading="lazy">
+                            </div>
+                            <p>27. E então, o ciclo recomeça — porque a vida é feita de recomeços.</p>
+                            <p>28. A rotina é a trama; os momentos especiais, os fios dourados.</p>
+                            <p>29. Não há rotina sem propósito, assim como não há propósito sem rotina.</p>
+                            <p>30. Ela nos dá estrutura para voar, raízes para crescer.</p>
+                            <p>31. Cada dia é uma oportunidade de aperfeiçoar o que já fazemos.</p>
+                            <p>32. A beleza está na constância, na confiança de que amanhã será novo.</p>
+                            <p>33. A rotina é o palco, mas nós somos os atores, diretores e espectadores.</p>
+                            <p>34. Ela nos ensina a esperar, a persistir, a celebrar o simples.</p>
+                            <p>35. E, no fim, a rotina é o que nos lembra que viver é um ato de coragem diária.</p>
+                        </div>
+
+                        <!-- rodapé/assinatura -->
+                        <div class="assinatura">
+                            <i class="fas fa-arrow-right me-2"></i> Cada rotina é uma história — escreva a sua com presença. <i class="fas fa-arrow-left ms-2"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional, para interações) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script: título dinâmico + contador de visitas (localStorage) -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- TÍTULO DINÂMICO (alterna entre 3 opções a cada 6 segundos) -----
+            const tituloEl = document.getElementById('tituloDinamico');
+            const titulos = [
+                '🌿 Rotinas que Transformam',
+                '⏳ A Arte das Rotinas',
+                '🌀 Rituais Diários'
+            ];
+            let indiceAtual = 0;
+
+            function alternarTitulo() {
+                indiceAtual = (indiceAtual + 1) % titulos.length;
+                tituloEl.textContent = titulos[indiceAtual];
+            }
+
+            // Troca a cada 6 segundos
+            setInterval(alternarTitulo, 6000);
+
+            // ----- CONTADOR DE VISITAS (com localStorage) -----
+            const contadorEl = document.getElementById('contadorVisitas');
+
+            // Tenta recuperar o valor armazenado ou inicia em 0
+            let visitas = localStorage.getItem('contadorRotinas');
+            if (visitas === null) {
+                visitas = 0;
+            } else {
+                visitas = parseInt(visitas, 10);
+                // Proteção contra NaN
+                if (isNaN(visitas)) visitas = 0;
+            }
+
+            // Incrementa a visita atual
+            visitas += 1;
+            localStorage.setItem('contadorRotinas', visitas.toString());
+
+            // Exibe no contador
+            contadorEl.textContent = visitas;
+
+            // Pequeno efeito: se for a primeira visita, exibe um destaque (opcional)
+            if (visitas === 1) {
+                contadorEl.style.transition = 'all 0.3s ease';
+                contadorEl.style.color = '#e6c9a8';
+                setTimeout(() => {
+                    contadorEl.style.color = '';
+                }, 1200);
+            }
+
+        })();
+    </script>
+</body>
+</html>
