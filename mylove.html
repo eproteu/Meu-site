@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 História do Amor - Experiência Completa</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fdfcfb 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      padding: 20px 0 100px 0;
+      overflow-x: hidden;
+      position: relative;
+      cursor: default;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== TÍTULO FLUTUANTE ===== */
+    .floating-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.5rem;
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+      text-shadow: 0 0 20px #ff3b6f, 0 0 40px #ff6b8a, 0 0 80px #ff9a9e;
+      animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite alternate;
+      letter-spacing: 3px;
+      margin: 20px 0 30px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.02); }
+      100% { transform: translateY(0px) scale(1); }
+    }
+
+    @keyframes glowPulse {
+      0% { text-shadow: 0 0 20px #ff3b6f, 0 0 40px #ff6b8a, 0 0 80px #ff9a9e; }
+      100% { text-shadow: 0 0 30px #ff7eb3, 0 0 60px #ff4d6d, 0 0 100px #ff1e4f, 0 0 140px #ff0066; }
+    }
+
+    /* ===== SUBTÍTULO ===== */
+    .subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #4a1e2c;
+      font-weight: 600;
+      margin: -15px 0 25px 0;
+      opacity: 0.8;
+      animation: fadeInUp 2s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 0.8; transform: translateY(0); }
+    }
+
+    /* ===== CARD PRINCIPAL ===== */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 30px 50px rgba(255, 0, 100, 0.3);
+      padding: 45px 50px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 8s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== TEXTO EM PARÁGRAFOS ===== */
+    .love-text {
+      font-size: 1.15rem;
+      line-height: 2.2rem;
+      font-weight: 500;
+      color: #2d1b2e;
+      text-align: justify;
+      position: relative;
+      z-index: 1;
+    }
+
+    .love-text p {
+      margin-bottom: 1.5rem;
+      padding: 12px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-left: 5px solid transparent;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .love-text p:nth-child(odd) {
+      background: rgba(255, 200, 220, 0.2);
+      border-left-color: #ff4d6d;
+    }
+
+    .love-text p:nth-child(even) {
+      background: rgba(200, 230, 255, 0.15);
+      border-left-color: #ff9a9e;
+    }
+
+    .love-text p:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: translateX(10px) scale(1.01);
+      box-shadow: 0 4px 20px rgba(255, 0, 100, 0.15);
+      border-left-color: #ff0066;
+      border-left-width: 8px;
+    }
+
+    .love-text .first-letter {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #ff1e4f;
+      float: left;
+      margin-right: 10px;
+      line-height: 1;
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 0 0 30px rgba(255, 30, 79, 0.4);
+    }
+
+    /* ===== FIGURAS DECORATIVAS ===== */
+    .figure-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px 0 25px 0;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1.8s ease;
+    }
+
+    .figure-item {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 30px;
+      padding: 15px 25px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 25px rgba(255, 0, 100, 0.2);
+      transition: all 0.4s ease;
+      text-align: center;
+      font-size: 2.5rem;
+      min-width: 100px;
+      animation: figureFloat 4s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .figure-item:nth-child(2) { animation-delay: 0.5s; }
+    .figure-item:nth-child(3) { animation-delay: 1s; }
+    .figure-item:nth-child(4) { animation-delay: 1.5s; }
+    .figure-item:nth-child(5) { animation-delay: 2s; }
+
+    @keyframes figureFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    .figure-item:hover {
+      transform: scale(1.2) rotate(-5deg) !important;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 12px 40px rgba(255, 0, 100, 0.5);
+      animation-play-state: paused;
+    }
+
+    .figure-item span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #4a1e2c;
+      margin-top: 5px;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* ===== NOVIDADE: TIMELINE DE AMOR ===== */
+    .timeline-section {
+      margin: 30px 0;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 2s ease;
+    }
+
+    .timeline-title {
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #4a1e2c;
+      margin-bottom: 20px;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 30px;
+      padding: 20px 30px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .timeline-item {
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 20px;
+    }
+
+    .timeline-item:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .timeline-item .year {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff1e4f;
+      display: block;
+    }
+
+    .timeline-item .event {
+      font-size: 0.8rem;
+      color: #4a1e2c;
+      font-weight: 600;
+    }
+
+    /* ===== NOVIDADE: FRASE DO DIA ===== */
+    .quote-section {
+      text-align: center;
+      padding: 20px;
+      margin: 20px 0;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 30px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 2.2s ease;
+    }
+
+    .quote-section .quote-icon {
+      font-size: 2.5rem;
+      color: #ff1e4f;
+      opacity: 0.5;
+    }
+
+    .quote-section .quote-text {
+      font-size: 1.3rem;
+      font-family: 'Great Vibes', cursive;
+      color: #4a1e2c;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .quote-section .quote-author {
+      font-size: 0.9rem;
+      color: #6b3a4a;
+      font-weight: 600;
+    }
+
+    /* ===== NOVIDADE: BOTÃO DE SURPRESA ===== */
+    .surprise-btn-container {
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 2.4s ease;
+    }
+
+    .surprise-btn {
+      background: linear-gradient(145deg, #ff4d6d, #ff1e4f);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 8px 25px rgba(255, 0, 80, 0.4);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .surprise-btn:hover {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 12px 40px rgba(255, 0, 80, 0.6);
+      background: linear-gradient(145deg, #ff6b8a, #ff0033);
+    }
+
+    .surprise-btn i {
+      margin-right: 10px;
+    }
+
+    /* ===== CORAÇÕES FLUTUANTES ===== */
+    .heart-float {
+      position: fixed;
+      font-size: 2rem;
+      opacity: 0.2;
+      animation: heartFloat 15s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes heartFloat {
+      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0.1; }
+      50% { opacity: 0.4; }
+      100% { transform: translateY(-10vh) rotate(720deg) scale(1.5); opacity: 0; }
+    }
+
+    /* ===== ESTRELAS CADENTES ===== */
+    .shooting-star {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+      animation: shoot 6s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translateX(-800px) translateY(600px) scale(0); opacity: 0; }
+    }
+
+    /* ===== BOTÃO DE ÁUDIO ===== */
+    .audio-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      background: linear-gradient(145deg, #ff4d6d, #ff1e4f);
+      border: none;
+      border-radius: 60px;
+      padding: 18px 30px;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 10px 30px rgba(255, 0, 80, 0.6);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      animation: pulseBtn 2s infinite;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .audio-btn:hover {
+      transform: scale(1.12) rotate(-5deg);
+      background: linear-gradient(145deg, #ff6b8a, #ff0033);
+      box-shadow: 0 0 40px #ff4d6d;
+    }
+
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(255, 0, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0); }
+    }
+
+    .audio-btn.off {
+      background: linear-gradient(145deg, #888, #555);
+      animation: none;
+    }
+
+    /* ===== RODAPÉ COM CONTADOR ===== */
+    .footer-love {
+      text-align: center;
+      margin-top: 40px;
+      padding: 25px 20px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 60px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(255, 0, 100, 0.15);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 2.6s ease;
+    }
+
+    .footer-love .footer-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: #4a1e2c;
+      margin-bottom: 10px;
+    }
+
+    .footer-love .footer-text {
+      font-weight: 600;
+      color: #4a1e2c;
+    }
+
+    .visitor-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 10px 30px;
+      border-radius: 50px;
+      margin-top: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 15px rgba(255, 0, 100, 0.2);
+    }
+
+    .visitor-counter .counter-icon {
+      font-size: 2rem;
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); color: #ff1e4f; }
+    }
+
+    .visitor-counter .counter-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #ff1e4f;
+      text-shadow: 0 0 20px rgba(255, 30, 79, 0.3);
+      font-family: 'Great Vibes', cursive;
+      min-width: 60px;
+    }
+
+    .visitor-counter .counter-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #4a1e2c;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 768px) {
+      .floating-title {
+        font-size: 2.8rem;
+      }
+      .love-text {
+        font-size: 1rem;
+        line-height: 1.9rem;
+      }
+      .love-text p {
+        padding: 10px 15px;
+      }
+      .glass-card {
+        padding: 25px 18px;
+      }
+      .figure-item {
+        font-size: 2rem;
+        min-width: 70px;
+        padding: 10px 15px;
+      }
+      .audio-btn {
+        padding: 14px 20px;
+        font-size: 1.4rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      .visitor-counter {
+        padding: 8px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .visitor-counter .counter-number {
+        font-size: 2rem;
+        min-width: 40px;
+      }
+      .timeline {
+        flex-direction: column;
+        padding: 15px;
+      }
+      .timeline-item {
+        width: 100%;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .quote-section .quote-text {
+        font-size: 1.1rem;
+      }
+      .surprise-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ESTRELAS CADENTES -->
+  <div id="stars-container"></div>
+
+  <!-- CORAÇÕES FLUTUANTES -->
+  <div id="hearts-container"></div>
+
+  <!-- TÍTULO FLUTUANTE -->
+  <h1 class="floating-title">
+    <i class="fas fa-heart" style="color: #ff1e4f; margin: 0 15px;"></i>
+    A História do Amor
+    <i class="fas fa-heart" style="color: #ff1e4f; margin: 0 15px;"></i>
+  </h1>
+
+  <div class="subtitle">
+    <i class="fas fa-infinity" style="color: #ff1e4f;"></i>
+    Uma jornada através dos tempos
+    <i class="fas fa-infinity" style="color: #ff1e4f;"></i>
+  </div>
+
+  <!-- CONTAINER PRINCIPAL -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-xl-9">
+
+        <!-- FIGURAS DECORATIVAS -->
+        <div class="figure-container">
+          <div class="figure-item" title="Clique para amar">
+            🌹
+            <span>Romance</span>
+          </div>
+          <div class="figure-item" title="Clique para amar">
+            💑
+            <span>União</span>
+          </div>
+          <div class="figure-item" title="Clique para amar">
+            🕊️
+            <span>Paz</span>
+          </div>
+          <div class="figure-item" title="Clique para amar">
+            💞
+            <span>Paixão</span>
+          </div>
+          <div class="figure-item" title="Clique para amar">
+            ✨
+            <span>Magia</span>
+          </div>
+        </div>
+
+        <!-- NOVIDADE: FRASE DO DIA -->
+        <div class="quote-section" id="quoteSection">
+          <div class="quote-icon">💭</div>
+          <div class="quote-text" id="dailyQuote">"O amor é a poesia dos sentidos."</div>
+          <div class="quote-author" id="quoteAuthor">— Honoré de Balzac</div>
+        </div>
+
+        <!-- NOVIDADE: TIMELINE DO AMOR -->
+        <div class="timeline-section">
+          <div class="timeline-title">
+            <i class="fas fa-clock" style="color: #ff1e4f;"></i>
+            Linha do Tempo do Amor
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="year">💕 Séc. VIII a.C.</span>
+              <span class="event">Poemas de Safo</span>
+            </div>
+            <div class="timeline-item">
+              <span class="year">💖 1308</span>
+              <span class="event">Dante - Divina Comédia</span>
+            </div>
+            <div class="timeline-item">
+              <span class="year">❤️ 1597</span>
+              <span class="event">Romeu e Julieta</span>
+            </div>
+            <div class="timeline-item">
+              <span class="year">💝 1820</span>
+              <span class="event">Romantismo</span>
+            </div>
+            <div class="timeline-item">
+              <span class="year">💞 2024</span>
+              <span class="event">Amor sem Fronteiras</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD COM TEXTO -->
+        <div class="glass-card">
+          <div class="love-text">
+            <p>
+              <span class="first-letter">O</span> amor é uma das forças mais antigas e poderosas da humanidade. Desde os primórdios, poemas, canções e mitos celebram esse sentimento que atravessa culturas e gerações. Na Grécia Antiga, o amor era dividido em Eros (paixão), Philia (amizade) e Ágape (amor incondicional), e filósofos como Platão e Aristóteles já refletiam profundamente sobre sua natureza e significado.
+            </p>
+            <p>
+              <span class="first-letter">N</span>o Oriente, o amor é visto como uma energia cósmica que une todos os seres em uma teia de conexões divinas. Durante a Idade Média, o amor cortês inspirou cavaleiros e donzelas em romances épicos, enquanto Dante escreveu sobre o amor divino em "A Divina Comédia". Shakespeare, por sua vez, imortalizou Romeu e Julieta, transformando o amor proibido em uma das histórias mais belas já contadas.
+            </p>
+            <p>
+              <span class="first-letter">C</span>om o Romantismo no século XIX, o amor passou a ser exaltado como sentimento absoluto, e os casamentos arranjados deram lugar ao casamento por amor no Ocidente. A ciência também se debruçou sobre o tema: a oxitocina é chamada de "hormônio do abraço", e a neurociência mostra que o amor ativa as mesmas áreas do cérebro associadas ao prazer e à recompensa.
+            </p>
+            <p>
+              <span class="first-letter">O</span> amor materno é um dos mais fortes, garantindo a sobrevivência da espécie, e o amor entre amigos é tão vital quanto o romântico para a saúde mental. O amor próprio, como diz a sabedoria popular, é a base para amar o próximo. Na mitologia nórdica, o amor de Freyja e Ódio moveu guerras e poesias, enquanto os hindus celebram Radha e Krishna como união divina.
+            </p>
+            <p>
+              <span class="first-letter">N</span>o Islã, o amor é visto como reflexo do amor de Alá por suas criaturas. O amor pode ser platônico, idealizado, ou real, cheio de imperfeições, mas sua essência persiste através dos séculos. Hoje, o amor é celebrado em todas as suas formas: LGBTQIA+, poliamor, amizades coloridas, mostrando que o amor é um verbo que requer ação, cuidado, presença e escuta.
+            </p>
+            <p>
+              <span class="first-letter">O</span> amor supera barreiras de idioma, cultura e distância, sendo a maior fonte de inspiração para a arte, a música e a literatura. A história do amor é também a história da liberdade de escolha. O amor pode ser doce como mel ou amargo como fel, mas sempre transforma quem o experimenta. Amar é ver o outro com os olhos da alma, não apenas com os do corpo.
+            </p>
+            <p>
+              <span class="first-letter">O</span> amor ensina paciência, tolerância e a beleza da imperfeição. No fundo, todos buscamos o mesmo: ser amados e amar de volta. O amor é uma jornada, não um destino — cada dia é uma nova página. Ele é a luz que ilumina os dias escuros e aquece os corações frios. Como escreveu Camões, "o amor é um fogo que arde sem se ver".
+            </p>
+            <p>
+              <span class="first-letter">O</span> amor é memória: guardamos cada gesto, cada palavra, cada olhar. É futuro: sonhamos juntos, planejamos, construímos. É presente: o aqui e agora é o único lugar onde ele verdadeiramente existe. O amor é cura, regenerando feridas que a razão não alcança; é coragem, pois envolve arriscar, se entregar e confiar. É paz, porque quando estamos com quem amamos, o mundo se acalma.
+            </p>
+            <p>
+              <span class="first-letter">O</span> amor é eterno: mesmo quando tudo muda, ele deixa sua marca indelével em nós. E, no fim, o amor é a única coisa que realmente levamos conosco. O amor é a razão de tudo. E sempre será. 💖 ❤️ 💗 💘 💕 💞 💓 💝
+            </p>
+          </div>
+        </div>
+
+        <!-- NOVIDADE: BOTÃO SURPRESA -->
+        <div class="surprise-btn-container">
+          <button class="surprise-btn" id="surpriseBtn">
+            <i class="fas fa-gift"></i> Clique para uma Surpresa
+          </button>
+        </div>
+
+        <!-- RODAPÉ COM CONTADOR -->
+        <div class="footer-love">
+          <div class="footer-title">
+            <i class="fas fa-heart" style="color: #ff1e4f;"></i>
+            Feito com muito amor
+            <i class="fas fa-heart" style="color: #ff1e4f;"></i>
+          </div>
+          
+          <div class="footer-text">
+            <p style="margin-bottom: 8px;">
+              <i class="fas fa-code"></i> Tecnologia, cores vivas e magia
+            </p>
+            
+            <div class="visitor-counter">
+              <span class="counter-icon">❤️</span>
+              <span class="counter-label">Visitas:</span>
+              <span class="counter-number" id="visitorCount">0</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTÃO DE ÁUDIO -->
+  <button class="audio-btn" id="audioToggle">
+    <i class="fas fa-music"></i>
+    <span id="audioStatus">🎵</span>
+  </button>
+
+  <!-- POP-UP DE SURPRESA (oculto) -->
+  <div id="surpriseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); align-items:center; justify-content:center;">
+    <div style="background:white; border-radius:40px; padding:40px; max-width:500px; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.3); animation:float 2s ease-in-out infinite;">
+      <div style="font-size:4rem; margin-bottom:15px;">💖</div>
+      <h2 style="font-family:'Great Vibes',cursive; color:#ff1e4f; font-size:2.5rem;">Você é amado(a)!</h2>
+      <p style="font-size:1.2rem; color:#4a1e2c; margin:20px 0;">
+        O amor está em toda parte. Em cada sorriso, em cada abraço, em cada pequeno gesto de carinho.
+        <br><br>
+        <strong style="color:#ff1e4f;">💕 Espalhe amor hoje! 💕</strong>
+      </p>
+      <button onclick="document.getElementById('surpriseModal').style.display='none'" style="background:linear-gradient(145deg,#ff4d6d,#ff1e4f); border:none; border-radius:50px; padding:12px 40px; color:white; font-size:1.2rem; font-weight:700; cursor:pointer; box-shadow:0 8px 25px rgba(255,0,80,0.3); transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        ❤️ Fechar
+      </button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ========== CORAÇÕES FLUTUANTES ==========
+      const heartsContainer = document.getElementById('hearts-container');
+      const heartSymbols = ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '💓', '♥️'];
+
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-float';
+        heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
+        heart.style.animationDuration = (12 + Math.random() * 20) + 's';
+        heart.style.animationDelay = (Math.random() * 18) + 's';
+        heart.style.opacity = 0.1 + Math.random() * 0.25;
+        heartsContainer.appendChild(heart);
+      }
+
+      // ========== ESTRELAS CADENTES ==========
+      const starsContainer = document.getElementById('stars-container');
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('div');
+        star.className = 'shooting-star';
+        star.style.top = (10 + Math.random() * 60) + '%';
+        star.style.left = (60 + Math.random() * 35) + '%';
+        star.style.animationDuration = (5 + Math.random() * 8) + 's';
+        star.style.animationDelay = (Math.random() * 10) + 's';
+        star.style.width = (1 + Math.random() * 3) + 'px';
+        star.style.height = (1 + Math.random() * 3) + 'px';
+        starsContainer.appendChild(star);
+      }
+
+      // ========== CONTADOR DE VISITAS ==========
+      function updateVisitorCounter() {
+        let count = localStorage.getItem('visitorCount');
+        if (count === null) {
+          count = 1;
+        } else {
+          count = parseInt(count) + 1;
+        }
+        localStorage.setItem('visitorCount', count.toString());
+        document.getElementById('visitorCount').textContent = count;
+      }
+      updateVisitorCounter();
+
+      // ========== FRASE DO DIA (ROTATIVA) ==========
+      const quotes = [
+        { text: '"O amor é a poesia dos sentidos."', author: '— Honoré de Balzac' },
+        { text: '"Amar é encontrar na felicidade de outro a própria felicidade."', author: '— Gottfried Leibniz' },
+        { text: '"O amor é a força mais sutil do mundo."', author: '— Mahatma Gandhi' },
+        { text: '"O amor é a única coisa que cresce à medida que se compartilha."', author: '— Antoine de Saint-Exupéry' },
+        { text: '"O amor não se vê com os olhos, mas com o coração."', author: '— William Shakespeare' },
+        { text: '"Amar é dar sem esperar nada em troca."', author: '— Madre Teresa de Calcutá' },
+        { text: '"O amor é a chave que abre a porta da felicidade."', author: '— Oliver Wendell Holmes' },
+        { text: '"O amor é o único tesouro que se multiplica quando dividido."', author: '— Autor Desconhecido' },
+        { text: '"O amor é a ponte entre duas almas."', author: '— Rumi' },
+        { text: '"No amor, o que importa não é encontrar a pessoa certa, mas construir um amor certo."', author: '— Augusto Cury' }
+      ];
+
+      let quoteIndex = 0;
+      function changeQuote() {
+        const quoteElement = document.getElementById('dailyQuote');
+        const authorElement = document.getElementById('quoteAuthor');
+        quoteElement.style.opacity = '0';
+        authorElement.style.opacity = '0';
+        
+        setTimeout(() => {
+          quoteIndex = (quoteIndex + 1) % quotes.length;
+          quoteElement.textContent = quotes[quoteIndex].text;
+          authorElement.textContent = quotes[quoteIndex].author;
+          quoteElement.style.opacity = '1';
+          authorElement.style.opacity = '1';
+        }, 500);
+      }
+
+      // Muda a frase a cada 8 segundos
+      setInterval(changeQuote, 8000);
+
+      // ========== BOTÃO SURPRESA ==========
+      document.getElementById('surpriseBtn').addEventListener('click', function() {
+        const modal = document.getElementById('surpriseModal');
+        modal.style.display = 'flex';
+        
+        // Efeito de corações caindo
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = ['❤️','💕','💗','💖','💘','💝'][Math.floor(Math.random() * 6)];
+            heart.style.position = 'fixed';
+            heart.style.fontSize = (1 + Math.random() * 2) + 'rem';
+            heart.style.left = (Math.random() * 100) + '%';
+            heart.style.top = '-20px';
+            heart.style.zIndex = '99999';
+            heart.style.animation = 'heartFloat 3s linear forwards';
+            heart.style.pointerEvents = 'none';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+              heart.remove();
+            }, 3000);
+          }, i * 100);
+        }
+      });
+
+      // ========== ÁUDIO MAIS LEVE E LENTO ==========
+      let audioElement = null;
+      let isPlaying = false;
+      const audioBtn = document.getElementById('audioToggle');
+      const audioStatus = document.getElementById('audioStatus');
+
+      function createAudio() {
+        // Músicas mais lentas e relaxantes (piano/ambiente)
+        const audioSources = [
+          'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+          'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
+        ];
+
+        try {
+          const audio = new Audio();
+          audio.loop = true;
+          audio.volume = 0.15; // Volume mais baixo para ser suave
+          audio.src = audioSources[0];
+          
+          audio.addEventListener('error', function() {
+            audio.src = audioSources[1];
+            audio.load();
+          });
+
+          // Torna a música mais lenta (se suportado)
+          try {
+            audio.playbackRate = 0.85; // 15% mais lento
+          } catch(e) {}
+
+          return audio;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function toggleAudio() {
+        if (isPlaying) {
+          if (audioElement) {
+            audioElement.pause();
+            audioElement.currentTime = 0;
+          }
+          isPlaying = false;
+          audioStatus.textContent = '🔇';
+          audioBtn.classList.add('off');
+          audioBtn.style.background = 'linear-gradient(145deg, #888, #555)';
+        } else {
+          if (!audioElement) {
+            audioElement = createAudio();
+            if (!audioElement) {
+              alert('Infelizmente seu navegador não suporta áudio. 😢');
+              return;
+            }
+          }
+          
+          audioElement.play()
+            .then(() => {
+              isPlaying = true;
+              audioStatus.textContent = '🎵';
+              audioBtn.classList.remove('off');
+              audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
+            })
+            .catch((err) => {
+              console.warn('Erro ao tocar áudio:', err);
+              audioElement = createAudio();
+              if (audioElement) {
+                audioElement.play()
+                  .then(() => {
+                    isPlaying = true;
+                    audioStatus.textContent = '🎵';
+                    audioBtn.classList.remove('off');
+                    audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
+                  })
+                  .catch(() => {
+                    alert('Clique novamente para ativar o som. (Autoplay bloqueado pelo navegador)');
+                  });
+              }
+            });
+        }
+      }
+
+      audioBtn.addEventListener('click', toggleAudio);
+
+      // Tenta iniciar automaticamente
+      document.addEventListener('click', function initAudio() {
+        if (!isPlaying && !audioElement) {
+          audioElement = createAudio();
+          if (audioElement) {
+            audioElement.play()
+              .then(() => {
+                isPlaying = true;
+                audioStatus.textContent = '🎵';
+                audioBtn.classList.remove('off');
+                audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
+              })
+              .catch(() => {});
+          }
+        }
+        document.removeEventListener('click', initAudio);
+      });
+
+      console.log('💖 Site do Amor com novidades carregado!');
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroControladores BR - Tecnologia Embarcada</title>
+    <style>
+        :root {
+            --primary: #0066cc;
+            --dark: #121212;
+            --light: #f4f4f4;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ccff;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00ccff;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/id/1015/1920/600') center/cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #0052a3;
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .schematic {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .visit-counter {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 102, 204, 0.95);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+            font-weight: bold;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: #aaa;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+        
+        .iot-section {
+            background: linear-gradient(135deg, #00cc99, #0099cc);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">μC BR</div>
+            <ul class="nav-links">
+                <li><a href="#intro">Início</a></li>
+                <li><a href="#micros">Microcontroladores</a></li>
+                <li><a href="#iot">IoT</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#comparacao">Comparação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Tecnologia com Microcontroladores</h1>
+        <p>Explorando ATmega, PIC, 8051, Arduino e aplicações em Internet das Coisas (IoT)</p>
+        <a href="#micros" class="btn">Explorar Agora</a>
+    </section>
+
+    <div class="container">
+        <section id="intro">
+            <h2>Bem-vindo ao Mundo dos Microcontroladores</h2>
+            <p>Os microcontroladores são o coração de milhares de dispositivos eletrônicos modernos. Desde eletrodomésticos até sistemas industriais complexos e soluções IoT, eles permitem que engenheiros e makers criem soluções inteligentes e eficientes.</p>
+            <p>Neste site você encontrará conteúdo técnico aprofundado sobre as famílias mais populares: <strong>ATmega (AVR)</strong>, <strong>PIC</strong>, <strong>8051</strong> e <strong>Arduino</strong> (baseado em ATmega).</p>
+        </section>
+
+        <!-- Contador de Visitas -->
+        <div class="visit-counter" id="counter">
+            👥 Visitas: <span id="visitCount">1247</span>
+        </div>
+
+        <section id="micros">
+            <h2>Principais Famílias de Microcontroladores</h2>
+            
+            <div class="card-grid">
+                <!-- ATmega -->
+                <div class="card">
+                    <img src="https://picsum.photos/id/201/600/300" alt="ATmega">
+                    <div class="card-content">
+                        <h3>ATmega (AVR)</h3>
+                        <p>Desenvolvidos pela Atmel (atual Microchip), os ATmega são conhecidos pela facilidade de programação em C e excelente suporte da comunidade Arduino. Destaques: ADC de alta resolução, timers ricos e periféricos USART, SPI, I2C.</p>
+                        <ul>
+                            <li>Clock até 20MHz</li>
+                            <li>Memória Flash generosa</li>
+                            <li>Baixo consumo em modo sleep</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- PIC -->
+                <div class="card">
+                    <img src="https://picsum.photos/id/180/600/300" alt="PIC">
+                    <div class="card-content">
+                        <h3>PIC (Microchip)</h3>
+                        <p>A linha PIC é extremamente versátil e presente em aplicações industriais. Os modelos 16F e 18F são os mais populares. Excelente custo-benefício e ampla variedade de periféricos (PWM, CCP, comparadores, etc).</p>
+                        <ul>
+                            <li>Arquitetura RISC</li>
+                            <li>Programação em Assembly ou C</li>
+                            <li>Alta confiabilidade em ambientes hostis</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 8051 -->
+                <div class="card">
+                    <img src="https://picsum.photos/id/251/600/300" alt="8051">
+                    <div class="card-content">
+                        <h3>8051</h3>
+                        <p>Clássico da Intel, ainda muito usado em ensino e em sistemas legados. Apesar da idade (1980), sua arquitetura simples e previsível o torna excelente para aprendizado de arquitetura de computadores.</p>
+                        <ul>
+                            <li>4 portas I/O de 8 bits</li>
+                            <li>2 timers/counters</li>
+                            <li>Suporte a interrupções externas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Arduino - A Plataforma para Makers</h2>
+            <p>O Arduino (baseado principalmente em ATmega328P) revolucionou o mundo maker. Com sua IDE amigável e enorme ecossistema de bibliotecas e shields, permite prototipagem rápida de projetos IoT, robótica, automação residencial e muito mais.</p>
+            <p><strong>Vantagens do Arduino:</strong></p>
+            <ul>
+                <li>Programação simplificada (baseada em Wiring)</li>
+                <li>Comunidade gigantesca</li>
+                <li>Compatibilidade com sensores e atuadores</li>
+            </ul>
+        </section>
+
+        <section class="iot-section" id="iot">
+            <h2 style="color:white;">Internet das Coisas (IoT) com Microcontroladores</h2>
+            <p>Os microcontroladores são a base da IoT. Com módulos ESP8266/ESP32 (baseados em Tensilica) ou combinados com ATmega/PIC + módulos WiFi/LoRa, é possível criar sistemas de monitoramento remoto, automação predial, agricultura inteligente, rastreamento, etc.</p>
+            
+            <div class="card-grid">
+                <div class="card" style="background:white;color:#333;">
+                    <div class="card-content">
+                        <h3>Exemplos de Aplicações IoT</h3>
+                        <ul>
+                            <li>Estação meteorológica conectada</li>
+                            <li>Controle de irrigação via celular</li>
+                            <li>Monitoramento de consumo de energia</li>
+                            <li>Sistemas de segurança com alertas</li>
+                            <li>Dispositivos vestíveis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2>Projetos Simples - Mesma Funcionalidade</h2>
+            <p>Vamos implementar um **pisca-pisca com botão de controle** em duas plataformas diferentes.</p>
+            
+            <h3>1. Esquema com PIC16F877A</h3>
+            <div class="schematic">
+                PIC16F877A
+                RB0 ---------------- LED1 (com resistor 330Ω)
+                RB1 ---------------- LED2 (com resistor 330Ω)
+                RA0 ---------------- Botão (com pull-up 10kΩ)
+                
+                Alimentação: +5V em VDD, GND em VSS
+            </div>
+            <p><strong>Código exemplo (em C com XC8):</strong></p>
+            <pre style="background:#f4f4f4;padding:15px;border-radius:8px;overflow:auto;">
+#include &lt;xc.h&gt;
+#define _XTAL_FREQ 4000000
+
+void main() {
+    TRISB = 0x00;      // PORTB saída
+    TRISA = 0xFF;      // PORTA entrada
+    while(1) {
+        if(!RA0) {     // Botão pressionado
+            PORTB = 0x03; // Liga os LEDs
+            __delay_ms(500);
+            PORTB = 0x00;
+            __delay_ms(500);
+        }
+    }
+}
+            </pre>
+
+            <h3>2. Mesmo comportamento com ATmega328P (Arduino Uno)</h3>
+            <div class="schematic">
+                ATmega328P (Arduino)
+                PD2 (pino 2) ------ LED1 (com resistor 330Ω)
+                PD3 (pino 3) ------ LED2 (com resistor 330Ω)
+                PD4 (pino 4) ------ Botão (com pull-up interno)
+                
+                Alimentação: +5V e GND
+            </div>
+            <p><strong>Código exemplo (Arduino IDE):</strong></p>
+            <pre style="background:#f4f4f4;padding:15px;border-radius:8px;overflow:auto;">
+const int led1 = 2;
+const int led2 = 3;
+const int botao = 4;
+
+void setup() {
+    pinMode(led1, OUTPUT);
+    pinMode(led2, OUTPUT);
+    pinMode(botao, INPUT_PULLUP);
+}
+
+void loop() {
+    if(digitalRead(botao) == LOW) {
+        digitalWrite(led1, HIGH);
+        digitalWrite(led2, HIGH);
+        delay(500);
+        digitalWrite(led1, LOW);
+        digitalWrite(led2, LOW);
+        delay(500);
+    }
+}
+            </pre>
+        </section>
+
+        <section id="comparacao">
+            <h2>Comparação Técnica</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>ATmega328</th>
+                        <th>PIC16F877A</th>
+                        <th>8051</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arquitetura</td>
+                        <td>AVR 8-bit</td>
+                        <td>PIC 8-bit</td>
+                        <td>CISC 8-bit</td>
+                    </tr>
+                    <tr>
+                        <td>Flash</td>
+                        <td>32KB</td>
+                        <td>14KB</td>
+                        <td>4-64KB (varia)</td>
+                    </tr>
+                    <tr>
+                        <td>Velocidade típica</td>
+                        <td>16-20MHz</td>
+                        <td>20MHz</td>
+                        <td>12MHz (1 MIPS)</td>
+                    </tr>
+                    <tr>
+                        <td>Facilidade para Iniciantes</td>
+                        <td>★★★★★ (Arduino)</td>
+                        <td>★★★★</td>
+                        <td>★★★</td>
+                    </tr>
+                    <tr>
+                        <td>Aplicações IoT</td>
+                        <td>Excelente</td>
+                        <td>Boa</td>
+                        <td>Limitada</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 MicroControladores BR - Conteúdo educativo sem imagens com direitos autorais (imagens placeholder via Picsum).</p>
+        <p>Desenvolvido para fins educativos • Compartilhe o conhecimento!</p>
+    </footer>
+
+    <script>
+        // Contador de visitas (simulado com localStorage)
+        let count = localStorage.getItem('visitCount') || 1247;
+        count = parseInt(count) + 1;
+        localStorage.setItem('visitCount', count);
+        document.getElementById('visitCount').textContent = count.toLocaleString('pt-BR');
+        
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Mensagem de boas-vindas
+        console.log("%cBem-vindo ao site de Microcontroladores! 🚀", "color:#0066cc;font-size:14px;font-weight:bold");
+    </script>
+</body>
+</html>

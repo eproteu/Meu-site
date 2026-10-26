@@ -140,55 +140,51 @@
     transition: color 0.3s ease;
     white-space:nowrap;
   }
-  .nav-link:hover{
+  .nav-link:hover,
+  .nav-link.show{
     color:var(--signal) !important;
   }
-
-  .nav-divider {
-    color: var(--copper);
-    opacity: 0.3;
-    padding: 0 6px;
-    font-size: 0.8rem;
+  .dropdown-toggle::after{
+    color:var(--copper);
+    vertical-align:.2em;
   }
 
-  /* ===== MENU DE PROJETOS ===== */
-  .extra-pages {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
-    margin-left: 10px;
-    padding-left: 12px;
-    border-left: 1px solid var(--trace-dim);
+  /* ===== DROPDOWN / SUB-ITENS ===== */
+  .dropdown-menu{
+    background:var(--surface);
+    border:1px solid var(--trace-dim);
+    border-top:2px solid var(--copper);
+    border-radius:var(--radius);
+    padding:6px;
+    box-shadow:0 12px 40px rgba(0,0,0,.5);
   }
-  
-  .extra-pages .page-link {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--copper);
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-    text-transform: lowercase;
-    white-space: nowrap;
-    letter-spacing: 0.5px;
+  .dropdown-item{
+    color:var(--silk);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.85rem;
+    padding:8px 14px;
+    border-radius:3px;
+    transition:all .25s;
   }
-  
-  .extra-pages .page-link:hover {
-    color: var(--signal);
-    border-color: var(--trace-dim);
-    background: rgba(79,224,200,0.1);
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(79,224,200,0.1);
+  .dropdown-item i{width:22px; color:var(--copper);}
+  .dropdown-item:hover,
+  .dropdown-item:focus{
+    background:rgba(79,224,200,.1);
+    color:var(--signal);
   }
-  
-  .extra-pages .page-link i {
-    margin-right: 6px;
-    font-size: 0.85rem;
-    opacity: 0.8;
+  .dropdown-item:hover i{color:var(--signal);}
+  .dropdown-divider{border-color:var(--trace-dim);}
+  .dropdown-header{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.7rem;
+    color:var(--copper);
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+
+  /* abre ao passar o mouse (apenas desktop) */
+  @media (min-width:992px){
+    .navbar .dropdown:hover > .dropdown-menu{display:block; margin-top:0;}
   }
 
   /* ===== HERO ===== */
@@ -374,31 +370,10 @@
   footer .social-link:hover{color:var(--signal);}
 
   /* ===== RESPONSIVO ===== */
-  @media (max-width: 992px) {
-    .extra-pages {
-      flex-wrap: wrap;
-      justify-content: center;
-      border-left: none;
-      margin-left: 0;
-      padding-left: 0;
-      padding-top: 8px;
-      border-top: 1px solid var(--trace-dim);
-    }
-    .extra-pages .page-link {
-      font-size: 0.85rem;
-      padding: 4px 12px;
-    }
-  }
-
   @media (max-width:576px){
     .hero{padding:60px 0 30px;}
     .top-logo .logo-text{font-size:1.3rem;}
     .top-logo .logo-sub{font-size:0.5rem; letter-spacing:3px;}
-    .extra-pages .page-link {
-      font-size: 0.8rem;
-      padding: 3px 10px;
-    }
-    .nav-divider {display: none;}
     .section{padding:40px 0;}
     .section-title{font-size:1.6rem;}
     .counter-digits{font-size:2rem;}
@@ -426,29 +401,56 @@
     </button>
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto gap-lg-3 align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-        <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
-        <li class="nav-item"><a class="nav-link" href="#git">Git</a></li>
-        <li class="nav-item"><a class="nav-link" href="#copa">Copa</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contador">Visitas</a></li>
-        
-        <!-- ===== LINKS PARA PROJETOS ===== -->
-        <li class="nav-item">
-          <span class="nav-divider">|</span>
-        </li>
-        <li class="nav-item extra-pages">
-          <a class="page-link" href="amor.html" title="Projeto Amor"><i class="fas fa-heart"></i>amor</a>
-          <a class="page-link" href="espanhol.html" title="Projeto Espanhol"><i class="fas fa-globe-americas"></i>espanhol</a>
-          <a class="page-link" href="frio.html" title="Projeto Frio"><i class="fas fa-snowflake"></i>frio</a>
-          <a class="page-link" href="jogo.html" title="Projeto Jogo"><i class="fas fa-gamepad"></i>jogo</a>
-          <a class="page-link" href="relogio.html" title="Projeto Relógio"><i class="fas fa-clock"></i>relogio</a>
-          <a class="page-link" href="unesp.html" title="Projeto UNESP"><i class="fas fa-university"></i>unesp</a>
-          <a class="page-link" href="git.html" title="git"><i class="fas fa-heart"></i>git</a>
-         <a class="page-link" href="copa.html" title="copa"><i class="fas fa-heart"></i>copa</a>
-        </li><br>
 
-        <!-- ===== FIM LINKS ===== -->
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+
+        <!-- PROJETOS com sub-itens -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#projetos" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Projetos</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#projetos"><i class="fas fa-th-large"></i>Ver seção</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><h6 class="dropdown-header">Páginas</h6></li>
+            <li><a class="dropdown-item" href="amor.html"><i class="fas fa-heart"></i>Amor</a></li>
+            <li><a class="dropdown-item" href="espanhol.html"><i class="fas fa-globe-americas"></i>Espanhol</a></li>
+            <li><a class="dropdown-item" href="frio.html"><i class="fas fa-snowflake"></i>Frio</a></li>
+            <li><a class="dropdown-item" href="jogo.html"><i class="fas fa-gamepad"></i>Jogo</a></li>
+            <li><a class="dropdown-item" href="relogio.html"><i class="fas fa-clock"></i>Relógio</a></li>
+            <li><a class="dropdown-item" href="unesp.html"><i class="fas fa-university"></i>UNESP</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+
+        <!-- GIT com sub-itens -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#git" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Git</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#git"><i class="fab fa-git-alt"></i>Ver seção</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="git.html"><i class="fab fa-github"></i>Guia de Git</a></li>
+            <li><a class="dropdown-item" href="qa.html"><i class="fas fa-terminal"></i>QA</a></li>
+            <li><a class="dropdown-item" href="tempo4.html"><i class="fas fa-code-branch"></i>tempo</a></li>
+          </ul>
+        </li>
+
+        <!-- COPA com sub-itens -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#copa" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Copa</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#copa"><i class="fas fa-futbol"></i>Ver seção</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="copa.html"><i class="fas fa-trophy"></i>Copa do Mundo</a></li>
+            <li><a class="dropdown-item" href="IA.html"><i class="fas fa-flag"></i>IA</a></li>
+            <li><a class="dropdown-item" href="novo_1.html"><i class="fas fa-table"></i>Tabela de jogos</a></li>
+            <li><a class="dropdown-item" href="novo_2.html"><i class="fas fa-question-circle"></i>Quiz</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="#contador">Visitas</a></li>
       </ul>
     </div>
   </div>
@@ -487,15 +489,6 @@
   <div class="container">
     <div class="section-tag">01 · Quem sou</div>
     <h2 class="section-title">Sobre mim</h2>
-
-    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (SOBRE) ===== -->
-    <!--
-      <ul style="list-style:none; padding-left:0; color:var(--silk);">
-        <li><strong>Formação:</strong> Exemplo: Análise e Desenvolvimento de Sistemas</li>
-        <li><strong>Experiência:</strong> Exemplo: Freelancer há 2 anos</li>
-        <li><strong>Objetivo:</strong> Exemplo: Tornar-se full-stack developer</li>
-      </ul>
-    -->
 
     <div class="row g-4 mt-2">
       <div class="col-lg-7">
@@ -546,17 +539,7 @@
     <h2 class="section-title">Projetos em destaque</h2>
     <p class="section-sub">Alguns dos projetos que desenvolvi para praticar e demonstrar minhas habilidades.</p>
 
-    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (PROJETOS) ===== -->
-    <!--
-      <ul style="list-style:none; padding-left:0; color:var(--silk);">
-        <li><strong>Projeto X:</strong> Descrição resumida do projeto X</li>
-        <li><strong>Projeto Y:</strong> Descrição resumida do projeto Y</li>
-        <li><strong>Projeto Z:</strong> Descrição resumida do projeto Z</li>
-      </ul>
-    -->
-
     <div class="row g-4 mt-2">
-      <!-- Projeto 1 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">❤️</span>
@@ -567,7 +550,6 @@
         </div>
       </div>
 
-      <!-- Projeto 2 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">🌎</span>
@@ -578,7 +560,6 @@
         </div>
       </div>
 
-      <!-- Projeto 3 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">❄️</span>
@@ -589,7 +570,6 @@
         </div>
       </div>
 
-      <!-- Projeto 4 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">🎮</span>
@@ -600,7 +580,6 @@
         </div>
       </div>
 
-      <!-- Projeto 5 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">🕐</span>
@@ -611,7 +590,6 @@
         </div>
       </div>
 
-      <!-- Projeto 6 -->
       <div class="col-md-6 col-lg-4">
         <div class="project-card">
           <span class="project-icon">🏛️</span>
@@ -631,15 +609,6 @@
     <div class="section-tag">03 · Tecnologias</div>
     <h2 class="section-title">Habilidades técnicas</h2>
     <p class="section-sub">Tecnologias e ferramentas que utilizo no meu dia a dia como desenvolvedor.</p>
-
-    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (HABILIDADES) ===== -->
-    <!--
-      <ul style="list-style:none; padding-left:0; color:var(--silk);">
-        <li><strong>Linguagens:</strong> JavaScript, TypeScript, Python</li>
-        <li><strong>Frameworks:</strong> React, Vue, Angular</li>
-        <li><strong>Ferramentas:</strong> Docker, AWS, Figma</li>
-      </ul>
-    -->
 
     <div class="row g-4 mt-3">
       <div class="col-md-6">
@@ -695,17 +664,8 @@
 <section class="section" id="git">
   <div class="container">
     <div class="section-tag">04 · Versionamento</div>
-    <h2 class="section-title">Git & GitHub</h2>
+    <h2 class="section-title">Git &amp; GitHub</h2>
     <p class="section-sub">Controle de versão é essencial no desenvolvimento moderno. Aqui estão minhas práticas e aprendizados.</p>
-
-    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (GIT) ===== -->
-    <!--
-      <ul style="list-style:none; padding-left:0; color:var(--silk);">
-        <li><strong>Repositórios:</strong> Exemplo: projeto-x, projeto-y</li>
-        <li><strong>Colaboração:</strong> Exemplo: contribuições em open-source</li>
-        <li><strong>Workflow:</strong> Exemplo: Git Flow, GitHub Actions</li>
-      </ul>
-    -->
 
     <div class="row g-4 mt-3">
       <div class="col-md-6">
@@ -719,14 +679,14 @@
             <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git commit -m "mensagem"</li>
             <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git push origin main</li>
             <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git pull</li>
-            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git branch & git merge</li>
+            <li style="margin-bottom:6px;"><span style="color:var(--copper);">$</span> git branch &amp; git merge</li>
           </ul>
         </div>
       </div>
       <div class="col-md-6">
         <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
           <h4 style="color:var(--signal); font-family:'Space Mono',monospace; font-size:1rem; margin-bottom:12px;">
-            <i class="fab fa-github" style="color:var(--copper);"></i> Workflow com GitHub
+            <i class="fab fa-github" style="color:var(--copper);"></i> tempo com GitHub
           </h4>
           <p style="color:#cdd6d1; font-size:.95rem;">
             Utilizo o GitHub para hospedar meus repositórios, colaborar em projetos open-source 
@@ -751,15 +711,6 @@
     <h2 class="section-title">Copa do Mundo</h2>
     <p class="section-sub">Um projeto interativo sobre futebol, estatísticas e paixão pelo esporte.</p>
 
-    <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (COPA) ===== -->
-    <!--
-      <ul style="list-style:none; padding-left:0; color:var(--silk);">
-        <li><strong>Seleções:</strong> Exemplo: Brasil, Argentina, França</li>
-        <li><strong>Jogadores:</strong> Exemplo: Pelé, Messi, Mbappé</li>
-        <li><strong>Estatísticas:</strong> Exemplo: gols, assistências, títulos</li>
-      </ul>
-    -->
-
     <div class="row g-4 mt-3">
       <div class="col-md-6">
         <div style="background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius); padding:25px; height:100%;">
@@ -775,8 +726,8 @@
             <i class="fas fa-code" style="color:var(--signal);"></i> 
             Tecnologias: HTML5, CSS3, JavaScript e consumo de API para dados atualizados.
           </p>
-          <a href="#" class="project-link" style="margin-top:10px; display:inline-block;">
-            <i class="fas fa-external-link-alt"></i> Ver projeto (em breve)
+          <a href="copa.html" class="project-link" style="margin-top:10px; display:inline-block;">
+            <i class="fas fa-external-link-alt"></i> Ver projeto
           </a>
         </div>
       </div>
@@ -786,10 +737,10 @@
             <i class="fas fa-trophy" style="color:var(--copper);"></i> Funcionalidades
           </h4>
           <ul style="list-style:none; padding-left:0; font-size:.95rem; color:#cdd6d1;">
-            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Tabela de jogos com horários</li>
-            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Perfil de seleções e destaques</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> <a href="tabela.html" style="color:inherit;">Tabela de jogos com horários</a></li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> <a href="selecoes.html" style="color:inherit;">Perfil de seleções e destaques</a></li>
             <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Galeria de momentos históricos</li>
-            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Quiz interativo sobre copas</li>
+            <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> <a href="quiz.html" style="color:inherit;">Quiz interativo sobre copas</a></li>
             <li style="margin-bottom:6px;"><i class="fas fa-check-circle" style="color:var(--signal);"></i> Modo claro/escuro</li>
           </ul>
         </div>
@@ -811,15 +762,6 @@
           <div class="mono mt-2" style="font-size:.65rem;color:#8fa39c;">
             <i class="fas fa-sync-alt" style="color:var(--copper);"></i> contador persistente
           </div>
-
-          <!-- ===== LISTA COMENTADA PARA FUTUROS SUBTÍTULOS (CONTADOR) ===== -->
-          <!--
-            <ul style="list-style:none; padding-left:0; color:var(--silk); margin-top:10px; font-size:.8rem;">
-              <li><strong>Total de visitas:</strong> 000000</li>
-              <li><strong>Última visita:</strong> dd/mm/aaaa</li>
-            </ul>
-          -->
-
         </div>
       </div>
     </div>

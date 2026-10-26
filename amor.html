@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💖 História do Amor - Experiência Completa</title>
+  <title>💖 História do Amor - Experiência Leve</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,10 +22,10 @@
     body {
       font-family: 'Quicksand', sans-serif;
       min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fdfcfb 100%);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      padding: 20px 0 100px 0;
+      background: linear-gradient(135deg, #ffe9f0 0%, #fdf2f8 40%, #f0f9ff 100%);
+      background-size: 300% 300%;
+      animation: gradientBG 18s ease infinite;
+      padding: 20px 0 90px 0;
       overflow-x: hidden;
       position: relative;
       cursor: default;
@@ -37,59 +37,59 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* ===== TÍTULO FLUTUANTE ===== */
+    /* ===== TÍTULO FLUTUANTE — cores mais leves ===== */
     .floating-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 4.5rem;
+      font-size: 4.2rem;
       font-weight: bold;
       text-align: center;
       color: #fff;
-      text-shadow: 0 0 20px #ff3b6f, 0 0 40px #ff6b8a, 0 0 80px #ff9a9e;
-      animation: float 3s ease-in-out infinite, glowPulse 2s ease-in-out infinite alternate;
+      text-shadow: 0 0 15px #ffb3c6, 0 0 35px #ffc2d1, 0 0 65px #ffd6e0;
+      animation: float 3.5s ease-in-out infinite, glowPulse 2.5s ease-in-out infinite alternate;
       letter-spacing: 3px;
-      margin: 20px 0 30px 0;
+      margin: 20px 0 28px 0;
       position: relative;
       z-index: 10;
     }
 
     @keyframes float {
       0% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-20px) scale(1.02); }
+      50% { transform: translateY(-15px) scale(1.02); }
       100% { transform: translateY(0px) scale(1); }
     }
 
     @keyframes glowPulse {
-      0% { text-shadow: 0 0 20px #ff3b6f, 0 0 40px #ff6b8a, 0 0 80px #ff9a9e; }
-      100% { text-shadow: 0 0 30px #ff7eb3, 0 0 60px #ff4d6d, 0 0 100px #ff1e4f, 0 0 140px #ff0066; }
+      0% { text-shadow: 0 0 15px #ffb3c6, 0 0 35px #ffc2d1, 0 0 65px #ffd6e0; }
+      100% { text-shadow: 0 0 25px #ffc2d1, 0 0 50px #ffd6e0, 0 0 90px #ffe4ec; }
     }
 
     /* ===== SUBTÍTULO ===== */
     .subtitle {
       text-align: center;
-      font-size: 1.2rem;
-      color: #4a1e2c;
+      font-size: 1.15rem;
+      color: #8a5a6b;
       font-weight: 600;
-      margin: -15px 0 25px 0;
-      opacity: 0.8;
+      margin: -12px 0 22px 0;
+      opacity: 0.9;
       animation: fadeInUp 2s ease;
       position: relative;
       z-index: 10;
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 0.8; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== CARD PRINCIPAL ===== */
     .glass-card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-radius: 40px;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 30px 50px rgba(255, 0, 100, 0.3);
-      padding: 45px 50px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 36px;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 25px 45px rgba(255, 150, 180, 0.2);
+      padding: 42px 48px;
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
@@ -103,8 +103,8 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: shimmer 8s infinite linear;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      animation: shimmer 10s infinite linear;
       pointer-events: none;
     }
 
@@ -115,78 +115,78 @@
 
     /* ===== TEXTO EM PARÁGRAFOS ===== */
     .love-text {
-      font-size: 1.15rem;
-      line-height: 2.2rem;
+      font-size: 1.12rem;
+      line-height: 2.1rem;
       font-weight: 500;
-      color: #2d1b2e;
+      color: #4a2c38;
       text-align: justify;
       position: relative;
       z-index: 1;
     }
 
     .love-text p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
       padding: 12px 20px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.15);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.45);
       border-left: 5px solid transparent;
       transition: all 0.4s ease;
       position: relative;
     }
 
     .love-text p:nth-child(odd) {
-      background: rgba(255, 200, 220, 0.2);
-      border-left-color: #ff4d6d;
+      background: rgba(255, 230, 240, 0.6);
+      border-left-color: #ff9bb3;
     }
 
     .love-text p:nth-child(even) {
-      background: rgba(200, 230, 255, 0.15);
-      border-left-color: #ff9a9e;
+      background: rgba(230, 245, 255, 0.55);
+      border-left-color: #a6d0f5;
     }
 
     .love-text p:hover {
-      background: rgba(255, 255, 255, 0.6);
-      transform: translateX(10px) scale(1.01);
-      box-shadow: 0 4px 20px rgba(255, 0, 100, 0.15);
-      border-left-color: #ff0066;
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateX(8px) scale(1.01);
+      box-shadow: 0 6px 18px rgba(255, 140, 170, 0.15);
+      border-left-color: #ff7b9c;
       border-left-width: 8px;
     }
 
     .love-text .first-letter {
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       font-weight: 700;
-      color: #ff1e4f;
+      color: #ff8fa8;
       float: left;
       margin-right: 10px;
       line-height: 1;
       font-family: 'Great Vibes', cursive;
-      text-shadow: 0 0 30px rgba(255, 30, 79, 0.4);
+      text-shadow: 0 0 20px rgba(255, 143, 168, 0.3);
     }
 
-    /* ===== FIGURAS DECORATIVAS ===== */
+    /* ===== FIGURAS DECORATIVAS — mais leves ===== */
     .figure-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
-      margin: 30px 0 25px 0;
+      margin: 28px 0 24px 0;
       position: relative;
       z-index: 1;
       animation: fadeInUp 1.8s ease;
     }
 
     .figure-item {
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(8px);
-      border-radius: 30px;
-      padding: 15px 25px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 25px rgba(255, 0, 100, 0.2);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+      border-radius: 26px;
+      padding: 14px 22px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 6px 20px rgba(255, 160, 190, 0.15);
       transition: all 0.4s ease;
       text-align: center;
-      font-size: 2.5rem;
-      min-width: 100px;
-      animation: figureFloat 4s ease-in-out infinite;
+      font-size: 2.3rem;
+      min-width: 95px;
+      animation: figureFloat 4.5s ease-in-out infinite;
       cursor: pointer;
     }
 
@@ -197,28 +197,28 @@
 
     @keyframes figureFloat {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(3deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
     }
 
     .figure-item:hover {
-      transform: scale(1.2) rotate(-5deg) !important;
-      background: rgba(255, 255, 255, 0.7);
-      box-shadow: 0 12px 40px rgba(255, 0, 100, 0.5);
+      transform: scale(1.15) rotate(-4deg) !important;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px rgba(255, 140, 170, 0.35);
       animation-play-state: paused;
     }
 
     .figure-item span {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      color: #4a1e2c;
-      margin-top: 5px;
+      color: #7a4a5a;
+      margin-top: 4px;
       font-family: 'Quicksand', sans-serif;
     }
 
-    /* ===== NOVIDADE: TIMELINE DE AMOR ===== */
+    /* ===== TIMELINE ===== */
     .timeline-section {
-      margin: 30px 0;
+      margin: 28px 0;
       position: relative;
       z-index: 1;
       animation: fadeInUp 2s ease;
@@ -227,9 +227,9 @@
     .timeline-title {
       text-align: center;
       font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      color: #4a1e2c;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #7a4a5a;
+      margin-bottom: 18px;
     }
 
     .timeline {
@@ -237,12 +237,12 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      border-radius: 30px;
-      padding: 20px 30px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(6px);
+      border-radius: 26px;
+      padding: 18px 26px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
     }
 
     .timeline-item {
@@ -252,109 +252,109 @@
       transition: all 0.3s ease;
       cursor: pointer;
       padding: 10px;
-      border-radius: 20px;
+      border-radius: 18px;
     }
 
     .timeline-item:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(1.08);
     }
 
     .timeline-item .year {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: #ff1e4f;
+      color: #ff7b9c;
       display: block;
     }
 
     .timeline-item .event {
-      font-size: 0.8rem;
-      color: #4a1e2c;
+      font-size: 0.78rem;
+      color: #7a4a5a;
       font-weight: 600;
     }
 
-    /* ===== NOVIDADE: FRASE DO DIA ===== */
+    /* ===== FRASE DO DIA ===== */
     .quote-section {
       text-align: center;
       padding: 20px;
-      margin: 20px 0;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      border-radius: 30px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      margin: 22px 0;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(6px);
+      border-radius: 26px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
       position: relative;
       z-index: 1;
       animation: fadeInUp 2.2s ease;
     }
 
     .quote-section .quote-icon {
-      font-size: 2.5rem;
-      color: #ff1e4f;
-      opacity: 0.5;
+      font-size: 2.2rem;
+      color: #ff9bb3;
+      opacity: 0.7;
     }
 
     .quote-section .quote-text {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-family: 'Great Vibes', cursive;
-      color: #4a1e2c;
+      color: #7a4a5a;
       margin: 10px 0;
       font-weight: 600;
     }
 
     .quote-section .quote-author {
-      font-size: 0.9rem;
-      color: #6b3a4a;
+      font-size: 0.88rem;
+      color: #a07080;
       font-weight: 600;
     }
 
-    /* ===== NOVIDADE: BOTÃO DE SURPRESA ===== */
+    /* ===== BOTÃO DE SURPRESA ===== */
     .surprise-btn-container {
       text-align: center;
-      margin: 20px 0;
+      margin: 22px 0;
       position: relative;
       z-index: 1;
       animation: fadeInUp 2.4s ease;
     }
 
     .surprise-btn {
-      background: linear-gradient(145deg, #ff4d6d, #ff1e4f);
+      background: linear-gradient(145deg, #ffb3c6, #ff9bb3);
       border: none;
       border-radius: 50px;
-      padding: 15px 40px;
-      font-size: 1.2rem;
+      padding: 14px 38px;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: white;
-      box-shadow: 0 8px 25px rgba(255, 0, 80, 0.4);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(255, 140, 170, 0.35);
       transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      border: 2px solid rgba(255, 255, 255, 0.8);
       cursor: pointer;
       font-family: 'Quicksand', sans-serif;
     }
 
     .surprise-btn:hover {
-      transform: scale(1.1) rotate(-3deg);
-      box-shadow: 0 12px 40px rgba(255, 0, 80, 0.6);
-      background: linear-gradient(145deg, #ff6b8a, #ff0033);
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 12px 32px rgba(255, 140, 170, 0.5);
+      background: linear-gradient(145deg, #ffc2d1, #ffaabf);
     }
 
     .surprise-btn i {
       margin-right: 10px;
     }
 
-    /* ===== CORAÇÕES FLUTUANTES ===== */
+    /* ===== CORAÇÕES FLUTUANTES — mais claros ===== */
     .heart-float {
       position: fixed;
       font-size: 2rem;
-      opacity: 0.2;
-      animation: heartFloat 15s linear infinite;
+      opacity: 0.15;
+      animation: heartFloat 18s linear infinite;
       pointer-events: none;
       z-index: 0;
     }
 
     @keyframes heartFloat {
-      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0.1; }
-      50% { opacity: 0.4; }
-      100% { transform: translateY(-10vh) rotate(720deg) scale(1.5); opacity: 0; }
+      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0.08; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(720deg) scale(1.4); opacity: 0; }
     }
 
     /* ===== ESTRELAS CADENTES ===== */
@@ -362,10 +362,10 @@
       position: fixed;
       width: 2px;
       height: 2px;
-      background: white;
+      background: #ffe4ec;
       border-radius: 50%;
-      box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
-      animation: shoot 6s linear infinite;
+      box-shadow: 0 0 6px 2px rgba(255, 228, 236, 0.7);
+      animation: shoot 7s linear infinite;
       pointer-events: none;
       z-index: 1;
     }
@@ -376,55 +376,16 @@
       100% { transform: translateX(-800px) translateY(600px) scale(0); opacity: 0; }
     }
 
-    /* ===== BOTÃO DE ÁUDIO ===== */
-    .audio-btn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 999;
-      background: linear-gradient(145deg, #ff4d6d, #ff1e4f);
-      border: none;
-      border-radius: 60px;
-      padding: 18px 30px;
-      font-size: 1.8rem;
-      color: white;
-      box-shadow: 0 10px 30px rgba(255, 0, 80, 0.6);
-      transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      animation: pulseBtn 2s infinite;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-    }
-
-    .audio-btn:hover {
-      transform: scale(1.12) rotate(-5deg);
-      background: linear-gradient(145deg, #ff6b8a, #ff0033);
-      box-shadow: 0 0 40px #ff4d6d;
-    }
-
-    @keyframes pulseBtn {
-      0% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.7); }
-      70% { box-shadow: 0 0 0 20px rgba(255, 0, 80, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0); }
-    }
-
-    .audio-btn.off {
-      background: linear-gradient(145deg, #888, #555);
-      animation: none;
-    }
-
     /* ===== RODAPÉ COM CONTADOR ===== */
     .footer-love {
       text-align: center;
-      margin-top: 40px;
-      padding: 25px 20px;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      border-radius: 60px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(255, 0, 100, 0.15);
+      margin-top: 38px;
+      padding: 24px 20px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      border-radius: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 25px rgba(255, 160, 190, 0.12);
       position: relative;
       z-index: 1;
       animation: fadeInUp 2.6s ease;
@@ -432,57 +393,57 @@
 
     .footer-love .footer-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: #4a1e2c;
-      margin-bottom: 10px;
+      font-size: 1.7rem;
+      color: #7a4a5a;
+      margin-bottom: 8px;
     }
 
     .footer-love .footer-text {
       font-weight: 600;
-      color: #4a1e2c;
+      color: #7a4a5a;
     }
 
     .visitor-counter {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      background: rgba(255, 255, 255, 0.4);
-      padding: 10px 30px;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 28px;
       border-radius: 50px;
-      margin-top: 10px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 4px 15px rgba(255, 0, 100, 0.2);
+      margin-top: 8px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 14px rgba(255, 140, 170, 0.15);
     }
 
     .visitor-counter .counter-icon {
-      font-size: 2rem;
-      animation: heartBeat 1.5s ease-in-out infinite;
+      font-size: 1.9rem;
+      animation: heartBeat 1.8s ease-in-out infinite;
     }
 
     @keyframes heartBeat {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); color: #ff1e4f; }
+      50% { transform: scale(1.25); color: #ff7b9c; }
     }
 
     .visitor-counter .counter-number {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 700;
-      color: #ff1e4f;
-      text-shadow: 0 0 20px rgba(255, 30, 79, 0.3);
+      color: #ff7b9c;
+      text-shadow: 0 0 18px rgba(255, 123, 156, 0.25);
       font-family: 'Great Vibes', cursive;
       min-width: 60px;
     }
 
     .visitor-counter .counter-label {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: #4a1e2c;
+      color: #7a4a5a;
     }
 
     /* ===== RESPONSIVO ===== */
     @media (max-width: 768px) {
       .floating-title {
-        font-size: 2.8rem;
+        font-size: 2.6rem;
       }
       .love-text {
         font-size: 1rem;
@@ -495,18 +456,12 @@
         padding: 25px 18px;
       }
       .figure-item {
-        font-size: 2rem;
+        font-size: 1.9rem;
         min-width: 70px;
         padding: 10px 15px;
       }
-      .audio-btn {
-        padding: 14px 20px;
-        font-size: 1.4rem;
-        bottom: 20px;
-        right: 20px;
-      }
       .visitor-counter {
-        padding: 8px 20px;
+        padding: 8px 18px;
         flex-wrap: wrap;
         justify-content: center;
       }
@@ -544,15 +499,15 @@
 
   <!-- TÍTULO FLUTUANTE -->
   <h1 class="floating-title">
-    <i class="fas fa-heart" style="color: #ff1e4f; margin: 0 15px;"></i>
+    <i class="fas fa-heart" style="color: #ff8fa8; margin: 0 15px;"></i>
     A História do Amor
-    <i class="fas fa-heart" style="color: #ff1e4f; margin: 0 15px;"></i>
+    <i class="fas fa-heart" style="color: #ff8fa8; margin: 0 15px;"></i>
   </h1>
 
   <div class="subtitle">
-    <i class="fas fa-infinity" style="color: #ff1e4f;"></i>
+    <i class="fas fa-infinity" style="color: #ff9bb3;"></i>
     Uma jornada através dos tempos
-    <i class="fas fa-infinity" style="color: #ff1e4f;"></i>
+    <i class="fas fa-infinity" style="color: #ff9bb3;"></i>
   </div>
 
   <!-- CONTAINER PRINCIPAL -->
@@ -562,39 +517,39 @@
 
         <!-- FIGURAS DECORATIVAS -->
         <div class="figure-container">
-          <div class="figure-item" title="Clique para amar">
+          <div class="figure-item" title="Romance">
             🌹
             <span>Romance</span>
           </div>
-          <div class="figure-item" title="Clique para amar">
+          <div class="figure-item" title="União">
             💑
             <span>União</span>
           </div>
-          <div class="figure-item" title="Clique para amar">
+          <div class="figure-item" title="Paz">
             🕊️
             <span>Paz</span>
           </div>
-          <div class="figure-item" title="Clique para amar">
+          <div class="figure-item" title="Paixão">
             💞
             <span>Paixão</span>
           </div>
-          <div class="figure-item" title="Clique para amar">
+          <div class="figure-item" title="Magia">
             ✨
             <span>Magia</span>
           </div>
         </div>
 
-        <!-- NOVIDADE: FRASE DO DIA -->
+        <!-- FRASE DO DIA -->
         <div class="quote-section" id="quoteSection">
           <div class="quote-icon">💭</div>
           <div class="quote-text" id="dailyQuote">"O amor é a poesia dos sentidos."</div>
           <div class="quote-author" id="quoteAuthor">— Honoré de Balzac</div>
         </div>
 
-        <!-- NOVIDADE: TIMELINE DO AMOR -->
+        <!-- TIMELINE DO AMOR -->
         <div class="timeline-section">
           <div class="timeline-title">
-            <i class="fas fa-clock" style="color: #ff1e4f;"></i>
+            <i class="fas fa-clock" style="color: #ff9bb3;"></i>
             Linha do Tempo do Amor
           </div>
           <div class="timeline">
@@ -654,7 +609,7 @@
           </div>
         </div>
 
-        <!-- NOVIDADE: BOTÃO SURPRESA -->
+        <!-- BOTÃO SURPRESA -->
         <div class="surprise-btn-container">
           <button class="surprise-btn" id="surpriseBtn">
             <i class="fas fa-gift"></i> Clique para uma Surpresa
@@ -664,16 +619,16 @@
         <!-- RODAPÉ COM CONTADOR -->
         <div class="footer-love">
           <div class="footer-title">
-            <i class="fas fa-heart" style="color: #ff1e4f;"></i>
+            <i class="fas fa-heart" style="color: #ff8fa8;"></i>
             Feito com muito amor
-            <i class="fas fa-heart" style="color: #ff1e4f;"></i>
+            <i class="fas fa-heart" style="color: #ff8fa8;"></i>
           </div>
-          
+
           <div class="footer-text">
             <p style="margin-bottom: 8px;">
-              <i class="fas fa-code"></i> Tecnologia, cores vivas e magia
+              <i class="fas fa-code"></i> Tecnologia, cores leves e magia
             </p>
-            
+
             <div class="visitor-counter">
               <span class="counter-icon">❤️</span>
               <span class="counter-label">Visitas:</span>
@@ -686,23 +641,17 @@
     </div>
   </div>
 
-  <!-- BOTÃO DE ÁUDIO -->
-  <button class="audio-btn" id="audioToggle">
-    <i class="fas fa-music"></i>
-    <span id="audioStatus">🎵</span>
-  </button>
-
   <!-- POP-UP DE SURPRESA (oculto) -->
-  <div id="surpriseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); align-items:center; justify-content:center;">
-    <div style="background:white; border-radius:40px; padding:40px; max-width:500px; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.3); animation:float 2s ease-in-out infinite;">
-      <div style="font-size:4rem; margin-bottom:15px;">💖</div>
-      <h2 style="font-family:'Great Vibes',cursive; color:#ff1e4f; font-size:2.5rem;">Você é amado(a)!</h2>
-      <p style="font-size:1.2rem; color:#4a1e2c; margin:20px 0;">
+  <div id="surpriseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; background:rgba(0,0,0,0.35); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
+    <div style="background:#fff5f8; border-radius:36px; padding:38px; max-width:500px; text-align:center; box-shadow:0 25px 55px rgba(255, 140, 170, 0.3); animation:float 2.5s ease-in-out infinite;">
+      <div style="font-size:3.8rem; margin-bottom:15px;">💖</div>
+      <h2 style="font-family:'Great Vibes',cursive; color:#ff7b9c; font-size:2.4rem;">Você é amado(a)!</h2>
+      <p style="font-size:1.15rem; color:#7a4a5a; margin:20px 0;">
         O amor está em toda parte. Em cada sorriso, em cada abraço, em cada pequeno gesto de carinho.
         <br><br>
-        <strong style="color:#ff1e4f;">💕 Espalhe amor hoje! 💕</strong>
+        <strong style="color:#ff7b9c;">💕 Espalhe amor hoje! 💕</strong>
       </p>
-      <button onclick="document.getElementById('surpriseModal').style.display='none'" style="background:linear-gradient(145deg,#ff4d6d,#ff1e4f); border:none; border-radius:50px; padding:12px 40px; color:white; font-size:1.2rem; font-weight:700; cursor:pointer; box-shadow:0 8px 25px rgba(255,0,80,0.3); transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <button onclick="document.getElementById('surpriseModal').style.display='none'" style="background:linear-gradient(145deg,#ffb3c6,#ff9bb3); border:none; border-radius:50px; padding:12px 38px; color:white; font-size:1.15rem; font-weight:700; cursor:pointer; box-shadow:0 8px 22px rgba(255,140,170,0.35); transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
         ❤️ Fechar
       </button>
     </div>
@@ -719,15 +668,15 @@
       const heartsContainer = document.getElementById('hearts-container');
       const heartSymbols = ['❤️', '💕', '💗', '💖', '💘', '💝', '💞', '💓', '♥️'];
 
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 22; i++) {
         const heart = document.createElement('div');
         heart.className = 'heart-float';
         heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
         heart.style.left = Math.random() * 100 + '%';
-        heart.style.fontSize = (1.5 + Math.random() * 3) + 'rem';
-        heart.style.animationDuration = (12 + Math.random() * 20) + 's';
+        heart.style.fontSize = (1.4 + Math.random() * 2.6) + 'rem';
+        heart.style.animationDuration = (14 + Math.random() * 20) + 's';
         heart.style.animationDelay = (Math.random() * 18) + 's';
-        heart.style.opacity = 0.1 + Math.random() * 0.25;
+        heart.style.opacity = 0.08 + Math.random() * 0.2;
         heartsContainer.appendChild(heart);
       }
 
@@ -738,7 +687,7 @@
         star.className = 'shooting-star';
         star.style.top = (10 + Math.random() * 60) + '%';
         star.style.left = (60 + Math.random() * 35) + '%';
-        star.style.animationDuration = (5 + Math.random() * 8) + 's';
+        star.style.animationDuration = (6 + Math.random() * 8) + 's';
         star.style.animationDelay = (Math.random() * 10) + 's';
         star.style.width = (1 + Math.random() * 3) + 'px';
         star.style.height = (1 + Math.random() * 3) + 'px';
@@ -778,7 +727,7 @@
         const authorElement = document.getElementById('quoteAuthor');
         quoteElement.style.opacity = '0';
         authorElement.style.opacity = '0';
-        
+
         setTimeout(() => {
           quoteIndex = (quoteIndex + 1) % quotes.length;
           quoteElement.textContent = quotes[quoteIndex].text;
@@ -795,9 +744,9 @@
       document.getElementById('surpriseBtn').addEventListener('click', function() {
         const modal = document.getElementById('surpriseModal');
         modal.style.display = 'flex';
-        
+
         // Efeito de corações caindo
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 18; i++) {
           setTimeout(() => {
             const heart = document.createElement('div');
             heart.textContent = ['❤️','💕','💗','💖','💘','💝'][Math.floor(Math.random() * 6)];
@@ -809,7 +758,7 @@
             heart.style.animation = 'heartFloat 3s linear forwards';
             heart.style.pointerEvents = 'none';
             document.body.appendChild(heart);
-            
+
             setTimeout(() => {
               heart.remove();
             }, 3000);
@@ -817,108 +766,18 @@
         }
       });
 
-      // ========== ÁUDIO MAIS LEVE E LENTO ==========
-      let audioElement = null;
-      let isPlaying = false;
-      const audioBtn = document.getElementById('audioToggle');
-      const audioStatus = document.getElementById('audioStatus');
-
-      function createAudio() {
-        // Músicas mais lentas e relaxantes (piano/ambiente)
-        const audioSources = [
-          'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-          'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3'
-        ];
-
-        try {
-          const audio = new Audio();
-          audio.loop = true;
-          audio.volume = 0.15; // Volume mais baixo para ser suave
-          audio.src = audioSources[0];
-          
-          audio.addEventListener('error', function() {
-            audio.src = audioSources[1];
-            audio.load();
-          });
-
-          // Torna a música mais lenta (se suportado)
-          try {
-            audio.playbackRate = 0.85; // 15% mais lento
-          } catch(e) {}
-
-          return audio;
-        } catch (e) {
-          return null;
-        }
-      }
-
-      function toggleAudio() {
-        if (isPlaying) {
-          if (audioElement) {
-            audioElement.pause();
-            audioElement.currentTime = 0;
-          }
-          isPlaying = false;
-          audioStatus.textContent = '🔇';
-          audioBtn.classList.add('off');
-          audioBtn.style.background = 'linear-gradient(145deg, #888, #555)';
-        } else {
-          if (!audioElement) {
-            audioElement = createAudio();
-            if (!audioElement) {
-              alert('Infelizmente seu navegador não suporta áudio. 😢');
-              return;
-            }
-          }
-          
-          audioElement.play()
-            .then(() => {
-              isPlaying = true;
-              audioStatus.textContent = '🎵';
-              audioBtn.classList.remove('off');
-              audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
-            })
-            .catch((err) => {
-              console.warn('Erro ao tocar áudio:', err);
-              audioElement = createAudio();
-              if (audioElement) {
-                audioElement.play()
-                  .then(() => {
-                    isPlaying = true;
-                    audioStatus.textContent = '🎵';
-                    audioBtn.classList.remove('off');
-                    audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
-                  })
-                  .catch(() => {
-                    alert('Clique novamente para ativar o som. (Autoplay bloqueado pelo navegador)');
-                  });
-              }
-            });
-        }
-      }
-
-      audioBtn.addEventListener('click', toggleAudio);
-
-      // Tenta iniciar automaticamente
-      document.addEventListener('click', function initAudio() {
-        if (!isPlaying && !audioElement) {
-          audioElement = createAudio();
-          if (audioElement) {
-            audioElement.play()
-              .then(() => {
-                isPlaying = true;
-                audioStatus.textContent = '🎵';
-                audioBtn.classList.remove('off');
-                audioBtn.style.background = 'linear-gradient(145deg, #ff4d6d, #ff1e4f)';
-              })
-              .catch(() => {});
-          }
-        }
-        document.removeEventListener('click', initAudio);
-      });
-
-      console.log('💖 Site do Amor com novidades carregado!');
+      console.log('💖 Site do Amor (versão leve) carregado!');
     })();
+
+    <footer>
+  <div class="container">
+    <!-- ... outros elementos do footer ... -->
+    <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace;">
+      <i class="fas fa-eye" style="color:var(--copper);"></i>
+      Visitas totais: <span class="contador-global">— — — —</span>
+    </div>
+  </div>
+</footer>
   </script>
 
 </body>

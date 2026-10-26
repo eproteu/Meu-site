@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNESP FCLAr - Natureza e Conhecimento</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f4;
+            color: #333;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #2c4c38;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        /* Seção Banner Principal */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('SUA_FOTO_BANNER.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Seções de Conteúdo */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .about {
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 50px;
+        }
+
+        .about h3 {
+            color: #2c4c38;
+            font-size: 28px;
+        }
+
+        /* Galeria de Fotos */
+        .gallery-title {
+            text-align: center;
+            color: #2c4c38;
+            margin-bottom: 30px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-item p {
+            padding: 15px;
+            margin: 0;
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1e3326;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>UNESP FCLAr Verde</h1>
+        <nav>
+            <a href="#sobre">O Câmpus</a>
+            <a href="#galeria">Galeria</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Onde a Ciência e a Natureza se Encontram</h2>
+    </section>
+
+    <div class="container">
+        
+        <section id="sobre" class="about">
+            <h3>Refúgio de Biodiversidade e Conhecimento</h3>
+            <p>
+                A Faculdade de Ciências e Letras de Araraquara (FCLAr) vai muito além das salas de aula. 
+                Cercada por uma área verde exuberante, a unidade é um verdadeiro refúgio para a fauna e flora locais. 
+                Caminhar entre os blocos didáticos é respirar o ar puro do nosso bosque, cruzar com os saguis que habitam a região e 
+                admirar o pôr do sol único do interior paulista. Um ambiente que inspira a pesquisa, o ensino e a reflexão.
+            </p>
+        </section>
+
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+
+        <section id="galeria">
+            <h3 class="gallery-title">Nossa Natureza em Cliques</h3>
+            
+            <div class="gallery">
+                
+                <div class="gallery-item">
+                    <img src="SUA_FOTO_1.jpg" alt="Natureza na UNESP FCLAr">
+                    <p>O verde que abraça a nossa comunidade acadêmica.</p>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="SUA_FOTO_2.jpg" alt="Natureza na UNESP FCLAr">
+                    <p>Biodiversidade presente no dia a dia dos estudantes.</p>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="SUA_FOTO_3.jpg" alt="Natureza na UNESP FCLAr">
+                    <p>Caminhos sombreados que inspiram novos saberes.</p>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="SUA_FOTO_4.jpg" alt="Natureza na UNESP FCLAr">
+                    <p>Detalhes da flora que colorem o câmpus de Araraquara.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 - Crônicas Verdes da FCLAr. Desenvolvido em parceria com IA.</p>
+    </footer>
+
+</body>
+</html>

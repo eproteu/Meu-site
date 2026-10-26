@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Cronômetros - Painel de Tempo</title>
+    
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            background: linear-gradient(145deg, #f0f2f5, #e8ecf1);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header-site {
+            background: linear-gradient(145deg, #2c3e50, #1a252f);
+            color: white;
+            padding: 30px 0;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header-site h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-site p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* ===== ESTILOS DOS CRONÔMETROS ===== */
+        .cronometro-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.04);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cronometro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .cronometro-card .numero {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin: 8px 0;
+            line-height: 1.2;
+        }
+
+        .cronometro-card .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7a7a7a;
+            font-weight: 600;
+        }
+
+        .cronometro-card .botoes {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cronometro-card .botoes button {
+            border: none;
+            border-radius: 30px;
+            padding: 4px 14px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .cronometro-card .botoes button:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-iniciar { background: #27ae60; color: white; }
+        .btn-iniciar:hover { background: #219a52; }
+        .btn-pausar { background: #f39c12; color: white; }
+        .btn-pausar:hover { background: #d68910; }
+        .btn-zerar { background: #e74c3c; color: white; }
+        .btn-zerar:hover { background: #c0392b; }
+
+        /* ===== CORES DOS CRONÔMETROS (30 estilos diferentes) ===== */
+        .cor-1 { background: linear-gradient(145deg, #fef9f0, #fdf2e4); border-left: 4px solid #e67e22; }
+        .cor-2 { background: linear-gradient(145deg, #f0f9ff, #e3f0fa); border-left: 4px solid #3498db; }
+        .cor-3 { background: linear-gradient(145deg, #f0faf0, #e2f0e2); border-left: 4px solid #27ae60; }
+        .cor-4 { background: linear-gradient(145deg, #fdf0f0, #f8e2e2); border-left: 4px solid #e74c3c; }
+        .cor-5 { background: linear-gradient(145deg, #f5f0fd, #ede2f8); border-left: 4px solid #8e44ad; }
+        .cor-6 { background: linear-gradient(145deg, #fdf5f0, #f8ede2); border-left: 4px solid #d35400; }
+        .cor-7 { background: linear-gradient(145deg, #f0fdf5, #e2f8ed); border-left: 4px solid #1abc9c; }
+        .cor-8 { background: linear-gradient(145deg, #fdf0f5, #f8e2ed); border-left: 4px solid #e84393; }
+        .cor-9 { background: linear-gradient(145deg, #f0f5fd, #e2edf8); border-left: 4px solid #2980b9; }
+        .cor-10 { background: linear-gradient(145deg, #fdfcf0, #f8f7e2); border-left: 4px solid #f1c40f; }
+        .cor-11 { background: linear-gradient(145deg, #f5f0f0, #ede2e2); border-left: 4px solid #7f8c8d; }
+        .cor-12 { background: linear-gradient(145deg, #f0f5f5, #e2edec); border-left: 4px solid #16a085; }
+        .cor-13 { background: linear-gradient(145deg, #f5f0fd, #ede2f8); border-left: 4px solid #6c3483; }
+        .cor-14 { background: linear-gradient(145deg, #fdf0f0, #f8e2e2); border-left: 4px solid #c0392b; }
+        .cor-15 { background: linear-gradient(145deg, #f0fdfd, #e2f8f8); border-left: 4px solid #00b4d8; }
+        .cor-16 { background: linear-gradient(145deg, #fdf0fd, #f8e2f8); border-left: 4px solid #a64d79; }
+        .cor-17 { background: linear-gradient(145deg, #f0f0fd, #e2e2f8); border-left: 4px solid #4a4a8a; }
+        .cor-18 { background: linear-gradient(145deg, #fdf0f8, #f8e2f0); border-left: 4px solid #d63384; }
+        .cor-19 { background: linear-gradient(145deg, #f5fdf0, #edf8e2); border-left: 4px solid #558b2f; }
+        .cor-20 { background: linear-gradient(145deg, #fdf5f5, #f8eded); border-left: 4px solid #bf360c; }
+        .cor-21 { background: linear-gradient(145deg, #f0fdf0, #e2f8e2); border-left: 4px solid #2e7d32; }
+        .cor-22 { background: linear-gradient(145deg, #f5f0f0, #ede2e2); border-left: 4px solid #5d4037; }
+        .cor-23 { background: linear-gradient(145deg, #f0f5fd, #e2edf8); border-left: 4px solid #1565c0; }
+        .cor-24 { background: linear-gradient(145deg, #fdf0f0, #f8e2e2); border-left: 4px solid #b71c1c; }
+        .cor-25 { background: linear-gradient(145deg, #f0fdfd, #e2f8f8); border-left: 4px solid #00695c; }
+        .cor-26 { background: linear-gradient(145deg, #fdf5f0, #f8ede2); border-left: 4px solid #e65100; }
+        .cor-27 { background: linear-gradient(145deg, #f5f0fd, #ede2f8); border-left: 4px solid #4a148c; }
+        .cor-28 { background: linear-gradient(145deg, #f0faf0, #e2f0e2); border-left: 4px solid #1b5e20; }
+        .cor-29 { background: linear-gradient(145deg, #fdfcf0, #f8f7e2); border-left: 4px solid #f57f17; }
+        .cor-30 { background: linear-gradient(145deg, #f5f0f5, #ede2ed); border-left: 4px solid #6a1b9a; }
+
+        /* ===== CONTADOR DE VISITAS ===== */
+        .contador-visitas {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 10px 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .contador-visitas i {
+            font-size: 1.4rem;
+            opacity: 0.8;
+        }
+        .contador-visitas .numero {
+            font-weight: 700;
+            font-size: 1.3rem;
+            min-width: 50px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .cronometro-card .numero {
+                font-size: 1.8rem;
+            }
+            .header-site h1 {
+                font-size: 1.8rem;
+            }
+            .cronometro-card {
+                padding: 15px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cronometro-card .numero {
+                font-size: 1.5rem;
+            }
+            .cronometro-card .botoes button {
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            .header-site h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- CABEÇALHO -->
+    <div class="header-site text-center">
+        <div class="d-flex justify-content-between align-items-center flex-wrap px-4">
+            <div>
+                <h1><i class="bi bi-stopwatch"></i> 30 Cronômetros</h1>
+                <p class="mb-0">Painel completo com 30 temporizadores independentes</p>
+            </div>
+            <div class="contador-visitas mt-2 mt-md-0">
+                <i class="bi bi-eye"></i>
+                <span class="numero" id="numeroVisitas">0</span>
+                <span style="font-weight:300; font-size:0.9rem; opacity:0.7;">visitas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRADE DE CRONÔMETROS -->
+    <div class="row g-3" id="gradeCronometros">
+        <!-- Os 30 cronômetros serão gerados via JavaScript -->
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="text-center mt-5 pt-3 border-top" style="border-color: #d0d5db !important;">
+        <span style="color:#7a7a7a; font-weight:300; font-size:0.9rem;">
+            <i class="bi bi-clock"></i> Cronômetros · 2026
+        </span>
+    </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ============================================
+// 30 CRONÔMETROS - PAINEL COMPLETO
+// ============================================
+
+// ===== DADOS DOS CRONÔMETROS =====
+var nomes = [
+    'Estudos', 'Trabalho', 'Exercícios', 'Meditação', 'Leitura',
+    'Cozinha', 'Jogos', 'Música', 'Arte', 'Escrita',
+    'Codificação', 'Design', 'Vídeos', 'Podcast', 'Social',
+    'Família', 'Descanso', 'Hobbies', 'Finanças', 'Saúde',
+    'Beleza', 'Fotografia', 'Viagens', 'Natureza', 'Ciência',
+    'Filosofia', 'Psicologia', 'História', 'Matemática', 'Criatividade'
+];
+
+var cores = [];
+for (var i = 1; i <= 30; i++) {
+    cores.push('cor-' + i);
+}
+
+// ===== VARIÁVEIS GLOBAIS =====
+var cronometros = [];
+var intervalos = [];
+
+// ===== INICIALIZAR CRONÔMETROS =====
+function iniciarCronometros() {
+    for (var i = 0; i < 30; i++) {
+        cronometros[i] = {
+            nome: nomes[i],
+            cor: cores[i],
+            segundos: 0,
+            rodando: false,
+            id: i
+        };
+        intervalos[i] = null;
+    }
+    renderizarCronometros();
+}
+
+// ===== RENDERIZAR =====
+function renderizarCronometros() {
+    var grade = document.getElementById('gradeCronometros');
+    grade.innerHTML = '';
+
+    for (var i = 0; i < cronometros.length; i++) {
+        var cron = cronometros[i];
+        var tempo = formatarTempo(cron.segundos);
+
+        var col = document.createElement('div');
+        col.className = 'col-6 col-md-4 col-lg-3 col-xl-2';
+
+        var card = document.createElement('div');
+        card.className = 'cronometro-card ' + cron.cor;
+        card.id = 'card-' + i;
+
+        card.innerHTML = `
+            <div class="label">${cron.nome}</div>
+            <div class="numero" id="display-${i}">${tempo}</div>
+            <div class="botoes">
+                <button class="btn-iniciar" onclick="iniciar(${i})"><i class="bi bi-play-fill"></i></button>
+                <button class="btn-pausar" onclick="pausar(${i})"><i class="bi bi-pause-fill"></i></button>
+                <button class="btn-zerar" onclick="zerar(${i})"><i class="bi bi-arrow-counterclockwise"></i></button>
+            </div>
+        `;
+
+        col.appendChild(card);
+        grade.appendChild(col);
+    }
+}
+
+// ===== FORMATAR TEMPO =====
+function formatarTempo(seg) {
+    var h = String(Math.floor(seg / 3600)).padStart(2, '0');
+    var m = String(Math.floor((seg % 3600) / 60)).padStart(2, '0');
+    var s = String(seg % 60).padStart(2, '0');
+    return h + ':' + m + ':' + s;
+}
+
+// ===== ATUALIZAR DISPLAY =====
+function atualizarDisplay(id) {
+    var el = document.getElementById('display-' + id);
+    if (el) {
+        el.textContent = formatarTempo(cronometros[id].segundos);
+    }
+}
+
+// ===== FUNÇÕES DE CONTROLE =====
+function iniciar(id) {
+    if (cronometros[id].rodando) return;
+    
+    cronometros[id].rodando = true;
+    
+    intervalos[id] = setInterval(function() {
+        cronometros[id].segundos++;
+        atualizarDisplay(id);
+    }, 1000);
+}
+
+function pausar(id) {
+    if (!cronometros[id].rodando) return;
+    
+    cronometros[id].rodando = false;
+    clearInterval(intervalos[id]);
+    intervalos[id] = null;
+}
+
+function zerar(id) {
+    pausar(id);
+    cronometros[id].segundos = 0;
+    atualizarDisplay(id);
+}
+
+// ===== CONTADOR DE VISITAS =====
+(function() {
+    var STORAGE_KEY = 'cronometros_visitas';
+    
+    function getVisitas() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== null) {
+            var parsed = parseInt(stored, 10);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+        return 0;
+    }
+
+    function incrementarVisitas() {
+        var atual = getVisitas();
+        var sessionKey = 'visita_contada_cronometros';
+        if (!sessionStorage.getItem(sessionKey)) {
+            atual += 1;
+            localStorage.setItem(STORAGE_KEY, String(atual));
+            sessionStorage.setItem(sessionKey, 'true');
+        }
+        var numeroEl = document.getElementById('numeroVisitas');
+        if (numeroEl) {
+            numeroEl.textContent = atual;
+        }
+    }
+
+    window.addEventListener('load', function() {
+        incrementarVisitas();
+        iniciarCronometros();
+    });
+})();
+
+// ===== INICIAR AUTOMATICAMENTE ALGUNS CRONÔMETROS (exemplo) =====
+// Opcional: alguns cronômetros já começam rodando
+window.setTimeout(function() {
+    // Inicia alguns aleatórios para demonstração
+    var aleatorios = [0, 5, 10, 15, 20, 25];
+    for (var i = 0; i < aleatorios.length; i++) {
+        setTimeout(function(idx) {
+            iniciar(idx);
+        }, 500 * i, aleatorios[i]);
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

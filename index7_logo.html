@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microcontroladores | ARM · 8051 · PIC · Arduino</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0f0d;
+    --surface:#0f221b;
+    --surface-2:#132a21;
+    --copper:#c9944b;
+    --silk:#e9e6d5;
+    --signal:#4fe0c8;
+    --alert:#e85c3f;
+    --trace-dim: rgba(79,224,200,.25);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(rgba(79,224,200,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,224,200,.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color:var(--silk);
+    font-family:'Inter', sans-serif;
+    line-height:1.65;
+  }
+
+  h1,h2,h3,.display-font{
+    font-family:'Space Mono', monospace;
+    letter-spacing:.5px;
+  }
+
+  .mono, .data{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{color:var(--signal);}
+
+  /* ---------- LOGO SUPERIOR ---------- */
+  .top-logo {
+    text-align: center;
+    padding: 20px 0 10px;
+    border-bottom: 1px solid var(--trace-dim);
+    background: rgba(10,15,13,.98);
+    position: relative;
+    z-index: 1050;
+  }
+  .top-logo .logo-text {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    color: var(--signal);
+    text-shadow: 0 0 30px rgba(79,224,200,.15);
+    display: inline-block;
+    position: relative;
+  }
+  .top-logo .logo-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--copper), transparent);
+  }
+  .top-logo .logo-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    color: var(--copper);
+    display: block;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .top-logo .logo-badge {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--alert);
+    margin-right: 10px;
+    box-shadow: 0 0 12px var(--alert);
+    animation: blink 1.6s infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.15;}}
+
+  /* ---------- NAV ---------- */
+  .navbar{
+    background:rgba(10,15,13,.92);
+    border-bottom:2px solid var(--copper);
+    backdrop-filter: blur(6px);
+  }
+  .navbar-brand{
+    font-family:'Space Mono', monospace;
+    color:var(--signal) !important;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .navbar-brand .blip{
+    display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:var(--alert); margin-right:8px;
+    box-shadow:0 0 8px var(--alert);
+    animation:blink 1.6s infinite;
+  }
+  .nav-link{color:var(--silk) !important; font-family:'IBM Plex Mono',monospace; font-size:.85rem;}
+  .nav-link:hover{color:var(--signal) !important;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:100px 0 70px;
+    border-bottom:1px dashed var(--trace-dim);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .eyebrow{
+    color:var(--copper); font-family:'IBM Plex Mono',monospace;
+    font-size:.8rem; letter-spacing:3px; text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 6vw, 4rem);
+    color:var(--silk);
+    margin-bottom:0;
+  }
+  .hero h1 span{color:var(--signal);}
+  .hero p.lead{
+    color:#b9c4bf; max-width:640px;
+  }
+  .spec-strip{
+    margin-top:40px; border-top:1px solid var(--trace-dim); border-bottom:1px solid var(--trace-dim);
+  }
+  .spec-strip .spec{
+    padding:14px 10px; text-align:center; border-right:1px solid var(--trace-dim);
+  }
+  .spec-strip .spec:last-child{border-right:none;}
+  .spec-strip .spec .k{font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--copper); text-transform:uppercase; letter-spacing:1px;}
+  .spec-strip .spec .v{font-family:'Space Mono',monospace; font-size:1.15rem; color:var(--signal);}
+
+  /* ---------- SECTION TITLES ---------- */
+  .section{padding:70px 0; border-bottom:1px dashed var(--trace-dim);}
+  .section-title{
+    font-size:1.9rem; color:var(--silk); margin-bottom:8px;
+  }
+  .section-tag{
+    font-family:'IBM Plex Mono',monospace; color:var(--copper); font-size:.75rem;
+    letter-spacing:2px; text-transform:uppercase;
+  }
+
+  /* ---------- CHIP CARD ---------- */
+  .chip-card{
+    background:var(--surface);
+    border:1px solid var(--trace-dim);
+    border-radius:var(--radius);
+    padding:28px 26px 24px;
+    height:100%;
+    position:relative;
+    transition:border-color .25s, transform .25s;
+  }
+  .chip-card:hover{border-color:var(--signal); transform:translateY(-4px);}
+  .chip-card .notch{
+    position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+    width:34px; height:10px; background:var(--bg);
+    border:1px solid var(--trace-dim); border-top:none;
+    border-radius:0 0 20px 20px;
+  }
+  .chip-card .pins{
+    position:absolute; top:14px; bottom:14px; width:12px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .chip-card .pins.left{left:-6px;}
+  .chip-card .pins.right{right:-6px;}
+  .chip-card .pins span{
+    display:block; width:12px; height:3px; background:var(--copper);
+  }
+  .chip-card h3{font-size:1.25rem; color:var(--signal); margin-bottom:2px;}
+  .chip-card .sub{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:#8fa39c; margin-bottom:14px;}
+  .chip-card ul{padding-left:18px; margin-bottom:0; font-size:.92rem; color:#cdd6d1;}
+  .chip-card ul li{margin-bottom:6px;}
+
+  /* ---------- TABLE ---------- */
+  .table-wrap{overflow-x:auto;}
+  table.compare{
+    width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:.85rem;
+    min-width:640px;
+  }
+  table.compare th, table.compare td{
+    border:1px solid var(--trace-dim); padding:12px 14px; text-align:left;
+  }
+  table.compare thead th{
+    background:var(--surface-2); color:var(--signal); text-transform:uppercase; font-size:.72rem; letter-spacing:1px;
+  }
+  table.compare tbody th{color:var(--copper); white-space:nowrap;}
+  table.compare tbody td{color:#cdd6d1;}
+  table.compare tbody tr:hover td, table.compare tbody tr:hover th{background:rgba(79,224,200,.05);}
+
+  /* ---------- CIRCUIT DIAGRAM ---------- */
+  .circuit-box{
+    background:var(--surface);
+    border:1px solid var(--trace-dim);
+    border-radius:var(--radius);
+    padding:20px;
+  }
+  .trace{
+    stroke:var(--signal);
+    stroke-width:2;
+    fill:none;
+    stroke-dasharray:6 6;
+    animation:march 1.4s linear infinite;
+    opacity:.75;
+  }
+  @keyframes march{to{stroke-dashoffset:-24;}}
+  .chip-rect{fill:var(--surface-2); stroke:var(--copper); stroke-width:1.5;}
+  .pin-mark{fill:var(--copper);}
+  .diagram-label{font-family:'IBM Plex Mono', monospace; fill:var(--silk); font-size:11px;}
+  .diagram-title{font-family:'Space Mono', monospace; fill:var(--signal); font-size:13px; font-weight:700;}
+  .diagram-sub{font-family:'IBM Plex Mono', monospace; fill:#8fa39c; font-size:9.5px;}
+
+  /* ---------- AUDIO CONTROL ---------- */
+  .audio-toggle{
+    position:fixed; right:20px; bottom:20px; z-index:1000;
+    width:58px; height:58px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--copper);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; box-shadow:0 0 0 4px rgba(0,0,0,.25);
+  }
+  .audio-toggle:hover{border-color:var(--signal);}
+  .audio-toggle .dot{width:10px;height:10px;border-radius:50%;background:var(--alert);}
+  .audio-toggle.playing .dot{background:var(--signal); box-shadow:0 0 10px var(--signal);}
+  .audio-toggle small{
+    position:absolute; bottom:-20px; font-family:'IBM Plex Mono',monospace; font-size:.6rem; color:#8fa39c; white-space:nowrap;
+  }
+
+  /* ---------- COUNTER ---------- */
+  .counter-panel{
+    background:var(--surface); border:1px solid var(--trace-dim); border-radius:var(--radius);
+    padding:22px; text-align:center;
+  }
+  .counter-digits{
+    font-family:'IBM Plex Mono', monospace; font-size:2.4rem; letter-spacing:4px;
+    color:var(--signal); text-shadow:0 0 12px rgba(79,224,200,.5);
+  }
+  .counter-label{font-family:'IBM Plex Mono',monospace; font-size:.7rem; color:var(--copper); text-transform:uppercase; letter-spacing:2px;}
+
+  footer{
+    padding:34px 0; font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:#8fa39c; text-align:center;
+  }
+
+  @media (max-width:576px){
+    .chip-card .pins{display:none;}
+    .hero{padding:70px 0 40px;}
+    .top-logo .logo-text{font-size:1.3rem;}
+    .top-logo .logo-sub{font-size:0.5rem; letter-spacing:3px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGO SUPERIOR CENTRAL -->
+<div class="top-logo">
+  <div>
+    <span class="logo-text">
+      <span class="logo-badge"></span>DEVBUENO
+    </span>
+    <span class="logo-sub">WEB DEVELOPMENT &amp; INNOVATION</span>
+  </div>
+</div>
+
+<!-- ÁUDIO DE FUNDO -->
+<audio id="bgAudio" loop preload="none">
+  <source src="audio/circuito-fundo.mp3" type="audio/mpeg">
+  <!-- Substitua o caminho acima pelo seu arquivo MIDI/MP3 de fundo -->
+</audio>
+
+<div class="audio-toggle" id="audioToggle" title="Ativar/desativar trilha de fundo">
+  <span class="dot"></span>
+  <small>ÁUDIO</small>
+</div>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#topo"><span class="blip"></span>MCU://compare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color:var(--copper)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-lg-4">
+        <li class="nav-item"><a class="nav-link" href="#arm">ARM</a></li>
+        <li class="nav-item"><a class="nav-link" href="#c8051">8051</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pic">PIC</a></li>
+        <li class="nav-item"><a class="nav-link" href="#arduino">Arduino</a></li>
+        <li class="nav-item"><a class="nav-link" href="#comparativo">Comparativo</a></li>
+        <li class="nav-item"><a class="nav-link" href="#circuito">Circuito</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="topo">
+  <div class="container">
+    <div class="eyebrow">Datasheet informal // rev. 2026</div>
+    <h1>Quatro famílias, <span>um mesmo silício</span>.</h1>
+    <p class="lead mt-3">
+      ARM, 8051, PIC e Arduino não competem apenas em clock e memória — cada uma nasceu para
+      resolver um problema diferente. Este site reúne as arquiteturas lado a lado, do jeito
+      que um datasheet faria, mas em português e sem 200 páginas de anexos.
+    </p>
+
+    <div class="row spec-strip g-0">
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Arquitetura</div><div class="v">RISC / CISC</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Barramento</div><div class="v">8 · 16 · 32 bits</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Uso típico</div><div class="v">Embarcado</div>
+      </div>
+      <div class="col-6 col-md-3 spec">
+        <div class="k">Origem</div><div class="v">1980–2005</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ARM -->
+<section class="section" id="arm">
+  <div class="container">
+    <div class="section-tag">01 · 32/64 bits · RISC</div>
+    <h2 class="section-title">ARM</h2>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-5">
+        <p>
+          A arquitetura ARM (Advanced RISC Machine) domina hoje praticamente todo o mercado
+          de smartphones e uma fatia crescente do embarcado de alto desempenho. Não é um
+          único chip, mas um conjunto de núcleos licenciados por dezenas de fabricantes
+          (ST, NXP, Texas, Espressif, entre outros).
+        </p>
+        <p>
+          A família Cortex-M foi desenhada especificamente para microcontroladores: baixo
+          consumo, clocks de dezenas a centenas de MHz e periféricos ricos, sem abrir mão
+          de um conjunto de instruções moderno.
+        </p>
+      </div>
+      <div class="col-lg-7">
+        <div class="chip-card">
+          <div class="notch"></div>
+          <div class="pins left"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="pins right"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <h3>Cortex-M</h3>
+          <div class="sub">ARMv6-M / ARMv7-M · RISC 32 bits</div>
+          <ul>
+            <li>Clock típico: 16 MHz a 480 MHz</li>
+            <li>Memória flash: de 16 KB a vários MB</li>
+            <li>Pipeline eficiente, boa relação MIPS/mW</li>
+            <li>Ecossistema: STM32, RP2040, SAM, i.MX RT</li>
+            <li>Ideal para: IoT, controle de motores, wearables, processamento de sinal leve</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8051 -->
+<section class="section" id="c8051">
+  <div class="container">
+    <div class="section-tag">02 · 8 bits · CISC</div>
+    <h2 class="section-title">8051 (MCS-51)</h2>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-5 order-lg-2">
+        <p>
+          Lançado pela Intel em 1980, o 8051 é o avô de boa parte dos microcontroladores
+          de 8 bits que vieram depois. Sua arquitetura Harvard, com memória de programa e
+          dados separadas, e seu conjunto de instruções ficaram tão populares que dezenas
+          de fabricantes (Atmel, Silicon Labs, NXP, Texas) ainda produzem variantes
+          compatíveis, chamadas de "clones 8051".
+        </p>
+        <p>
+          Apesar da idade, continua presente em eletrônica de consumo simples, controle
+          de eletrodomésticos e cursos de introdução à arquitetura de computadores.
+        </p>
+      </div>
+      <div class="col-lg-7 order-lg-1">
+        <div class="chip-card">
+          <div class="notch"></div>
+          <div class="pins left"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="pins right"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <h3>MCS-51</h3>
+          <div class="sub">Arquitetura Harvard · CISC 8 bits</div>
+          <ul>
+            <li>Clock típico: 12 MHz (várias variantes chegam a 40+ MHz)</li>
+            <li>4 portas de I/O de 8 bits, 2-3 timers, UART</li>
+            <li>Conjunto de instruções amplo e bem documentado</li>
+            <li>Ecossistema: AT89, P89, várias marcas chinesas de baixo custo</li>
+            <li>Ideal para: ensino de arquitetura, controle simples, custo mínimo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIC -->
+<section class="section" id="pic">
+  <div class="container">
+    <div class="section-tag">03 · 8/16 bits · RISC modificado</div>
+    <h2 class="section-title">PIC</h2>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-5">
+        <p>
+          A família PIC, da Microchip, é conhecida por sua arquitetura Harvard com
+          pipeline simples e um conjunto reduzido de instruções (a maioria de 1 ciclo
+          de clock). Isso torna o comportamento em tempo real bastante previsível,
+          um ponto forte em sistemas de controle industrial.
+        </p>
+        <p>
+          A linha vai de PICs de 8 bits baratíssimos (PIC10/12/16) até dispositivos de
+          16 bits mais robustos (PIC24, dsPIC, com DSP embutido).
+        </p>
+      </div>
+      <div class="col-lg-7">
+        <div class="chip-card">
+          <div class="notch"></div>
+          <div class="pins left"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="pins right"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <h3>PIC16 / PIC24 / dsPIC</h3>
+          <div class="sub">Harvard · RISC modificado</div>
+          <ul>
+            <li>Clock típico: 4 MHz a 70 MHz</li>
+            <li>Execução previsível: maioria das instruções em 1 ciclo</li>
+            <li>Periféricos analógicos fortes (ADC, comparadores, PWM)</li>
+            <li>Ferramentas: MPLAB X, compiladores XC</li>
+            <li>Ideal para: controle industrial, sensores, motores</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARDUINO -->
+<section class="section" id="arduino">
+  <div class="container">
+    <div class="section-tag">04 · plataforma, não um chip</div>
+    <h2 class="section-title">Arduino</h2>
+    <div class="row g-4 mt-1">
+      <div class="col-lg-5 order-lg-2">
+        <p>
+          O Arduino não é uma arquitetura de microcontrolador — é uma plataforma de
+          hardware e software construída em cima de outras arquiteturas. As placas
+          clássicas (Uno, Nano, Mega) usam microcontroladores AVR de 8 bits da
+          Atmel/Microchip; placas mais recentes (Due, Zero, Portenta) já usam núcleos
+          ARM Cortex-M.
+        </p>
+        <p>
+          O grande diferencial é o ecossistema: IDE simples, biblioteca gigantesca de
+          exemplos e uma comunidade enorme, o que barateia drasticamente a curva de
+          aprendizado para quem está começando em eletrônica embarcada.
+        </p>
+      </div>
+      <div class="col-lg-7 order-lg-1">
+        <div class="chip-card">
+          <div class="notch"></div>
+          <div class="pins left"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="pins right"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <h3>AVR (Uno/Nano) &amp; ARM (Due/Zero)</h3>
+          <div class="sub">Plataforma sobre múltiplas arquiteturas</div>
+          <ul>
+            <li>Clock típico: 16 MHz (AVR) a 84-480 MHz (ARM)</li>
+            <li>IDE própria, linguagem baseada em C/C++</li>
+            <li>Milhares de bibliotecas e shields prontos</li>
+            <li>Ecossistema: Uno, Nano, Mega, Due, Zero, Portenta</li>
+            <li>Ideal para: prototipagem rápida, educação, maker</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="section" id="comparativo">
+  <div class="container">
+    <div class="section-tag">Tabela</div>
+    <h2 class="section-title mb-4">Comparativo rápido</h2>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>ARM (Cortex-M)</th>
+            <th>8051</th>
+            <th>PIC</th>
+            <th>Arduino</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>Largura de barramento</th><td>32 bits</td><td>8 bits</td><td>8/16 bits</td><td>8 ou 32 bits*</td></tr>
+          <tr><th>Arquitetura</th><td>RISC</td><td>CISC</td><td>RISC modificado</td><td>depende do chip*</td></tr>
+          <tr><th>Clock típico</th><td>16–480 MHz</td><td>12–40 MHz</td><td>4–70 MHz</td><td>16–480 MHz*</td></tr>
+          <tr><th>Fabricante(s)</th><td>ST, NXP, TI, Espressif...</td><td>Atmel, Silicon Labs, NXP...</td><td>Microchip</td><td>Atmel/Microchip, STM (via Arduino)</td></tr>
+          <tr><th>Curva de aprendizado</th><td>Moderada</td><td>Moderada/alta</td><td>Moderada</td><td>Baixa</td></tr>
+          <tr><th>Uso mais comum</th><td>IoT, wearables, motores</td><td>Ensino, controle simples</td><td>Controle industrial</td><td>Prototipagem, educação</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mono mt-2" style="font-size:.75rem;color:#8fa39c;">*Arduino herda as características do microcontrolador da placa (AVR de 8 bits ou ARM de 32 bits).</p>
+  </div>
+</section>
+
+<!-- CIRCUITO COMPARATIVO -->
+<section class="section" id="circuito">
+  <div class="container">
+    <div class="section-tag">Diagrama</div>
+    <h2 class="section-title mb-4">Um circuito, quatro "cérebros"</h2>
+    <p class="mb-4" style="max-width:680px;color:#b9c4bf;">
+      O esquema abaixo representa a mesma tarefa simples — ler um botão e acender um LED —
+      resolvida por cada família. A barra de alimentação e o barramento de I/O são os
+      mesmos; o que muda é o "cérebro" no meio.
+    </p>
+    <div class="circuit-box">
+      <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- barramento de alimentação -->
+        <line x1="40" y1="30" x2="860" y2="30" class="trace"/>
+        <text x="40" y="20" class="diagram-label">+VCC</text>
+
+        <!-- barramento de I/O -->
+        <line x1="40" y1="330" x2="860" y2="330" class="trace"/>
+        <text x="40" y="350" class="diagram-label">GND / I-O comum</text>
+
+        <!-- 4 chips -->
+        <!-- ARM -->
+        <g>
+          <line x1="140" y1="30" x2="140" y2="110" class="trace"/>
+          <rect x="80" y="110" width="120" height="130" rx="4" class="chip-rect"/>
+          <circle cx="94" cy="124" r="3" class="pin-mark"/>
+          <text x="140" y="165" text-anchor="middle" class="diagram-title">ARM</text>
+          <text x="140" y="182" text-anchor="middle" class="diagram-sub">Cortex-M · 32 bits</text>
+          <text x="140" y="200" text-anchor="middle" class="diagram-sub">RISC</text>
+          <text x="140" y="216" text-anchor="middle" class="diagram-sub">até 480 MHz</text>
+          <line x1="140" y1="240" x2="140" y2="330" class="trace"/>
+        </g>
+
+        <!-- 8051 -->
+        <g>
+          <line x1="340" y1="30" x2="340" y2="110" class="trace"/>
+          <rect x="280" y="110" width="120" height="130" rx="4" class="chip-rect"/>
+          <circle cx="294" cy="124" r="3" class="pin-mark"/>
+          <text x="340" y="165" text-anchor="middle" class="diagram-title">8051</text>
+          <text x="340" y="182" text-anchor="middle" class="diagram-sub">MCS-51 · 8 bits</text>
+          <text x="340" y="200" text-anchor="middle" class="diagram-sub">CISC</text>
+          <text x="340" y="216" text-anchor="middle" class="diagram-sub">12–40 MHz</text>
+          <line x1="340" y1="240" x2="340" y2="330" class="trace"/>
+        </g>
+
+        <!-- PIC -->
+        <g>
+          <line x1="540" y1="30" x2="540" y2="110" class="trace"/>
+          <rect x="480" y="110" width="120" height="130" rx="4" class="chip-rect"/>
+          <circle cx="494" cy="124" r="3" class="pin-mark"/>
+          <text x="540" y="165" text-anchor="middle" class="diagram-title">PIC</text>
+          <text x="540" y="182" text-anchor="middle" class="diagram-sub">PIC16/24 · 8/16 bits</text>
+          <text x="540" y="200" text-anchor="middle" class="diagram-sub">RISC modificado</text>
+          <text x="540" y="216" text-anchor="middle" class="diagram-sub">4–70 MHz</text>
+          <line x1="540" y1="240" x2="540" y2="330" class="trace"/>
+        </g>
+
+        <!-- Arduino -->
+        <g>
+          <line x1="740" y1="30" x2="740" y2="110" class="trace"/>
+          <rect x="680" y="110" width="120" height="130" rx="4" class="chip-rect"/>
+          <circle cx="694" cy="124" r="3" class="pin-mark"/>
+          <text x="740" y="165" text-anchor="middle" class="diagram-title">Arduino</text>
+          <text x="740" y="182" text-anchor="middle" class="diagram-sub">AVR ou ARM</text>
+          <text x="740" y="200" text-anchor="middle" class="diagram-sub">plataforma</text>
+          <text x="740" y="216" text-anchor="middle" class="diagram-sub">16–480 MHz</text>
+          <line x1="740" y1="240" x2="740" y2="330" class="trace"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- CONTADOR DE VISITAS -->
+<section class="section" style="border-bottom:none;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5 col-lg-4">
+        <div class="counter-panel">
+          <div class="counter-label mb-2">Visitantes desde o deploy</div>
+          <div class="counter-digits" id="visitCount">— — — —</div>
+          <div class="mono mt-2" style="font-size:.65rem;color:#8fa39c;">contador persistente via API pública</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    site educativo sobre microcontroladores · ARM · 8051 · PIC · Arduino · feito com Bootstrap 5
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ---------- ÁUDIO DE FUNDO ----------
+  const audio = document.getElementById('bgAudio');
+  const toggle = document.getElementById('audioToggle');
+  let playing = false;
+
+  toggle.addEventListener('click', () => {
+    if (!playing) {
+      audio.play().then(() => {
+        playing = true;
+        toggle.classList.add('playing');
+      }).catch(() => {
+        alert('Adicione um arquivo de áudio válido em "audio/circuito-fundo.mp3" para ativar a trilha de fundo.');
+      });
+    } else {
+      audio.pause();
+      playing = false;
+      toggle.classList.remove('playing');
+    }
+  });
+
+  // ---------- CONTADOR DE VISITAS ----------
+  // Usa a API pública e gratuita CountAPI (sem necessidade de backend próprio).
+  // Troque "seu-namespace-unico" por algo único para o seu site em produção.
+  const NAMESPACE = "http://tecnologias.devbueno.com.br";
+  const KEY = "visitas";
+  const counterEl = document.getElementById('visitCount');
+
+  async function updateVisitCounter() {
+    try {
+      const res = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+      const data = await res.json();
+      counterEl.textContent = String(data.value).padStart(6, '0');
+    } catch (err) {
+      // Fallback local caso a API esteja indisponível (não é persistente entre navegadores)
+      let local = parseInt(localStorage.getItem('visitCountFallback') || '0', 10) + 1;
+      localStorage.setItem('visitCountFallback', local);
+      counterEl.textContent = String(local).padStart(6, '0');
+    }
+  }
+  updateVisitCounter();
+</script>
+</body>
+</html>

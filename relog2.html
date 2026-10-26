@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Miscelânea de Cronômetros</title>
+    
+    <!-- Bootstrap 5 + ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Orbitron:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            background: linear-gradient(145deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        .header-site {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 25px 0;
+            border-radius: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .header-site h1 {
+            font-weight: 700;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #f7971e, #ffd200, #f7971e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            letter-spacing: 2px;
+        }
+
+        .header-site .subtitle {
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .contador-visitas {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 8px 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .contador-visitas i { font-size: 1.2rem; opacity: 0.7; }
+        .contador-visitas .numero { font-weight: 700; font-size: 1.2rem; min-width: 40px; }
+
+        /* ===== BOTÃO DE CONTROLE GERAL ===== */
+        .btn-controle-geral {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-controle-geral:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+        }
+
+        /* ===== CRONÔMETROS - ESTILOS DIVERSOS ===== */
+        .cronometro-card {
+            border-radius: 20px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(4px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cronometro-card:hover {
+            transform: scale(1.03) rotate(0.5deg);
+            z-index: 10;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+        }
+
+        .cronometro-card .numero {
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin: 5px 0;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .cronometro-card .label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        .cronometro-card .botoes {
+            display: flex;
+            gap: 4px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cronometro-card .botoes button {
+            border: none;
+            border-radius: 30px;
+            padding: 3px 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .cronometro-card .botoes button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .btn-iniciar { background: #2ecc71; color: white; }
+        .btn-pausar { background: #f39c12; color: white; }
+        .btn-zerar { background: #e74c3c; color: white; }
+
+        /* ===== MISCELÂNEA DE TAMANHOS ===== */
+        .tam-gigante { font-size: 3.2rem; padding: 25px 15px; }
+        .tam-grande { font-size: 2.6rem; padding: 20px 12px; }
+        .tam-medio { font-size: 2rem; padding: 15px 10px; }
+        .tam-pequeno { font-size: 1.4rem; padding: 12px 8px; }
+        .tam-mini { font-size: 1rem; padding: 10px 6px; }
+
+        /* ===== MISCELÂNEA DE CORES ===== */
+        .cor-neon { background: linear-gradient(145deg, #0f0c29, #302b63, #24243e); color: #00ff88; border-color: #00ff8844; }
+        .cor-fogo { background: linear-gradient(145deg, #1a0000, #4a0e0e); color: #ff6b35; border-color: #ff6b3544; }
+        .cor-gelo { background: linear-gradient(145deg, #001a2e, #0a3d5c); color: #4fc3f7; border-color: #4fc3f744; }
+        .cor-roxo { background: linear-gradient(145deg, #1a002a, #3d0a5c); color: #ce93d8; border-color: #ce93d844; }
+        .cor-dourado { background: linear-gradient(145deg, #1a1400, #4a3d0a); color: #ffd54f; border-color: #ffd54f44; }
+        .cor-rosa { background: linear-gradient(145deg, #2a001a, #5c0a3d); color: #f48fb1; border-color: #f48fb144; }
+        .cor-verde { background: linear-gradient(145deg, #001a0a, #0a4a2a); color: #81c784; border-color: #81c78444; }
+        .cor-azul { background: linear-gradient(145deg, #000a2a, #0a2a5c); color: #64b5f6; border-color: #64b5f644; }
+        .cor-laranja { background: linear-gradient(145deg, #1a0a00, #4a2a0a); color: #ffb74d; border-color: #ffb74d44; }
+        .cor-branco { background: linear-gradient(145deg, #1a1a1a, #3a3a3a); color: #ffffff; border-color: #ffffff44; }
+        .cor-ciano { background: linear-gradient(145deg, #001a1a, #0a4a4a); color: #4dd0e1; border-color: #4dd0e144; }
+        .cor-magenta { background: linear-gradient(145deg, #2a001a, #5c0a4a); color: #f06292; border-color: #f0629244; }
+        .cor-verde-limao { background: linear-gradient(145deg, #1a2a00, #3d5c0a); color: #aed581; border-color: #aed58144; }
+        .cor-azul-profundo { background: linear-gradient(145deg, #000a2a, #0a1a5c); color: #5c6bc0; border-color: #5c6bc044; }
+        .cor-vermelho { background: linear-gradient(145deg, #2a0000, #5c0a0a); color: #ef5350; border-color: #ef535044; }
+
+        /* ===== FONTES DIVERSAS ===== */
+        .fonte-padrao { font-family: 'Courier New', monospace; }
+        .fonte-orbitron { font-family: 'Orbitron', monospace; }
+        .fonte-retro { font-family: 'Press Start 2P', cursive; }
+        .fonte-quicksand { font-family: 'Quicksand', sans-serif; }
+
+        /* ===== EFEITOS ESPECIAIS ===== */
+        .piscando {
+            animation: piscar 1s infinite;
+        }
+        @keyframes piscar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .brilho {
+            animation: brilho 2s infinite;
+        }
+        @keyframes brilho {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+            50% { box-shadow: 0 0 40px rgba(255,255,255,0.3); }
+        }
+
+        .rotacionando {
+            animation: rotacionar 10s linear infinite;
+        }
+        @keyframes rotacionar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .pulsando {
+            animation: pulsar 1.5s ease-in-out infinite;
+        }
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            .tam-gigante { font-size: 2.4rem; }
+            .tam-grande { font-size: 2rem; }
+            .tam-medio { font-size: 1.6rem; }
+            .tam-pequeno { font-size: 1.2rem; }
+            .header-site h1 { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .tam-gigante { font-size: 1.8rem; }
+            .tam-grande { font-size: 1.5rem; }
+            .tam-medio { font-size: 1.3rem; }
+            .cronometro-card .botoes button { font-size: 0.5rem; padding: 2px 8px; }
+            .header-site h1 { font-size: 1.5rem; }
+        }
+
+        /* ===== ANIMAÇÃO DE FUNDO ===== */
+        .bg-animado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, #1a1a3e 0%, #0f0f2e 100%);
+        }
+        .bg-animado::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(100,100,255,0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 30% 70%, rgba(255,100,100,0.05) 0%, transparent 50%);
+            animation: fundoMovimento 20s linear infinite;
+        }
+        @keyframes fundoMovimento {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-10%, -10%) rotate(180deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- FUNDO ANIMADO -->
+<div class="bg-animado"></div>
+
+<div class="container">
+
+    <!-- CABEÇALHO -->
+    <div class="header-site">
+        <div class="d-flex flex-wrap justify-content-between align-items-center px-4">
+            <div>
+                <h1>🎯 MISCELÂNEA</h1>
+                <span class="subtitle">30 cronômetros · formatos diversos · caos controlado</span>
+            </div>
+            <div class="d-flex gap-3 align-items-center flex-wrap mt-2 mt-md-0">
+                <button class="btn-controle-geral" onclick="iniciarTodos()"><i class="bi bi-play-fill"></i> Todos</button>
+                <button class="btn-controle-geral" onclick="pausarTodos()"><i class="bi bi-pause-fill"></i> Pausar</button>
+                <button class="btn-controle-geral" onclick="zerarTodos()"><i class="bi bi-arrow-counterclockwise"></i> Zerar</button>
+                <div class="contador-visitas">
+                    <i class="bi bi-eye"></i>
+                    <span class="numero" id="numeroVisitas">0</span>
+                    <span style="font-weight:300; font-size:0.8rem; opacity:0.6;">visitas</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRADE DE CRONÔMETROS -->
+    <div class="row g-3" id="gradeCronometros"></div>
+
+    <!-- RODAPÉ -->
+    <footer class="text-center mt-5 pt-3 border-top" style="border-color: rgba(255,255,255,0.05) !important;">
+        <span style="color:rgba(255,255,255,0.3); font-weight:300; font-size:0.8rem;">
+            <i class="bi bi-clock"></i> Caos cronometrado · 2026
+        </span>
+    </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ===== JAVASCRIPT COMPLETO ===== -->
+<script>
+// ============================================
+// MISCELÂNEA DE CRONÔMETROS - 30 ESTILOS
+// ============================================
+
+// ===== CONFIGURAÇÕES =====
+var nomes = [
+    '🔥 Fogo', '❄️ Gelo', '⚡ Raio', '🌊 Mar', '🌿 Natureza',
+    '🎵 Música', '💻 Código', '🎨 Arte', '📚 Livros', '🧠 Mente',
+    '💪 Força', '🌀 Caos', '⭐ Estrela', '🌙 Lua', '☀️ Sol',
+    '🌈 Arco-íris', '🎭 Teatro', '🎪 Circo', '🚀 Foguete', '👾 Retro',
+    '🌌 Galáxia', '🗡️ Espada', '🛡️ Escudo', '🎯 Alvo', '🏆 Troféu',
+    '💎 Gema', '🔮 Cristal', '🎇 Faísca', '🌪️ Tornado', '⚓ Âncora'
+];
+
+var cores = [
+    'cor-fogo', 'cor-gelo', 'cor-neon', 'cor-azul', 'cor-verde',
+    'cor-roxo', 'cor-dourado', 'cor-rosa', 'cor-laranja', 'cor-branco',
+    'cor-ciano', 'cor-magenta', 'cor-verde-limao', 'cor-azul-profundo', 'cor-vermelho',
+    'cor-fogo', 'cor-gelo', 'cor-neon', 'cor-azul', 'cor-verde',
+    'cor-roxo', 'cor-dourado', 'cor-rosa', 'cor-laranja', 'cor-branco',
+    'cor-ciano', 'cor-magenta', 'cor-verde-limao', 'cor-azul-profundo', 'cor-vermelho'
+];
+
+var tamanhos = [
+    'tam-gigante', 'tam-grande', 'tam-medio', 'tam-pequeno', 'tam-mini',
+    'tam-gigante', 'tam-medio', 'tam-pequeno', 'tam-grande', 'tam-mini',
+    'tam-medio', 'tam-gigante', 'tam-pequeno', 'tam-grande', 'tam-mini',
+    'tam-grande', 'tam-medio', 'tam-mini', 'tam-gigante', 'tam-pequeno',
+    'tam-medio', 'tam-grande', 'tam-mini', 'tam-pequeno', 'tam-gigante',
+    'tam-pequeno', 'tam-medio', 'tam-grande', 'tam-mini', 'tam-gigante'
+];
+
+var fontes = [
+    'fonte-padrao', 'fonte-orbitron', 'fonte-retro', 'fonte-quicksand', 'fonte-padrao',
+    'fonte-orbitron', 'fonte-retro', 'fonte-quicksand', 'fonte-padrao', 'fonte-orbitron',
+    'fonte-retro', 'fonte-quicksand', 'fonte-padrao', 'fonte-orbitron', 'fonte-retro',
+    'fonte-quicksand', 'fonte-padrao', 'fonte-orbitron', 'fonte-retro', 'fonte-quicksand',
+    'fonte-padrao', 'fonte-orbitron', 'fonte-retro', 'fonte-quicksand', 'fonte-padrao',
+    'fonte-orbitron', 'fonte-retro', 'fonte-quicksand', 'fonte-padrao', 'fonte-orbitron'
+];
+
+var colunas = [
+    2, 3, 2, 4, 3,  // col-2, col-3, col-2, col-4, col-3
+    2, 4, 3, 2, 3,
+    4, 2, 3, 2, 4,
+    3, 2, 4, 3, 2,
+    4, 3, 2, 4, 2,
+    3, 4, 2, 3, 4
+];
+
+// ===== VARIÁVEIS =====
+var cronometros = [];
+var intervalos = [];
+var efeitos = ['', 'piscando', 'brilho', 'pulsando', 'rotacionando'];
+
+// ===== INICIALIZAR =====
+function iniciarCronometros() {
+    for (var i = 0; i < 30; i++) {
+        var aleatorio = Math.floor(Math.random() * 10);
+        cronometros[i] = {
+            nome: nomes[i],
+            cor: cores[i],
+            tamanho: tamanhos[i],
+            fonte: fontes[i],
+            coluna: colunas[i],
+            segundos: Math.floor(Math.random() * 120), // inicia com valores aleatórios
+            rodando: false,
+            id: i,
+            efeito: efeitos[Math.floor(Math.random() * efeitos.length)]
+        };
+        intervalos[i] = null;
+    }
+    renderizarCronometros();
+    
+    // Dispara alguns automáticos após 1 segundo
+    setTimeout(function() {
+        var automaticos = [0, 3, 7, 11, 15, 19, 23, 27];
+        for (var i = 0; i < automaticos.length; i++) {
+            if (automaticos[i] < 30) {
+                iniciar(automaticos[i]);
+            }
+        }
+    }, 1000);
+}
+
+// ===== RENDERIZAR =====
+function renderizarCronometros() {
+    var grade = document.getElementById('gradeCronometros');
+    grade.innerHTML = '';
+
+    for (var i = 0; i < cronometros.length; i++) {
+        var cron = cronometros[i];
+        var tempo = formatarTempo(cron.segundos);
+
+        var colClass = 'col-' + cron.coluna;
+        if (cron.coluna <= 2) colClass = 'col-6 col-md-' + (cron.coluna * 2);
+        else if (cron.coluna === 3) colClass = 'col-6 col-md-4 col-lg-3';
+        else if (cron.coluna === 4) colClass = 'col-6 col-md-6 col-lg-4';
+
+        var col = document.createElement('div');
+        col.className = colClass;
+
+        var card = document.createElement('div');
+        card.className = 'cronometro-card ' + cron.cor + ' ' + cron.efeito;
+        card.id = 'card-' + i;
+
+        var tamanhoClasse = cron.tamanho;
+        var fonteClasse = cron.fonte;
+
+        card.innerHTML = `
+            <div class="label" style="font-size:0.6rem;">${cron.nome}</div>
+            <div class="numero ${tamanhoClasse} ${fonteClasse}" id="display-${i}">${tempo}</div>
+            <div class="botoes">
+                <button class="btn-iniciar" onclick="iniciar(${i})"><i class="bi bi-play-fill"></i></button>
+                <button class="btn-pausar" onclick="pausar(${i})"><i class="bi bi-pause-fill"></i></button>
+                <button class="btn-zerar" onclick="zerar(${i})"><i class="bi bi-arrow-counterclockwise"></i></button>
+            </div>
+        `;
+
+        col.appendChild(card);
+        grade.appendChild(col);
+    }
+}
+
+// ===== FORMATAR TEMPO =====
+function formatarTempo(seg) {
+    var h = String(Math.floor(seg / 3600)).padStart(2, '0');
+    var m = String(Math.floor((seg % 3600) / 60)).padStart(2, '0');
+    var s = String(seg % 60).padStart(2, '0');
+    return h + ':' + m + ':' + s;
+}
+
+// ===== ATUALIZAR DISPLAY =====
+function atualizarDisplay(id) {
+    var el = document.getElementById('display-' + id);
+    if (el) {
+        el.textContent = formatarTempo(cronometros[id].segundos);
+    }
+}
+
+// ===== FUNÇÕES DE CONTROLE =====
+function iniciar(id) {
+    if (cronometros[id].rodando) return;
+    cronometros[id].rodando = true;
+    
+    var card = document.getElementById('card-' + id);
+    if (card) card.style.boxShadow = '0 0 30px rgba(46, 204, 113, 0.3)';
+    
+    intervalos[id] = setInterval(function() {
+        cronometros[id].segundos++;
+        atualizarDisplay(id);
+    }, 1000);
+}
+
+function pausar(id) {
+    if (!cronometros[id].rodando) return;
+    cronometros[id].rodando = false;
+    clearInterval(intervalos[id]);
+    intervalos[id] = null;
+    
+    var card = document.getElementById('card-' + id);
+    if (card) card.style.boxShadow = '';
+}
+
+function zerar(id) {
+    pausar(id);
+    cronometros[id].segundos = 0;
+    atualizarDisplay(id);
+    var card = document.getElementById('card-' + id);
+    if (card) card.style.boxShadow = '';
+}
+
+// ===== CONTROLES GERAIS =====
+function iniciarTodos() {
+    for (var i = 0; i < 30; i++) {
+        setTimeout(function(idx) {
+            iniciar(idx);
+        }, i * 80, i);
+    }
+}
+
+function pausarTodos() {
+    for (var i = 0; i < 30; i++) {
+        pausar(i);
+    }
+}
+
+function zerarTodos() {
+    for (var i = 0; i < 30; i++) {
+        zerar(i);
+    }
+}
+
+// ============================================
+// CONTADOR DE VISITAS
+// ============================================
+(function() {
+    var STORAGE_KEY = 'miscelanea_visitas';
+    
+    function getVisitas() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== null) {
+            var parsed = parseInt(stored, 10);
+            return isNaN(parsed) ? 0 : parsed;
+        }
+        return 0;
+    }
+
+    function incrementarVisitas() {
+        var atual = getVisitas();
+        var sessionKey = 'visita_contada_miscelanea';
+        if (!sessionStorage.getItem(sessionKey)) {
+            atual += 1;
+            localStorage.setItem(STORAGE_KEY, String(atual));
+            sessionStorage.setItem(sessionKey, 'true');
+        }
+        var numeroEl = document.getElementById('numeroVisitas');
+        if (numeroEl) {
+            numeroEl.textContent = atual;
+        }
+    }
+
+    window.addEventListener('load', function() {
+        incrementarVisitas();
+        iniciarCronometros();
+    });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>μC Tech - Microcontroladores & IoT</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --dark: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10,10,26,0.85), rgba(10,10,26,0.85)), 
+                        url('https://picsum.photos/id/1015/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .tech-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://picsum.photos/id/866/1920/1080') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .navbar {
+            background: rgba(10,10,26,0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+        
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(0,212,255,0.3);
+            transition: all 0.4s;
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0,212,255,0.2);
+            border-color: var(--primary);
+        }
+        
+        .section-title {
+            background: linear-gradient(90deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        #iot-card {
+            background: rgba(46, 60, 0, 0.95) !important;
+            border: 2px solid #00d4ff;
+            color: #ffffff;
+        }
+        
+        .schematic {
+            background: #112233;
+            border: 2px solid #00d4ff;
+            font-family: 'Courier New', monospace;
+            color: #00ffcc;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .visit-counter {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: #000;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,212,255,0.4);
+            z-index: 9999;
+        }
+        .audio-player {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            z-index: 9998;
+        }
+        
+        footer {
+            background: #050507;
+        }
+        
+        .glow {
+            text-shadow: 0 0 20px #00d4ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">μC<span class="text-info">TECH</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbars">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#micros">Microcontroladores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#iot">IoT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#comparacao">Comparação</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="tech-bg"></div>
+        <div class="container text-center">
+            <h1 class="display-1 fw-bold glow mb-3">MICROCONTROLADORES</h1>
+            <p class="lead fs-3 mb-4">ATmega • PIC • 8051 • Arduino • IoT</p>
+            <p class="col-lg-8 mx-auto mb-5">Explore o universo da eletrônica embarcada com projetos reais, esquemas e muito conteúdo técnico.</p>
+            <a href="#micros" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">Explorar Tecnologias</a>
+        </div>
+    </section>
+
+    <!-- Contador de Visitas -->
+    <div class="visit-counter" id="counter">
+        <i class="fas fa-users"></i> Visitas: <span id="visitCount">2487</span>
+    </div>
+
+    <!-- Áudio de fundo (MIDI style - synth electronic) -->
+    <div class="audio-player">
+        <audio id="bgMusic" loop volume="0.12">
+            <!-- Substitua pela URL de um arquivo MIDI ou MP3 royalty-free -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
+        <button onclick="toggleMusic()" class="btn btn-sm btn-outline-info">
+            <i class="fas fa-music"></i> Música Tech
+        </button>
+    </div>
+
+    <div class="container py-5">
+
+        <!-- Microcontroladores -->
+        <section id="micros" class="mb-5">
+            <h2 class="section-title display-5 text-center mb-5">Famílias de Microcontroladores</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-white">
+                        <img src="https://picsum.photos/id/201/600/340" class="card-img-top" alt="ATmega">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">ATmega (AVR)</h5>
+                            <p>Excelente para projetos de alto desempenho e baixo consumo. Base da plataforma Arduino.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> 32KB Flash</li>
+                                <li><i class="fas fa-check text-success"></i> ADC 10-bit</li>
+                                <li><i class="fas fa-check text-success"></i> Fácil programação</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-white">
+                        <img src="https://picsum.photos/id/180/600/340" class="card-img-top" alt="PIC">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">PIC (Microchip)</h5>
+                            <p>Linha robusta usada em aplicações industriais e comerciais. Grande variedade de periféricos.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> Alta confiabilidade</li>
+                                <li><i class="fas fa-check text-success"></i> PWM avançado</li>
+                                <li><i class="fas fa-check text-success"></i> Baixo custo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 text-white">
+                        <img src="https://picsum.photos/id/251/600/340" class="card-img-top" alt="8051">
+                        <div class="card-body">
+                            <h5 class="card-title text-info">8051</h5>
+                            <p>Clássico da eletrônica. Ideal para aprendizado de arquitetura e projetos simples.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success"></i> 4 portas I/O</li>
+                                <li><i class="fas fa-check text-success"></i> Interrupções</li>
+                                <li><i class="fas fa-check text-success"></i> Legado educacional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arduino -->
+        <section class="mb-5 bg-dark py-5 rounded-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://picsum.photos/id/870/800/500" class="img-fluid rounded-3 shadow" alt="Arduino">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Arduino - A Revolução Maker</h2>
+                    <p class="lead">Baseado principalmente no ATmega328P, o Arduino democratizou o acesso à programação de microcontroladores. Milhares de projetos ao redor do mundo usam esta plataforma.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <span class="badge bg-info fs-6 p-3">Fácil IDE</span>
+                        <span class="badge bg-info fs-6 p-3">Enorme Ecossistema</span>
+                        <span class="badge bg-info fs-6 p-3">Comunidade Ativa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     <!-- IoT - Versão com texto claro -->
+        <section id="iot" class="mb-5">
+            <h2 class="section-title display-5 text-center mb-5">Internet das Coisas (IoT)</h2>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card p-5" style="background: rgba(20, 35, 55, 0.85); border: 2px solid #00ffaa;">
+                        <div class="card-body text-center">
+                            
+                            <i class="fas fa-network-wired fa-5x mb-4" style="color: #00ffcc;"></i>
+                            
+                            <p class="fs-4" style="color: #ffffff;">
+                                Microcontroladores + conectividade WiFi/LoRa/Bluetooth transformam o mundo em uma rede inteligente. 
+                                Monitore, controle e automatize de qualquer lugar.
+                            </p>
+                            
+                            <div class="row text-start g-4 mt-4">
+                                <div class="col-sm-6">
+                                    <h5 style="color: #aaffcc;">✅ Agricultura Inteligente</h5>
+                                    <h5 style="color: #aaffcc;">✅ Cidades Inteligentes</h5>
+                                    <h5 style="color: #aaffcc;">✅ Automação Residencial</h5>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h5 style="color: #aaffcc;">✅ Monitoramento Industrial</h5>
+                                    <h5 style="color: #aaffcc;">✅ Saúde Conectada</h5>
+                                    <h5 style="color: #aaffcc;">✅ Energia Renovável</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section id="projetos" class="mb-5">
+            <h2 class="section-title display-5 text-center mb-5">Projetos Comparativos</h2>
+            
+            <div class="row g-5">
+                <!-- PIC -->
+                <div class="col-lg-6">
+                    <h3 class="text-info mb-4"><i class="fas fa-microchip"></i> Projeto com PIC16F877A</h3>
+                    <div class="schematic">
+                        <strong>Pisca-pisca controlado por botão</strong><br><br>
+                        RB0 → LED1 + 330Ω<br>
+                        RB1 → LED2 + 330Ω<br>
+                        RA0 → Botão + 10kΩ pull-up<br><br>
+                        +5V | GND
+                    </div>
+                    <pre class="bg-dark p-4 rounded mt-3 text-success small">void main() {
+    TRISB = 0;
+    while(1) {
+        if(!RA0) { PORTB = 0x03; delay_ms(400); PORTB = 0; }
+    }
+}</pre>
+                </div>
+                
+                <!-- ATmega -->
+                <div class="col-lg-6">
+                    <h3 class="text-info mb-4"><i class="fas fa-microchip"></i> Mesmo Projeto com ATmega328P</h3>
+                    <div class="schematic">
+                        <strong>Pisca-pisca controlado por botão (Arduino)</strong><br><br>
+                        Pino 2 → LED1<br>
+                        Pino 3 → LED2<br>
+                        Pino 4 → Botão (INPUT_PULLUP)<br><br>
+                        +5V | GND
+                    </div>
+                    <pre class="bg-dark p-4 rounded mt-3 text-success small">void loop() {
+    if(digitalRead(4) == LOW) {
+        digitalWrite(2, HIGH); digitalWrite(3, HIGH);
+        delay(400);
+        digitalWrite(2, LOW); digitalWrite(3, LOW);
+    }
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparação -->
+        <section id="comparacao">
+            <h2 class="section-title display-5 text-center mb-5">Tabela Comparativa</h2>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle">
+                    <thead class="table-info">
+                        <tr>
+                            <th>Característica</th>
+                            <th>ATmega328</th>
+                            <th>PIC16F877A</th>
+                            <th>8051</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Arquitetura</td><td>AVR 8-bit</td><td>PIC 8-bit</td><td>CISC 8-bit</td></tr>
+                        <tr><td>Flash</td><td>32 KB</td><td>14 KB</td><td>4-64 KB</td></tr>
+                        <tr><td>Periféricos</td><td>Muito bom</td><td>Excelente</td><td>Básico</td></tr>
+                        <tr><td>Dificuldade</td><td>Baixa (Arduino)</td><td>Média</td><td>Média-Alta</td></tr>
+                        <tr><td>IoT</td><td>★★★★★</td><td>★★★★</td><td>★★</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <footer class="py-5 text-center">
+        <p class="mb-1">© 2026 μC Tech - Educação em Eletrônica Embarcada</p>
+        <p class="text-muted small">Imagens royalty-free • Conteúdo 100% educativo</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Contador de visitas
+        let count = parseInt(localStorage.getItem('visitCount') || '2487') + 1;
+        localStorage.setItem('visitCount', count);
+        document.getElementById('visitCount').textContent = count.toLocaleString('pt-BR');
+
+        // Controle de música de fundo
+        const audio = document.getElementById('bgMusic');
+        let isPlaying = false;
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play().catch(() => {});
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        // Auto play tentativa (muitos navegadores bloqueiam)
+        setTimeout(() => {
+            audio.volume = 0.12;
+        }, 1500);
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inteligência Artificial · Modo Gamer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+    body {
+      background: #070a12;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 0, 200, 0.08) 0%, transparent 40%),
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #c8e8f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    .container {
+      max-width: 1150px;
+      width: 100%;
+      background: rgba(10, 18, 30, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.8rem 2.5rem 2.5rem;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 
+        0 0 40px rgba(0, 255, 255, 0.15),
+        0 0 80px rgba(255, 0, 200, 0.08) inset,
+        0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .container::before,
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #00fff0;
+      box-shadow: 0 0 15px #00fff0;
+    }
+    .container::before {
+      top: -2px; left: -2px;
+      border-right: none; border-bottom: none;
+      border-top-left-radius: 20px;
+    }
+    .container::after {
+      bottom: -2px; right: -2px;
+      border-left: none; border-top: none;
+      border-bottom-right-radius: 20px;
+    }
+
+    /* TÍTULO DINÂMICO */
+    .dynamic-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #00fff0;
+      text-shadow: 
+        0 0 10px #00fff0,
+        0 0 20px #00fff0,
+        0 0 40px #00b3ff,
+        0 0 80px #00b3ff;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+      animation: flicker 4s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 92%, 100% { opacity: 1; }
+      93%, 95% { opacity: 0.7; }
+      94% { opacity: 0.9; }
+    }
+
+    /* SUBTÍTULO — animado e centralizado */
+    .subhead {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      text-align: center;
+      color: #ff2bd6;
+      text-shadow: 0 0 8px #ff2bd6, 0 0 20px #ff2bd6;
+      margin: 0 auto 2.4rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+      padding: 0.7rem 2rem;
+      border: 1px solid rgba(255, 43, 214, 0.4);
+      border-radius: 4px;
+      width: fit-content;
+      background: rgba(255, 43, 214, 0.05);
+      box-shadow: 0 0 20px rgba(255, 43, 214, 0.2) inset;
+      position: relative;
+      overflow: hidden;
+      animation: subheadGlow 3s ease-in-out infinite;
+    }
+
+    .subhead::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 43, 214, 0.25), transparent);
+      animation: subheadSweep 3s linear infinite;
+    }
+
+    @keyframes subheadGlow {
+      0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 43, 214, 0.2) inset, 0 0 15px rgba(255, 43, 214, 0.3);
+        color: #ff2bd6;
+      }
+      50% { 
+        box-shadow: 0 0 30px rgba(255, 43, 214, 0.4) inset, 0 0 30px rgba(255, 43, 214, 0.5);
+        color: #ff6be6;
+        text-shadow: 0 0 12px #ff6be6, 0 0 30px #ff2bd6;
+      }
+    }
+
+    @keyframes subheadSweep {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* GRID DE CONCEITOS DE IA */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 1.2rem;
+      margin: 2.5rem 0 2.4rem;
+    }
+
+    .tool-card {
+      background: linear-gradient(145deg, rgba(15, 25, 45, 0.95), rgba(5, 10, 20, 0.95));
+      border-radius: 8px;
+      padding: 1.4rem 1rem;
+      border: 1px solid #00fff0;
+      box-shadow: 
+        0 0 15px rgba(0, 255, 240, 0.2),
+        0 0 30px rgba(0, 255, 240, 0.05) inset;
+      transition: all 0.3s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 240, 0.15), transparent);
+      transition: left 0.5s;
+    }
+
+    .tool-card:hover::before {
+      left: 100%;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-6px);
+      border-color: #ff2bd6;
+      box-shadow: 
+        0 0 25px rgba(255, 43, 214, 0.4),
+        0 0 50px rgba(255, 43, 214, 0.15) inset;
+    }
+
+    .tool-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #00fff0;
+      text-shadow: 0 0 10px rgba(0, 255, 240, 0.7);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .tool-card:hover h3 {
+      color: #ff2bd6;
+      text-shadow: 0 0 12px rgba(255, 43, 214, 0.9);
+    }
+
+    .tool-card p {
+      font-size: 0.9rem;
+      color: #7fb8d4;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* BLOCO DE TEXTO — 30 linhas */
+    .text-block {
+      background: rgba(5, 12, 22, 0.9);
+      border-radius: 8px;
+      padding: 2rem 2rem 1.8rem;
+      margin: 1.8rem 0 2.4rem;
+      border: 1px solid rgba(0, 255, 240, 0.3);
+      box-shadow: 
+        0 0 25px rgba(0, 255, 240, 0.1) inset,
+        0 0 40px rgba(0, 179, 255, 0.08);
+      text-align: center;
+      position: relative;
+    }
+
+    .text-block::before {
+      content: '> AI.LOG';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: #070a12;
+      padding: 0 10px;
+      color: #ff2bd6;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #ff2bd6;
+    }
+
+    .text-block h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00fff0;
+      text-shadow: 0 0 12px rgba(0, 255, 240, 0.6);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .text-block h2 span {
+      background: linear-gradient(135deg, #ff2bd6, #b900ff);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      padding: 0.35rem 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 2px;
+      box-shadow: 0 0 20px rgba(255, 43, 214, 0.6);
+    }
+
+    .text-30-lines {
+      font-size: 1rem;
+      color: #a8d8ec;
+      line-height: 1.75;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .line-item {
+      display: block;
+      width: 100%;
+      max-width: 880px;
+      padding: 0.35rem 1rem;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+      border-right: 2px solid transparent;
+    }
+
+    .line-item:nth-child(odd) {
+      background: rgba(0, 255, 240, 0.03);
+      border-left-color: #00fff0;
+      border-right-color: #00fff0;
+    }
+
+    .line-item:nth-child(even) {
+      background: rgba(255, 43, 214, 0.03);
+      border-left-color: #ff2bd6;
+      border-right-color: #ff2bd6;
+    }
+
+    .line-item:hover {
+      background: rgba(0, 255, 240, 0.1);
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(0, 255, 240, 0.5);
+      transform: scale(1.01);
+    }
+
+    /* FIGURAS — grid com múltiplas figuras futuristas */
+    .illustration-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.6rem;
+      margin: 3rem 0 2.4rem;
+      justify-items: center;
+    }
+
+    .figure-card {
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(160deg, rgba(10, 20, 35, 0.95), rgba(5, 10, 20, 0.98));
+      border-radius: 12px;
+      padding: 1.6rem 1.3rem 1.4rem;
+      text-align: center;
+      border: 1px solid #00fff0;
+      box-shadow: 
+        0 0 25px rgba(0, 255, 240, 0.25),
+        0 0 60px rgba(0, 255, 240, 0.08) inset;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .figure-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00fff0, #ff2bd6, #00fff0);
+      box-shadow: 0 0 15px #00fff0;
+      animation: slide 3s linear infinite;
+      background-size: 200% 100%;
+    }
+
+    @keyframes slide {
+      0% { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .figure-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: #ff2bd6;
+      box-shadow: 
+        0 0 35px rgba(255, 43, 214, 0.4),
+        0 0 70px rgba(255, 43, 214, 0.15) inset;
+    }
+
+    .figure-card svg {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 240, 0.5));
+    }
+
+    .figure-card figcaption {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(0, 255, 240, 0.2), rgba(255, 43, 214, 0.2));
+      border: 1px solid #00fff0;
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      box-shadow: 0 0 15px rgba(0, 255, 240, 0.3);
+      text-shadow: 0 0 6px #00fff0;
+    }
+
+    /* CONTADOR DE VISITAS — CENTRALIZADO */
+    .visitor-counter-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 2.4rem;
+    }
+
+    .visitor-counter {
+      background: rgba(5, 12, 22, 0.95);
+      color: #00fff0;
+      border-radius: 6px;
+      padding: 0.9rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border: 1px solid #00fff0;
+      box-shadow: 
+        0 0 20px rgba(0, 255, 240, 0.3),
+        0 0 40px rgba(0, 255, 240, 0.1) inset;
+      position: relative;
+      animation: counterPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes counterPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 240, 0.3), 0 0 40px rgba(0, 255, 240, 0.1) inset; }
+      50% { box-shadow: 0 0 35px rgba(0, 255, 240, 0.6), 0 0 60px rgba(0, 255, 240, 0.2) inset; }
+    }
+
+    .visitor-counter svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: #ff2bd6;
+      stroke-width: 1.8;
+      filter: drop-shadow(0 0 4px #ff2bd6);
+      animation: spinSlow 8s linear infinite;
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .visitor-counter .count-number {
+      background: #00fff0;
+      padding: 0.2rem 1.1rem;
+      border-radius: 4px;
+      font-weight: 900;
+      font-size: 1.3rem;
+      min-width: 80px;
+      text-align: center;
+      color: #070a12;
+      box-shadow: 0 0 20px rgba(0, 255, 240, 0.8);
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+    }
+
+    footer {
+      margin-top: 2.8rem;
+      font-size: 0.8rem;
+      color: #6a99b5;
+      text-align: center;
+      border-top: 1px solid rgba(0, 255, 240, 0.25);
+      padding-top: 1.5rem;
+      width: 100%;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    footer::before {
+      content: '◆ ';
+      color: #ff2bd6;
+      text-shadow: 0 0 8px #ff2bd6;
+    }
+
+    footer::after {
+      content: ' ◆';
+      color: #ff2bd6;
+      text-shadow: 0 0 8px #ff2bd6;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 680px) {
+      body { padding: 1rem 0.7rem; }
+      .container { padding: 2rem 1.2rem; border-radius: 12px; }
+      .dynamic-title { font-size: 1.8rem; letter-spacing: 2px; }
+      .subhead { font-size: 0.75rem; letter-spacing: 2px; padding: 0.6rem 1rem; }
+      .text-block { padding: 1.6rem 1rem; }
+      .line-item { font-size: 0.85rem; padding: 0.3rem 0.5rem; }
+      .visitor-counter { font-size: 0.7rem; padding: 0.7rem 1.2rem; gap: 0.6rem; letter-spacing: 1.5px; }
+      .visitor-counter .count-number { font-size: 1.1rem; min-width: 60px; }
+      .figure-card { padding: 1.3rem; }
+      .figure-card figcaption { font-size: 0.7rem; padding: 0.45rem 1rem; letter-spacing: 1.5px; }
+      .illustration-row { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+    }
+
+    @media (max-width: 450px) {
+      .dynamic-title { font-size: 1.5rem; }
+      .tool-card h3 { font-size: 1rem; }
+      .text-block h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- TÍTULO DINÂMICO -->
+  <h1 class="dynamic-title" id="dynamicTitle">Inteligência Artificial</h1>
+  <div class="subhead" id="dynamicSubhead">O futuro é agora</div>
+
+  <!-- GRID DE CONCEITOS DE IA -->
+  <div class="tools-grid">
+    <div class="tool-card"><h3>Machine Learning</h3><p>Aprendizado a partir de dados.</p></div>
+    <div class="tool-card"><h3>Deep Learning</h3><p>Redes neurais profundas.</p></div>
+    <div class="tool-card"><h3>NLP</h3><p>Processamento de linguagem natural.</p></div>
+    <div class="tool-card"><h3>Visão Computacional</h3><p>Interpretação de imagens.</p></div>
+    <div class="tool-card"><h3>Redes Neurais</h3><p>Inspiradas no cérebro humano.</p></div>
+    <div class="tool-card"><h3>IA Generativa</h3><p>Criação de conteúdo novo.</p></div>
+  </div>
+
+  <!-- TEXTO DE 30 LINHAS -->
+  <div class="text-block">
+    <h2>🧠 O que move a Inteligência Artificial? <span>30 linhas</span></h2>
+    <div class="text-30-lines" id="text30Lines"></div>
+  </div>
+
+  <!-- FIGURAS FUTURISTAS — 8 cards em grid -->
+  <div class="illustration-row">
+    <!-- 1. Cérebro Neural -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00fff0" />
+            <stop offset="100%" stop-color="#ff2bd6" />
+          </linearGradient>
+          <filter id="aif1">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- contorno do cérebro -->
+        <path d="M60 15 Q85 15 90 35 Q98 50 85 65 Q80 80 60 85 Q40 80 35 65 Q22 50 30 35 Q35 15 60 15 Z" fill="rgba(0, 255, 240, 0.05)" stroke="url(#ai1)" stroke-width="1.8" filter="url(#aif1)" />
+        <!-- conexões neurais -->
+        <line x1="45" y1="35" x2="55" y2="45" stroke="#00fff0" stroke-width="1" />
+        <line x1="75" y1="35" x2="65" y2="45" stroke="#ff2bd6" stroke-width="1" />
+        <line x1="55" y1="45" x2="65" y2="45" stroke="#00fff0" stroke-width="1" />
+        <line x1="45" y1="55" x2="55" y2="50" stroke="#ff2bd6" stroke-width="1" />
+        <line x1="75" y1="55" x2="65" y2="50" stroke="#00fff0" stroke-width="1" />
+        <line x1="60" y1="55" x2="60" y2="70" stroke="#ff2bd6" stroke-width="1" />
+        <!-- nós neurais -->
+        <circle cx="45" cy="35" r="3" fill="#00fff0" filter="url(#aif1)" />
+        <circle cx="75" cy="35" r="3" fill="#ff2bd6" filter="url(#aif1)" />
+        <circle cx="55" cy="45" r="3" fill="#00fff0" filter="url(#aif1)" />
+        <circle cx="65" cy="45" r="3" fill="#ff2bd6" filter="url(#aif1)" />
+        <circle cx="45" cy="55" r="3" fill="#ff2bd6" filter="url(#aif1)" />
+        <circle cx="75" cy="55" r="3" fill="#00fff0" filter="url(#aif1)" />
+        <circle cx="60" cy="55" r="3" fill="#00fff0" filter="url(#aif1)" />
+        <circle cx="60" cy="70" r="3" fill="#ff2bd6" filter="url(#aif1)" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="6" fill="#00fff0" text-anchor="middle" letter-spacing="1.5" font-weight="700">NEURAL.NET</text>
+      </svg>
+      <figcaption>Rede Neural</figcaption>
+    </figure>
+
+    <!-- 2. Robô IA -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff2bd6" />
+            <stop offset="100%" stop-color="#00fff0" />
+          </linearGradient>
+          <filter id="aif2">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- cabeça robô -->
+        <rect x="42" y="18" width="36" height="30" rx="6" fill="rgba(0, 255, 240, 0.08)" stroke="#00fff0" stroke-width="1.5" filter="url(#aif2)" />
+        <!-- antena -->
+        <line x1="60" y1="18" x2="60" y2="8" stroke="#ff2bd6" stroke-width="1.5" />
+        <circle cx="60" cy="6" r="3" fill="#ff2bd6" filter="url(#aif2)" />
+        <!-- olhos -->
+        <circle cx="52" cy="30" r="4.5" fill="none" stroke="#00fff0" stroke-width="1.3" />
+        <circle cx="68" cy="30" r="4.5" fill="none" stroke="#00fff0" stroke-width="1.3" />
+        <circle cx="52" cy="30" r="1.8" fill="#ff2bd6" />
+        <circle cx="68" cy="30" r="1.8" fill="#ff2bd6" />
+        <!-- boca -->
+        <line x1="52" y1="41" x2="68" y2="41" stroke="#00fff0" stroke-width="0.8" />
+        <line x1="55" y1="39" x2="55" y2="43" stroke="#00fff0" stroke-width="0.8" />
+        <line x1="60" y1="39" x2="60" y2="43" stroke="#00fff0" stroke-width="0.8" />
+        <line x1="65" y1="39" x2="65" y2="43" stroke="#00fff0" stroke-width="0.8" />
+        <!-- corpo -->
+        <rect x="45" y="52" width="30" height="24" rx="4" fill="rgba(0, 255, 240, 0.05)" stroke="#00fff0" stroke-width="1.2" filter="url(#aif2)" />
+        <circle cx="52" cy="61" r="2" fill="#ff2bd6" />
+        <circle cx="60" cy="61" r="2" fill="#00fff0" />
+        <circle cx="68" cy="61" r="2" fill="#ff2bd6" />
+        <line x1="48" y1="69" x2="72" y2="69" stroke="#ff2bd6" stroke-width="0.8" />
+        <!-- braços -->
+        <line x1="45" y1="58" x2="32" y2="66" stroke="#00fff0" stroke-width="1.2" />
+        <line x1="75" y1="58" x2="88" y2="66" stroke="#ff2bd6" stroke-width="1.2" />
+        <!-- pernas -->
+        <line x1="52" y1="76" x2="50" y2="88" stroke="#00fff0" stroke-width="1.2" />
+        <line x1="68" y1="76" x2="70" y2="88" stroke="#ff2bd6" stroke-width="1.2" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#ff2bd6" text-anchor="middle" letter-spacing="1.2" font-weight="700">AI.ROBOT</text>
+      </svg>
+      <figcaption>Robótica IA</figcaption>
+    </figure>
+
+    <!-- 3. Dados / Big Data -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00fff0" />
+            <stop offset="100%" stop-color="#ff2bd6" />
+          </linearGradient>
+          <filter id="aif3">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- cilindros de dados empilhados -->
+        <ellipse cx="60" cy="25" rx="28" ry="8" fill="rgba(0, 255, 240, 0.1)" stroke="#00fff0" stroke-width="1.3" filter="url(#aif3)" />
+        <path d="M32 25 L32 45 Q32 53 60 53 Q88 53 88 45 L88 25" fill="none" stroke="#00fff0" stroke-width="1.3" />
+        <ellipse cx="60" cy="45" rx="28" ry="8" fill="none" stroke="#00fff0" stroke-width="1.3" opacity="0.6" />
+        <path d="M32 45 L32 65 Q32 73 60 73 Q88 73 88 65 L88 45" fill="none" stroke="#ff2bd6" stroke-width="1.3" />
+        <ellipse cx="60" cy="65" rx="28" ry="8" fill="none" stroke="#ff2bd6" stroke-width="1.3" opacity="0.6" />
+        <path d="M32 65 L32 80 Q32 88 60 88 Q88 88 88 80 L88 65" fill="none" stroke="#00fff0" stroke-width="1.3" />
+        <ellipse cx="60" cy="80" rx="28" ry="8" fill="none" stroke="#00fff0" stroke-width="1.3" opacity="0.6" />
+        <!-- pontos de dados -->
+        <circle cx="50" cy="35" r="1.5" fill="#ff2bd6" />
+        <circle cx="70" cy="38" r="1.5" fill="#00fff0" />
+        <circle cx="45" cy="55" r="1.5" fill="#00fff0" />
+        <circle cx="75" cy="58" r="1.5" fill="#ff2bd6" />
+        <circle cx="55" cy="75" r="1.5" fill="#ff2bd6" />
+        <circle cx="65" cy="78" r="1.5" fill="#00fff0" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#00fff0" text-anchor="middle" letter-spacing="1.2" font-weight="700">BIG.DATA</text>
+      </svg>
+      <figcaption>Big Data</figcaption>
+    </figure>
+
+    <!-- 4. Processamento de Linguagem -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff2bd6" />
+            <stop offset="100%" stop-color="#00fff0" />
+          </linearGradient>
+          <filter id="aif4">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- balão de fala -->
+        <path d="M25 25 L95 25 Q102 25 102 32 L102 60 Q102 67 95 67 L55 67 L42 80 L45 67 L25 67 Q18 67 18 60 L18 32 Q18 25 25 25 Z" fill="rgba(255, 43, 214, 0.05)" stroke="#ff2bd6" stroke-width="1.5" filter="url(#aif4)" />
+        <!-- ondas de texto -->
+        <line x1="30" y1="38" x2="85" y2="38" stroke="#00fff0" stroke-width="1.3" opacity="0.8" />
+        <line x1="30" y1="46" x2="75" y2="46" stroke="#00fff0" stroke-width="1.3" opacity="0.6" />
+        <line x1="30" y1="54" x2="65" y2="54" stroke="#ff2bd6" stroke-width="1.3" opacity="0.8" />
+        <!-- letras -->
+        <text x="35" y="40" font-family="Orbitron, monospace" font-size="7" fill="#00fff0" font-weight="700">AI</text>
+        <text x="85" y="40" font-family="Orbitron, monospace" font-size="7" fill="#ff2bd6" font-weight="700">?</text>
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#ff2bd6" text-anchor="middle" letter-spacing="1.2" font-weight="700">NLP.CORE</text>
+      </svg>
+      <figcaption>Processamento de Linguagem</figcaption>
+    </figure>
+
+    <!-- 5. Visão Computacional -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00fff0" />
+            <stop offset="100%" stop-color="#ff2bd6" />
+          </linearGradient>
+          <filter id="aif5">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- olho / lente -->
+        <ellipse cx="60" cy="48" rx="38" ry="24" fill="rgba(0, 255, 240, 0.05)" stroke="#00fff0" stroke-width="1.8" filter="url(#aif5)" />
+        <circle cx="60" cy="48" r="14" fill="none" stroke="#ff2bd6" stroke-width="1.5" />
+        <circle cx="60" cy="48" r="7" fill="rgba(255, 43, 214, 0.3)" stroke="#ff2bd6" stroke-width="1" />
+        <circle cx="60" cy="48" r="2.5" fill="#00fff0" filter="url(#aif5)" />
+        <!-- raios de visão -->
+        <line x1="22" y1="48" x2="35" y2="48" stroke="#00fff0" stroke-width="1" />
+        <line x1="85" y1="48" x2="98" y2="48" stroke="#00fff0" stroke-width="1" />
+        <line x1="60" y1="24" x2="60" y2="32" stroke="#00fff0" stroke-width="1" />
+        <line x1="60" y1="64" x2="60" y2="72" stroke="#00fff0" stroke-width="1" />
+        <!-- grade de reconhecimento -->
+        <rect x="42" y="30" width="10" height="10" fill="none" stroke="#ff2bd6" stroke-width="0.8" opacity="0.7" />
+        <rect x="68" y="56" width="10" height="10" fill="none" stroke="#ff2bd6" stroke-width="0.8" opacity="0.7" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#00fff0" text-anchor="middle" letter-spacing="1.2" font-weight="700">COMP.VISION</text>
+      </svg>
+      <figcaption>Visão Computacional</figcaption>
+    </figure>
+
+    <!-- 6. IA Generativa -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai6" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff2bd6" />
+            <stop offset="100%" stop-color="#00fff0" />
+          </linearGradient>
+          <filter id="aif6">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- estrela / faísca criativa -->
+        <path d="M60 12 L66 40 L92 46 L66 52 L60 82 L54 52 L28 46 L54 40 Z" fill="rgba(255, 43, 214, 0.08)" stroke="url(#ai6)" stroke-width="1.8" filter="url(#aif6)" />
+        <path d="M60 28 L63 42 L77 45 L63 48 L60 62 L57 48 L43 45 L57 42 Z" fill="rgba(0, 255, 240, 0.15)" stroke="#00fff0" stroke-width="1" opacity="0.8" />
+        <circle cx="60" cy="47" r="3" fill="#ff2bd6" filter="url(#aif6)" />
+        <!-- partículas geradas -->
+        <circle cx="30" cy="30" r="1.5" fill="#00fff0" opacity="0.8" />
+        <circle cx="90" cy="32" r="1.5" fill="#ff2bd6" opacity="0.8" />
+        <circle cx="32" cy="70" r="1.5" fill="#ff2bd6" opacity="0.8" />
+        <circle cx="88" cy="68" r="1.5" fill="#00fff0" opacity="0.8" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#ff2bd6" text-anchor="middle" letter-spacing="1.2" font-weight="700">GEN.AI</text>
+      </svg>
+      <figcaption>IA Generativa</figcaption>
+    </figure>
+
+    <!-- 7. Algoritmo / Engrenagem -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai7" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00fff0" />
+            <stop offset="100%" stop-color="#ff2bd6" />
+          </linearGradient>
+          <filter id="aif7">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- engrenagem externa -->
+        <circle cx="60" cy="48" r="28" fill="none" stroke="url(#ai7)" stroke-width="2" filter="url(#aif7)" stroke-dasharray="6 4" />
+        <circle cx="60" cy="48" r="20" fill="none" stroke="#00fff0" stroke-width="1.5" />
+        <circle cx="60" cy="48" r="10" fill="rgba(255, 43, 214, 0.1)" stroke="#ff2bd6" stroke-width="1.5" />
+        <!-- raios da engrenagem -->
+        <line x1="60" y1="20" x2="60" y2="28" stroke="#ff2bd6" stroke-width="2" />
+        <line x1="60" y1="68" x2="60" y2="76" stroke="#ff2bd6" stroke-width="2" />
+        <line x1="32" y1="48" x2="40" y2="48" stroke="#ff2bd6" stroke-width="2" />
+        <line x1="80" y1="48" x2="88" y2="48" stroke="#ff2bd6" stroke-width="2" />
+        <line x1="40" y1="28" x2="46" y2="34" stroke="#00fff0" stroke-width="1.5" />
+        <line x1="80" y1="28" x2="74" y2="34" stroke="#00fff0" stroke-width="1.5" />
+        <line x1="40" y1="68" x2="46" y2="62" stroke="#00fff0" stroke-width="1.5" />
+        <line x1="80" y1="68" x2="74" y2="62" stroke="#00fff0" stroke-width="1.5" />
+        <!-- símbolo de código -->
+        <text x="60" y="52" font-family="Orbitron, monospace" font-size="8" fill="#00fff0" text-anchor="middle" font-weight="700">{ }</text>
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#00fff0" text-anchor="middle" letter-spacing="1.2" font-weight="700">ALGORITHM</text>
+      </svg>
+      <figcaption>Algoritmos</figcaption>
+    </figure>
+
+    <!-- 8. Ética / IA Responsável -->
+    <figure class="figure-card">
+      <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ai8" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff2bd6" />
+            <stop offset="100%" stop-color="#00fff0" />
+          </linearGradient>
+          <filter id="aif8">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- balança da justiça estilizada -->
+        <line x1="60" y1="15" x2="60" y2="75" stroke="#00fff0" stroke-width="2" filter="url(#aif8)" />
+        <line x1="30" y1="30" x2="90" y2="30" stroke="#ff2bd6" stroke-width="1.8" />
+        <circle cx="60" cy="15" r="4" fill="#ff2bd6" filter="url(#aif8)" />
+        <!-- pratos da balança -->
+        <path d="M30 30 L22 50 L38 50 Z" fill="none" stroke="#00fff0" stroke-width="1.3" />
+        <line x1="30" y1="30" x2="30" y2="50" stroke="#00fff0" stroke-width="1" />
+        <path d="M90 30 L82 50 L98 50 Z" fill="none" stroke="#ff2bd6" stroke-width="1.3" />
+        <line x1="90" y1="30" x2="90" y2="50" stroke="#ff2bd6" stroke-width="1" />
+        <!-- base -->
+        <line x1="45" y1="75" x2="75" y2="75" stroke="#00fff0" stroke-width="2" />
+        <line x1="50" y1="80" x2="70" y2="80" stroke="#ff2bd6" stroke-width="1.5" />
+        <!-- coração ético -->
+        <path d="M60 58 Q55 53 51 57 Q48 61 52 65 L60 72 L68 65 Q72 61 69 57 Q65 53 60 58 Z" fill="rgba(255, 43, 214, 0.3)" stroke="#ff2bd6" stroke-width="1" filter="url(#aif8)" />
+        <text x="60" y="97" font-family="Orbitron, monospace" font-size="5.5" fill="#ff2bd6" text-anchor="middle" letter-spacing="1.2" font-weight="700">AI.ETHICS</text>
+      </svg>
+      <figcaption>IA Responsável</figcaption>
+    </figure>
+  </div>
+
+  <!-- CONTADOR DE VISITAS — CENTRALIZADO -->
+  <div class="visitor-counter-wrapper">
+    <div class="visitor-counter" id="visitorCounter">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 4V2M12 22V20M4 12H2M22 12H20M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/>
+      </svg>
+      <span>Player Visits</span>
+      <span class="count-number" id="visitCount">0</span>
+    </div>
+  </div>
+
+  <footer>
+    Conteúdo acessível · Inteligência Artificial
+  </footer>
+</div>
+
+<script>
+  (function() {
+    // ================= 1. TÍTULO DINÂMICO =================
+    const titles = [
+      "Inteligência Artificial",
+      "AI Mode ON",
+      "O Futuro é Agora",
+      "Além da Fronteira Digital",
+      "Mentes Artificiais",
+      "A Revolução Inteligente"
+    ];
+    const subtitles = [
+      "O futuro é agora",
+      "Aprendizado, raciocínio e criação",
+      "Conheça as tecnologias que transformam o mundo",
+      "Inovação em cada camada",
+      "Porque a inteligência evolui",
+      "Explore o universo da IA"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * titles.length);
+    document.getElementById('dynamicTitle').textContent = titles[randomIndex];
+    document.getElementById('dynamicSubhead').textContent = subtitles[randomIndex];
+
+    // ================= 2. TEXTO DE 30 LINHAS =================
+    const linesContent = [
+      "1. A Inteligência Artificial é a capacidade de máquinas simularem a inteligência humana para realizar tarefas complexas.",
+      "2. Machine Learning permite que sistemas aprendam com dados sem serem explicitamente programados para cada regra.",
+      "3. Deep Learning utiliza redes neurais com muitas camadas para resolver problemas antes considerados impossíveis.",
+      "4. O Processamento de Linguagem Natural (NLP) permite que máquinas entendam e gerem linguagem humana.",
+      "5. A Visão Computacional capacita máquinas a interpretar imagens, vídeos e o mundo visual ao seu redor.",
+      "6. Redes neurais artificiais são inspiradas no funcionamento do cérebro humano e seus bilhões de neurônios.",
+      "7. A IA Generativa cria textos, imagens, músicas e código a partir de padrões aprendidos em grandes bases de dados.",
+      "8. Algoritmos de recomendação personalizam experiências em plataformas de streaming e redes sociais.",
+      "9. Assistentes virtuais como chatbots e voice assistants usam IA para compreender e responder a comandos.",
+      "10. A IA na saúde auxilia no diagnóstico precoce de doenças e na descoberta de novos medicamentos.",
+      "11. Veículos autônomos combinam sensores, visão computacional e aprendizado de máquina para navegar com segurança.",
+      "12. A IA na indústria otimiza processos, prevê falhas e melhora a qualidade dos produtos manufaturados.",
+      "13. O aprendizado supervisionado usa dados rotulados para treinar modelos com resultados conhecidos.",
+      "14. O aprendizado não supervisionado descobre padrões ocultos em dados sem rótulos prévios.",
+      "15. O aprendizado por reforço ensina agentes a tomar decisões através de recompensas e penalidades.",
+      "16. Grandes modelos de linguagem, como GPT, são capazes de gerar texto coerente e contextualizado.",
+      "17. A IA transforma a educação com tutores personalizados e trilhas de aprendizado adaptativas.",
+      "18. No setor financeiro, a IA detecta fraudes e avalia riscos em tempo real com alta precisão.",
+      "19. A agricultura de precisão utiliza IA para monitorar plantações e otimizar o uso de recursos.",
+      "20. A ética em IA é fundamental para garantir decisões justas, transparentes e sem vieses prejudiciais.",
+      "21. A privacidade dos dados é um desafio central: modelos precisam aprender sem expor informações sensíveis.",
+      "22. A IA explicável (XAI) busca tornar as decisões dos modelos compreensíveis para os humanos.",
+      "23. O viés algorítmico pode perpetuar desigualdades se os dados de treinamento não forem cuidadosamente curados.",
+      "24. A regulamentação da IA avança globalmente para estabelecer limites e responsabilidades claras.",
+      "25. A computação quântica promete acelerar exponencialmente o treinamento de modelos complexos de IA.",
+      "26. A IA multimodal combina texto, imagem, áudio e vídeo para uma compreensão mais rica do mundo.",
+      "27. Agentes autônomos de IA são capazes de planejar e executar tarefas complexas com mínima supervisão.",
+      "28. A colaboração humano-IA potencializa a criatividade e a produtividade em diversas áreas profissionais.",
+      "29. O futuro da IA depende de pesquisa responsável, diversidade de dados e transparência nos algoritmos.",
+      "30. Compreender a Inteligência Artificial é essencial para participar ativamente da sociedade digital."
+    ];
+
+    const textContainer = document.getElementById('text30Lines');
+    if (textContainer) {
+      textContainer.innerHTML = '';
+      linesContent.forEach(lineText => {
+        const span = document.createElement('span');
+        span.className = 'line-item';
+        span.textContent = lineText;
+        textContainer.appendChild(span);
+      });
+    }
+
+    // ================= 3. CONTADOR DE VISITAS PERMANENTE =================
+    const VISIT_KEY = 'ai_gamer_page_visits';
+    const visitCountSpan = document.getElementById('visitCount');
+
+    function getVisitCount() {
+      try {
+        const stored = localStorage.getItem(VISIT_KEY);
+        return stored ? parseInt(stored, 10) : 0;
+      } catch (e) { return 0; }
+    }
+
+    function incrementVisitCount() {
+      try {
+        let count = getVisitCount();
+        count += 1;
+        localStorage.setItem(VISIT_KEY, count);
+        return count;
+      } catch (e) {
+        let fallback = parseInt(sessionStorage.getItem(VISIT_KEY) || '0', 10);
+        fallback += 1;
+        sessionStorage.setItem(VISIT_KEY, fallback);
+        return fallback;
+      }
+    }
+
+    const currentCount = incrementVisitCount();
+    if (visitCountSpan) {
+      visitCountSpan.textContent = String(currentCount).padStart(3, '0');
+    }
+  })();
+</script>
+</body>
+</html>

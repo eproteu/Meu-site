@@ -7,7 +7,7 @@
     <!-- Bootstrap 5 + ícones -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Google Fonts -->
+    <!-- Google Fonts (opcional, mas agrega) -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         /* RESET e BASE */
@@ -18,7 +18,7 @@
         }
         body {
             font-family: 'Quicksand', 'Segoe UI', sans-serif;
-            background: #f9f6f0;
+            background: #f9f6f0;  /* fundo claro, acolhedor */
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -36,7 +36,7 @@
             border: 1px solid rgba(255, 235, 215, 0.5);
         }
 
-        /* MENU EM SEMI CÍRCULO */
+        /* MENU EM SEMI CÍRCULO (forma de arco) */
         .menu-semi {
             display: flex;
             flex-wrap: wrap;
@@ -46,7 +46,7 @@
             background: rgba(235, 215, 195, 0.3);
             backdrop-filter: blur(6px);
             padding: 18px 30px;
-            border-radius: 120px 120px 40px 40px;
+            border-radius: 120px 120px 40px 40px;  /* efeito semi círculo */
             box-shadow: 0 8px 18px rgba(140, 100, 70, 0.08);
             border-bottom: 2px solid rgba(210, 180, 150, 0.2);
             margin-bottom: 30px;
@@ -76,25 +76,16 @@
             color: #a5836b;
         }
 
-        /* TÍTULO CENTRAL - com animação ao passar o mouse */
+        /* TÍTULO CENTRAL - Psicologia */
         .hero-title {
             text-align: center;
-            margin: 10px 0 30px;  /* aumentado o espaçamento inferior */
+            margin: 10px 0 18px;
             font-weight: 700;
             font-size: 3.8rem;
             letter-spacing: 2px;
             color: #3f2e22;
             text-shadow: 0 4px 12px rgba(180, 130, 90, 0.10);
             position: relative;
-            transition: all 0.3s ease;
-            cursor: default;
-            display: inline-block;
-            width: 100%;
-        }
-        .hero-title:hover {
-            transform: scale(1.04) translateY(-4px);
-            color: #5a3d2b;
-            text-shadow: 0 8px 20px rgba(140, 100, 70, 0.25);
         }
         .hero-title small {
             display: block;
@@ -102,52 +93,34 @@
             font-weight: 300;
             color: #7a6556;
             letter-spacing: 4px;
-            margin-top: 16px;  /* distanciamento maior entre título e subtítulo */
-            transition: 0.2s;
-        }
-        .hero-title:hover small {
-            color: #9a7a64;
-            letter-spacing: 6px;
+            margin-top: -10px;
         }
         .hero-title i {
             color: #b58b72;
             margin: 0 6px;
         }
 
-        /* FIGURAS / IMAGENS TRANQUILAS (fotos sem direitos autorais - via unsplash) */
+        /* FIGURAS / IMAGENS CLARAS E TRANQUILIZANTES (SVG inline) */
         .figure-tranquila {
             display: flex;
             justify-content: center;
-            align-items: center;
             gap: 30px;
             flex-wrap: wrap;
-            margin: 30px 0 30px;  /* mais espaço ao redor */
+            margin: 25px 0 20px;
         }
-        .figure-tranquila img {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            box-shadow: 0 8px 24px rgba(120, 80, 50, 0.10);
-            transition: 0.3s ease;
-            border: 3px solid rgba(235, 215, 195, 0.5);
-            filter: saturate(0.92) brightness(1.02);
+        .figure-tranquila svg {
+            width: 70px;
+            height: 70px;
+            filter: drop-shadow(0 4px 8px rgba(120, 80, 50, 0.08));
+            transition: 0.2s;
+            opacity: 0.8;
         }
-        .figure-tranquila img:hover {
-            transform: scale(1.04);
-            box-shadow: 0 12px 32px rgba(100, 70, 40, 0.15);
-            border-color: #dcc2ae;
-            filter: saturate(1);
-        }
-        /* adaptação para mobile */
-        @media (max-width: 600px) {
-            .figure-tranquila img {
-                width: 130px;
-                height: 130px;
-            }
+        .figure-tranquila svg:hover {
+            opacity: 1;
+            transform: translateY(-4px);
         }
 
-        /* TEXTO PSICOLOGIA + FREUD */
+        /* TEXTO PSICOLOGIA + FREUD (aprox. 40 linhas) */
         .texto-psicologia {
             background: rgba(250, 242, 234, 0.6);
             backdrop-filter: blur(2px);
@@ -184,36 +157,6 @@
             margin: 12px 0;
         }
 
-        /* CONTADOR DE VISITAS */
-        .contador-visitas {
-            background: rgba(235, 215, 195, 0.25);
-            backdrop-filter: blur(4px);
-            border-radius: 60px;
-            padding: 10px 28px;
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            border: 1px solid rgba(210, 180, 150, 0.2);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            font-weight: 500;
-            color: #5e4b3c;
-            font-size: 1rem;
-            margin-top: 8px;
-            transition: 0.2s;
-        }
-        .contador-visitas i {
-            font-size: 1.4rem;
-            color: #a5836b;
-        }
-        .contador-visitas .numero {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: #3f2e22;
-            min-width: 50px;
-            display: inline-block;
-            text-align: center;
-        }
-
         /* RESPONSIVO */
         @media (max-width: 768px) {
             .card-site {
@@ -222,11 +165,6 @@
             }
             .hero-title {
                 font-size: 2.8rem;
-                margin: 10px 0 25px;
-            }
-            .hero-title small {
-                font-size: 1rem;
-                margin-top: 14px;
             }
             .menu-semi {
                 border-radius: 80px 80px 30px 30px;
@@ -241,34 +179,22 @@
                 padding: 20px 18px;
                 columns: 1;
             }
-            .figure-tranquila img {
-                width: 140px;
-                height: 140px;
+            .figure-tranquila svg {
+                width: 55px;
+                height: 55px;
             }
         }
         @media (max-width: 480px) {
             .hero-title {
                 font-size: 2.2rem;
             }
-            .hero-title small {
-                font-size: 0.9rem;
-                margin-top: 12px;
-            }
             .menu-semi .menu-item {
                 font-size: 0.85rem;
                 padding: 4px 10px;
             }
-            .figure-tranquila img {
-                width: 110px;
-                height: 110px;
-            }
-            .contador-visitas {
-                padding: 8px 18px;
-                font-size: 0.9rem;
-            }
         }
 
-        /* cores */
+        /* ajuste para cores vivas mas não gritantes: tons terrosos, salmão suave, verde sage */
         .bg-soft-peach { background: #f5e3d6; }
         .text-warm { color: #7a5a47; }
         .border-warm { border-color: #d6b9a6; }
@@ -280,8 +206,13 @@
             background: #e6d0bf;
             color: #2f241c;
         }
-        .icone-flor { color: #a5836b; }
-        footer small { color: #9e887a; }
+        /* ícones e detalhes */
+        .icone-flor {
+            color: #a5836b;
+        }
+        footer small {
+            color: #9e887a;
+        }
     </style>
 </head>
 <body>
@@ -296,17 +227,38 @@
         <a href="#" class="menu-item"><i class="bi bi-envelope"></i> Contato</a>
     </nav>
 
-    <!-- TÍTULO "PSICOLOGIA" com movimento ao passar o mouse -->
+    <!-- TÍTULO "PSICOLOGIA" BEM NO CENTRO -->
     <h1 class="hero-title">
         <i class="bi bi-asterisk"></i> Psicologia <i class="bi bi-asterisk"></i>
         <small>mente · comportamento · inconsciente</small>
     </h1>
 
-    <!-- FIGURAS TRANQUILAS - FOTOS SEM DIREITOS AUTORAIS (Unsplash) -->
+    <!-- FIGURAS CLARAS E TRANQUILIZANTES (SVG) -->
     <div class="figure-tranquila">
-        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=400&fit=crop&crop=center&auto=format" alt="Pessoa meditando em paz" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop&crop=center&auto=format" alt="Natureza tranquila e serena" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=400&h=400&fit=crop&crop=center&auto=format" alt="Pôr do sol calmo" loading="lazy">
+        <!-- Flor / lótus (tranquilidade) -->
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="18" fill="#EAD5C3" stroke="#D2B7A2" stroke-width="1.5" />
+            <path d="M40 22 L43 34 L55 34 L45 42 L49 54 L40 47 L31 54 L35 42 L25 34 L37 34 L40 22Z" fill="#DCC2AE" stroke="#BFA088" stroke-width="1.2" />
+            <circle cx="40" cy="40" r="6" fill="#F5E4D4" stroke="#C9AD98" stroke-width="1" />
+            <path d="M40 16 L42 24 L48 20 L44 28 L52 26 L46 32 L40 30 L34 32 L28 26 L36 28 L32 20 L38 24 L40 16Z" fill="#DCC2AE" opacity="0.6" />
+        </svg>
+
+        <!-- Mente / cérebro (símbolo suave) -->
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 32 C26 22 34 16 40 16 C46 16 54 22 54 32 C54 42 48 48 46 52 C44 56 44 60 40 60 C36 60 36 56 34 52 C32 48 26 42 26 32Z" fill="#EAD5C3" stroke="#CBB19B" stroke-width="1.8" />
+            <path d="M32 30 L48 30" stroke="#B08872" stroke-width="2" stroke-linecap="round" />
+            <path d="M34 38 L46 38" stroke="#B08872" stroke-width="2" stroke-linecap="round" />
+            <path d="M36 46 L44 46" stroke="#B08872" stroke-width="2" stroke-linecap="round" />
+            <circle cx="40" cy="26" r="3" fill="#DCC2AE" stroke="#BFA088" stroke-width="1" />
+        </svg>
+
+        <!-- Pássaro / paz -->
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 44 C18 30 30 24 40 24 C50 24 62 30 62 44 C62 54 56 60 40 60 C24 60 18 54 18 44Z" fill="#F0DFD0" stroke="#CEB6A2" stroke-width="1.5" />
+            <path d="M30 38 L36 44 L48 36" stroke="#B08872" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="34" cy="34" r="3" fill="#E1C9B8" stroke="#C0A490" stroke-width="1.2" />
+            <circle cx="46" cy="34" r="3" fill="#E1C9B8" stroke="#C0A490" stroke-width="1.2" />
+        </svg>
     </div>
 
     <!-- TEXTO SOBRE PSICOLOGIA E FREUD (aprox. 40 linhas) -->
@@ -332,64 +284,19 @@
         <p>Navegar por essas águas profundas é o convite que a psicanálise e a psicologia, em seu vasto espectro, nos fazem — um convite à escuta, à curiosidade e ao cuidado com a própria alma.</p>
     </div>
 
-    <!-- RODAPÉ com CONTADOR DE VISITAS (simulado, com incremento local) -->
-    <footer class="d-flex flex-wrap justify-content-between align-items-center mt-4 pt-3 border-top border-warm" style="border-color: #e2cfbc !important;">
+    <!-- pequeno rodapé com ícone -->
+    <footer class="d-flex justify-content-between align-items-center mt-4 pt-2 border-top border-warm" style="border-color: #e2cfbc !important;">
         <div class="d-flex align-items-center gap-3">
             <i class="bi bi-flower1 text-warm" style="font-size: 1.6rem;"></i>
             <span style="color:#7a6556; font-weight:300; font-size:0.9rem;">mente aberta · 2026</span>
         </div>
-
-        <!-- CONTADOR DE VISITAS com ícone e número -->
-        <div class="contador-visitas" id="contadorVisitas">
-            <i class="bi bi-eye"></i>
-            <span class="numero" id="numeroVisitas">0</span>
-            <span style="font-weight:300; font-size:0.9rem; color:#7a6556;">visitas</span>
+        <div>
+            <span style="color:#b19783;"><i class="bi bi-droplet"></i> <i class="bi bi-droplet"></i> <i class="bi bi-droplet"></i></span>
         </div>
     </footer>
 </div>
 
-<!-- Bootstrap JS (opcional para alguns componentes) -->
+<!-- Bootstrap JS (para interatividade, mas não obrigatório) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Script para contador de visitas (armazena no localStorage) -->
-<script>
-    (function() {
-        // Chave para armazenar no localStorage
-        const STORAGE_KEY = 'psicologia_visitas';
-        
-        // Função para obter o número atual
-        function getVisitas() {
-            const stored = localStorage.getItem(STORAGE_KEY);
-            if (stored !== null) {
-                const parsed = parseInt(stored, 10);
-                return isNaN(parsed) ? 0 : parsed;
-            }
-            return 0;
-        }
-
-        // Função para atualizar o contador na tela e no localStorage
-        function incrementarVisitas() {
-            let atual = getVisitas();
-            // Incrementa apenas uma vez por sessão (para não contar recarregamentos)
-            // Usamos sessionStorage para controlar se já foi contado nesta sessão
-            const sessionKey = 'visita_contada_sessao';
-            if (!sessionStorage.getItem(sessionKey)) {
-                atual += 1;
-                localStorage.setItem(STORAGE_KEY, String(atual));
-                sessionStorage.setItem(sessionKey, 'true');
-            }
-            // Atualiza o elemento na tela
-            const numeroEl = document.getElementById('numeroVisitas');
-            if (numeroEl) {
-                numeroEl.textContent = atual;
-            }
-        }
-
-        // Executa ao carregar a página
-        window.addEventListener('load', function() {
-            incrementarVisitas();
-        });
-    })();
-</script>
 </body>
 </html>

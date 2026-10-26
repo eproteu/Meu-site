@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natureza FCLAR | UNESP Araraquara</title>
+  <style>
+    :root {
+      --green: #00c853;
+      --dark-green: #006600;
+      --light-green: #4ade80;
+      --turquoise: #00e5c0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(to bottom, #f0fdf4, #ecfdf5);
+      color: #1f2937;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(rgba(0, 150, 80, 0.85), rgba(0, 100, 60, 0.95)),
+                  url('IMG_20260707_130701.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 160px 20px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .title {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 700;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: float 8s ease-in-out infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-25px); }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.95;
+      animation: fadeIn 3s ease-in;
+    }
+
+    .section {
+      padding: 70px 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: var(--dark-green);
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--green);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08) rotate(1deg);
+      box-shadow: 0 20px 40px rgba(0, 200, 83, 0.3);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 30px 0;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--dark-green), #004d00);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="title">Natureza FCLAR</h1>
+    <p class="subtitle">Um paraíso verde no coração da UNESP Araraquara</p>
+  </header>
+
+  <div class="section">
+    <h2>Descubra o Verde do Campus</h2>
+    <p style="text-align:center; font-size:1.25rem; max-width:900px; margin:0 auto;">
+      O campus da Faculdade de Ciências e Letras de Araraquara é muito mais que um espaço acadêmico — 
+      é um refúgio natural repleto de vida, cores e tranquilidade.
+    </p>
+    <img src="IMG_20260707_130701.jpg" class="hero-image" alt="Árvore majestosa no campus FCLAR">
+  </div>
+
+  <div class="section" style="background: #f0fdf4;">
+    <h2>Galeria de Belezas Naturais</h2>
+    <div class="gallery">
+      <img src="IMG_20260707_130701.jpg" alt="Árvore imponente">
+      <img src="IMG_20260707_124159.jpg" alt="Folhas verdes vibrantes">
+      <img src="IMG_20260707_124406.jpg" alt="Ipê rosa florescendo">
+      <img src="IMG_20260707_124505.jpg" alt="Caminho com palmeiras">
+      <img src="IMG_20260707_124713.jpg" alt="Palmeiras e gramado">
+      <img src="IMG_20260707_124352.jpg" alt="Detalhe de flores">
+      <img src="IMG_20260707_125755.jpg" alt="Caminho principal">
+      <img src="IMG_20260707_125036.jpg" alt="Árvore com tronco claro">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Por que amamos este lugar?</h2>
+    <ul style="font-size:1.2rem; max-width:800px; margin:0 auto; padding-left:20px;">
+      <li>🌳 Árvores centenárias e rica biodiversidade</li>
+      <li>🌺 Ipês e flores que pintam o campus de rosa e roxo</li>
+      <li>🌴 Palmeiras que trazem um ar tropical</li>
+      <li>☀️ Sombreamento natural e áreas de descanso perfeitas</li>
+      <li>🕊️ Ambiente ideal para estudar, relaxar e recarregar</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p><strong>UNESP — Faculdade de Ciências e Letras de Araraquara (FCLAr)</strong></p>
+    <p>Preservando a natureza • Inspirando vidas</p>
+  </footer>
+
+</body>
+</html>

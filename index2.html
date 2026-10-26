@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMicros · ATMEGA, PIC, 8051, Arduino e IoT</title>
+    <!-- Sem direitos de imagem · ícones via Font Awesome (gratuito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f7fc;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            color: #1e293b;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0,20,40,0.08);
+            padding: 2rem 2rem 3rem;
+            transition: all 0.2s;
+        }
+
+        /* cabeçalho */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e9eef3;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(145deg, #0b3b5c, #1f6e8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo i {
+            background: #0b3b5c;
+            color: white;
+            padding: 8px 10px;
+            border-radius: 40px;
+            margin-right: 8px;
+            font-size: 1.6rem;
+            -webkit-text-fill-color: white;
+        }
+        .logo span {
+            font-weight: 300;
+            font-size: 1rem;
+            background: #d0e2f0;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-left: 12px;
+            -webkit-text-fill-color: #1e293b;
+        }
+
+        .contador-visitas {
+            background: #eef4fa;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .contador-visitas i {
+            color: #1f6e8c;
+            margin-right: 10px;
+        }
+        .contador-visitas span {
+            background: #1e293b;
+            color: white;
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            margin-left: 8px;
+            font-feature-settings: "tnum";
+        }
+
+        /* grid cards */
+        .grid-destaques {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0 3rem;
+        }
+
+        .card-micro {
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 1.8rem 1.2rem;
+            border: 1px solid #e2edf5;
+            transition: 0.2s ease;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,20,30,0.02);
+        }
+        .card-micro:hover {
+            border-color: #7fb5d0;
+            background: white;
+            box-shadow: 0 12px 24px -12px rgba(20,80,120,0.15);
+        }
+        .card-micro i {
+            font-size: 2.8rem;
+            color: #1f6e8c;
+            background: #e2edf5;
+            padding: 14px;
+            border-radius: 60px;
+            margin-bottom: 1rem;
+        }
+        .card-micro h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .card-micro p {
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        /* conteúdo principal */
+        .conteudo-rico {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .bloco-texto {
+            background: #fafdff;
+            padding: 1.8rem 2.2rem;
+            border-radius: 28px;
+            border-left: 6px solid #1f6e8c;
+        }
+        .bloco-texto h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .bloco-texto h2 i {
+            color: #1f6e8c;
+            font-size: 2rem;
+        }
+
+        .esquemas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .esquema-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem 1.8rem 2.2rem;
+            flex: 1 1 280px;
+            border: 1px solid #dde9f2;
+            box-shadow: 0 6px 14px rgba(0,30,50,0.04);
+        }
+        .esquema-card h4 {
+            font-size: 1.3rem;
+            border-bottom: 2px dashed #bdd7e8;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .esquema-card h4 i {
+            color: #0b3b5c;
+        }
+        .esquema-card pre {
+            background: #0b1a26;
+            color: #c5e2f5;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .esquema-card .legenda {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            background: #e7f0f8;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .iot-highlight {
+            background: #e3f0fa;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #b4d2e9;
+        }
+        .iot-highlight h3 {
+            font-size: 1.6rem;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .iot-highlight i {
+            color: #005073;
+        }
+
+        hr {
+            margin: 2rem 0 1rem;
+            border: 1px solid #e0ebf3;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #4d6a7e;
+            border-top: 1px solid #dce7f0;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1.5rem; }
+            .header { flex-direction: column; align-items: start; gap: 1rem; }
+            .contador-visitas { align-self: start; }
+        }
+
+        .badge-iot {
+            background: #005073;
+            color: white;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+        .destaque-lista {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .destaque-lista li {
+            padding: 0.3rem 0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .destaque-lista i {
+            color: #1f6e8c;
+            width: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- cabeçalho com contador de visitas -->
+    <div class="header">
+        <div class="logo">
+            <h1><i class="fas fa-microchip"></i> TechMicros <span>ATMEGA · PIC · 8051</span></h1>
+        </div>
+        <div class="contador-visitas">
+            <i class="fas fa-eye"></i> Visitas <span id="contadorDisplay">0</span>
+        </div>
+    </div>
+
+    <!-- cards resumo -->
+    <div class="grid-destaques">
+        <div class="card-micro"><i class="fas fa-cpu"></i><h3>ATMEGA</h3><p>Arduino, 8/16-bit, flash, periféricos ricos, IDE amigável.</p></div>
+        <div class="card-micro"><i class="fas fa-microchip"></i><h3>PIC</h3><p>Microchip, robusto, vasta família, baixo consumo, industrial.</p></div>
+        <div class="card-micro"><i class="fas fa-server"></i><h3>8051</h3><p>Clássico, 8-bit, didático, ainda presente em sistemas embarcados.</p></div>
+        <div class="card-micro"><i class="fas fa-wifi"></i><h3>Arduino & IoT</h3><p>ESP8266, ESP32, sensores, nuvem, MQTT, automação.</p></div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL (bastante conteúdo) -->
+    <div class="conteudo-rico">
+
+        <!-- bloco 1: ATMEGA + PIC + 8051 -->
+        <div class="bloco-texto">
+            <h2><i class="fas fa-bolt"></i> ATMEGA, PIC e 8051 — comparativo e aplicações</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 0.5rem;">
+                <strong>ATMEGA</strong> (ex: ATMEGA328P) é o coração do Arduino Uno. Possui arquitetura AVR, 32KB flash, 2KB SRAM, clock até 20MHz. 
+                <strong>PIC</strong> (ex: PIC16F877A) da Microchip, com 14KB flash, 368 bytes RAM, 33 portas I/O, muito usado em automação e controle.
+                <strong>8051</strong> (ex: AT89S52) é o clássico Intel, 8KB flash, 256 bytes RAM, 4 portas de 8 bits, extremamente difundido em educação.
+            </p>
+            <ul class="destaque-lista">
+                <li><i class="fas fa-check-circle"></i> ATMEGA: programação em C/Arduino, bootloader, periféricos (ADC, PWM, UART, SPI, I2C).</li>
+                <li><i class="fas fa-check-circle"></i> PIC: ampla gama de modelos, baixo custo, excelente para projetos de potência e motor.</li>
+                <li><i class="fas fa-check-circle"></i> 8051: simples, barato, ainda usado em sensores e controle de baixa complexidade.</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">Todos suportam <strong>IoT</strong> quando acoplados a módulos WiFi/ethernet (ESP8266, ENC28J60). A tendência é usar ATMEGA e PIC com ESP para conectar à nuvem.</p>
+        </div>
+
+        <!-- bloco 2: Arduino + PIC + IoT -->
+        <div class="bloco-texto">
+            <h2><i class="fas fa-globe"></i> Arduino, PIC e o ecossistema IoT</h2>
+            <p>
+                O <strong>Arduino</strong> (baseado em ATMEGA) democratizou a eletrônica. Com shields e bibliotecas, é possível prototipar IoT em minutos.
+                O <strong>PIC</strong> também tem suporte a TCP/IP com stacks como Microchip TCP/IP, e pode se comunicar via UART com módulos ESP.
+                <br><br>
+                <i class="fas fa-arrow-right" style="color:#1f6e8c;"></i> <strong>IoT na prática:</strong> sensores (temperatura, umidade, luminosidade) + microcontrolador + conectividade (WiFi, LoRa, Zigbee) + broker MQTT + dashboard.
+                Exemplos: estação meteorológica, controle de irrigação, monitoramento de energia, rastreamento de ativos.
+            </p>
+            <div style="background: #e2edf5; border-radius: 20px; padding: 0.8rem 1.4rem; margin-top: 1rem;">
+                <i class="fas fa-cloud" style="margin-right: 10px;"></i> <strong>Plataformas:</strong> ThingSpeak, Blynk, AWS IoT, Azure IoT Hub, Google Cloud IoT.
+            </div>
+        </div>
+
+        <!-- ESQUEMAS ELETRÔNICOS: PIC e ATMEGA mesmo comportamento -->
+        <div style="margin-top: 0.5rem;">
+            <h3 style="display: flex; gap: 10px; align-items: center; font-size: 1.6rem; margin-bottom: 1rem;">
+                <i class="fas fa-project-diagram"></i> Esquemas comparativos: PIC vs ATMEGA
+                <span style="font-size: 0.9rem; font-weight: 400; background: #e2edf5; padding: 0.2rem 1.2rem; border-radius: 30px;">mesmo comportamento</span>
+            </h3>
+            <div class="esquemas">
+                <!-- ESQUEMA PIC -->
+                <div class="esquema-card">
+                    <h4><i class="fas fa-microchip"></i> PIC16F877A</h4>
+                    <pre>
+        +5V   ──┬── VDD (pin 32)
+               │
+        LED    ├── resistor 330Ω ── RD0 (pin 19)
+        GND   ──┴── VSS (pin 31)
+
+        Botão ──┬── 10kΩ pull-up ── +5V
+               └── RB0 (pin 33) ──╮
+        GND   ────────────────────╯
+
+        /* Código exemplo (XC8) */
+        void main() {
+            TRISD0 = 0;      // RD0 saída
+            TRISB0 = 1;      // RB0 entrada
+            while(1) {
+                if(RB0 == 0) RD0 = 1;
+                else RD0 = 0;
+            }
+        }
+                    </pre>
+                    <span class="legenda"><i class="fas fa-lightbulb"></i> Acende LED enquanto botão pressionado (nível baixo)</span>
+                </div>
+
+                <!-- ESQUEMA ATMEGA -->
+                <div class="esquema-card">
+                    <h4><i class="fas fa-cpu"></i> ATMEGA328P (Arduino)</h4>
+                    <pre>
+        +5V   ──┬── VCC (pin 7)
+               │
+        LED    ├── resistor 330Ω ── D13 (PB5)
+        GND   ──┴── GND (pin 8)
+
+        Botão ──┬── 10kΩ pull-up ── +5V
+               └── D2 (PD2) ──╮
+        GND   ────────────────╯
+
+        /* Código (Arduino) */
+        void setup() {
+            pinMode(13, OUTPUT);
+            pinMode(2, INPUT_PULLUP);
+        }
+        void loop() {
+            if(digitalRead(2) == LOW)
+                digitalWrite(13, HIGH);
+            else
+                digitalWrite(13, LOW);
+        }
+                    </pre>
+                    <span class="legenda"><i class="fas fa-lightbulb"></i> Mesmo comportamento: LED acende com botão pressionado</span>
+                </div>
+            </div>
+            <p style="margin-top: 0.8rem; font-size: 0.95rem; background: #f0f6fd; padding: 0.4rem 1.2rem; border-radius: 30px;">
+                <i class="fas fa-code"></i> Ambos usam pull-up externo e leitura de entrada digital. O PIC utiliza registradores TRIS e PORT; o ATMEGA usa funções pinMode/digitalRead.
+            </p>
+        </div>
+
+        <!-- IoT em profundidade -->
+        <div class="iot-highlight">
+            <h3><i class="fas fa-wifi"></i> IoT com ATMEGA, PIC e 8051 — arquitetura e exemplos</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.8rem;">
+                <div style="flex: 1; min-width: 200px;">
+                    <p><strong><i class="fas fa-check"></i> Camada de percepção</strong><br>Sensores (DHT11, LM35, HC-SR04, LDR) conectados ao microcontrolador via GPIO, ADC, I2C.</p>
+                    <p><strong><i class="fas fa-check"></i> Camada de rede</strong><br>Módulos ESP8266, ESP32, ou Ethernet (W5100) para enviar dados via HTTP/MQTT.</p>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <p><strong><i class="fas fa-check"></i> Camada de aplicação</strong><br>Dashboards (Node-RED, Grafana), alertas por Telegram/email, armazenamento em nuvem.</p>
+                    <p><strong><i class="fas fa-check"></i> Exemplo prático</strong><br>Estação meteorológica com ATMEGA + ESP8266 + ThingSpeak. PIC + ESP + sensor de umidade do solo.</p>
+                </div>
+            </div>
+            <p style="margin-top: 0.5rem; background: #cfe0ef; border-radius: 30px; padding: 0.4rem 1.4rem; display: inline-block;">
+                <i class="fas fa-microchip"></i> 8051 também pode ser usado com ESP via UART, para projetos de baixo custo.
+            </p>
+        </div>
+
+        <!-- extra: bastante conteúdo sobre diferenças -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; margin-top: 1rem;">
+            <div style="flex: 1; min-width: 200px; background: #f8fbfe; border-radius: 24px; padding: 1.2rem 1.6rem;">
+                <h4><i class="fas fa-code"></i> Programação</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><i class="fas fa-angle-right"></i> ATMEGA: C/Arduino, Atmel Studio, PlatformIO.</li>
+                    <li><i class="fas fa-angle-right"></i> PIC: MPLAB X, XC8, assembly.</li>
+                    <li><i class="fas fa-angle-right"></i> 8051: Keil, SDCC, assembly.</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #f8fbfe; border-radius: 24px; padding: 1.2rem 1.6rem;">
+                <h4><i class="fas fa-memory"></i> Memória & clock</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><i class="fas fa-angle-right"></i> ATMEGA328P: 32KB flash, 2KB RAM, 16MHz.</li>
+                    <li><i class="fas fa-angle-right"></i> PIC16F877A: 14KB flash, 368B RAM, 20MHz.</li>
+                    <li><i class="fas fa-angle-right"></i> 8051 (AT89S52): 8KB flash, 256B RAM, 33MHz.</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #f8fbfe; border-radius: 24px; padding: 1.2rem 1.6rem;">
+                <h4><i class="fas fa-plug"></i> Periféricos</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li><i class="fas fa-angle-right"></i> ADC, PWM, UART, SPI, I2C (todos).</li>
+                    <li><i class="fas fa-angle-right"></i> PIC oferece comparadores, CCP, MSSP.</li>
+                    <li><i class="fas fa-angle-right"></i> ATMEGA tem bootloader, EEPROM interna.</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+        <p style="text-align: center; font-size: 0.95rem;">
+            <i class="fas fa-laptop-code"></i> Conteúdo 100% livre de direitos de imagem · Ilustrações via Font Awesome (gratuito) · 
+            <i class="fas fa-microchip"></i> ATMEGA, PIC, 8051, Arduino e IoT — tudo em um só lugar.
+        </p>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-copyright"></i> TechMicros · 2026 · contador de visitas com localStorage · projeto educacional
+    </div>
+</div>
+
+<!-- contador de visitas com localStorage -->
+<script>
+    (function() {
+        const contadorSpan = document.getElementById('contadorDisplay');
+        // chave localStorage
+        const STORAGE_KEY = 'techmicros_visitas';
+        let visitas = localStorage.getItem(STORAGE_KEY);
+
+        if (visitas === null) {
+            visitas = 1;
+        } else {
+            visitas = parseInt(visitas, 10) + 1;
+        }
+        localStorage.setItem(STORAGE_KEY, visitas);
+        contadorSpan.textContent = visitas;
+    })();
+</script>
+
+</body>
+</html>
